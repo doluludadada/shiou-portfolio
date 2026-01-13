@@ -66,7 +66,7 @@ export const ui = {
         'timeline.glasgow.company': 'University of Glasgow',
         'timeline.glasgow.period': '2022 - 2024',
         'timeline.glasgow.role': 'MSc Software Development',
-        'timeline.glasgow.description': 'Dissertation: Digital Simulation of Mechanical Computer. Grade A (Distinction).',
+        'timeline.glasgow.description': 'Dissertation: Digital Simulation of Mechanical Computer. Grade A.',
         'timeline.glasgow.tag': 'Education',
 
         'timeline.itri.company': 'ITRI',
