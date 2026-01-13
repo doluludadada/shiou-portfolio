@@ -1,0 +1,129 @@
+---
+// src/features/timeline/Timeline.astro
+import { useTranslations } from "../../i18n/utils";
+import type { Lang, UIKey } from "../../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const timeline = [
+  {
+    id: "aidc",
+    icon: "✈️",
+    color: "bg-orange-500/10 text-orange-400 border-orange-500/30",
+  },
+  {
+    id: "stgiles",
+    icon: "📚",
+    color: "bg-blue-500/10 text-blue-400 border-blue-500/30",
+  },
+  {
+    id: "glasgow",
+    icon: "🎓",
+    color: "bg-purple-500/10 text-purple-400 border-purple-500/30",
+  },
+  {
+    id: "itri",
+    icon: "💼",
+    color: "bg-green-500/10 text-green-400 border-green-500/30",
+  },
+  {
+    id: "acc",
+    icon: "🚀",
+    color: "bg-accent/10 text-accent border-accent/30",
+    current: true,
+  },
+];
+---
+
+<section class="py-20 px-6 relative overflow-hidden">
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-accent/5 rounded-full blur-[128px] pointer-events-none"
+  >
+  </div>
+
+  <div class="max-w-6xl mx-auto relative">
+    <div class="mb-16 text-center">
+      <h2 class="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+        {t("timeline.title")}
+      </h2>
+      <p class="text-muted-foreground text-lg max-w-xl mx-auto">
+        {t("timeline.subtitle")}
+      </p>
+    </div>
+
+    <div class="relative">
+      <div
+        class="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-linear-to-b from-transparent via-border to-transparent"
+      >
+      </div>
+
+      <div class="space-y-12">
+        {
+          timeline.map((item, index) => {
+            const isEven = index % 2 === 0;
+            // FIX: Explicitly cast to UIKey to satisfy strict typing
+            const companyKey = `timeline.${item.id}.company` as UIKey;
+            const periodKey = `timeline.${item.id}.period` as UIKey;
+            const roleKey = `timeline.${item.id}.role` as UIKey;
+            const descKey = `timeline.${item.id}.description` as UIKey;
+            const tagKey = `timeline.${item.id}.tag` as UIKey;
+
+            return (
+              <div
+                class={`relative flex items-center ${isEven ? "md:flex-row" : "md:flex-row-reverse"}`}
+              >
+                <div
+                  class={`w-full md:w-1/2 ${isEven ? "md:pr-12 md:text-right" : "md:pl-12"} pl-20 md:pl-0`}
+                >
+                  <div
+                    class={`group p-6 rounded-2xl border border-border bg-surface/50 backdrop-blur-sm hover:border-border-hover transition-all duration-300 ${item.current ? "glow-sm" : ""}`}
+                  >
+                    <span
+                      class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${item.color} mb-3`}
+                    >
+                      {t(tagKey)}
+                    </span>
+
+                    <div class="mb-2">
+                      <h3 class="text-lg font-semibold text-foreground">
+                        {t(companyKey)}
+                      </h3>
+                      <p class="text-sm text-muted-foreground font-mono">
+                        {t(periodKey)}
+                      </p>
+                    </div>
+
+                    <p class="text-accent font-medium mb-2">{t(roleKey)}</p>
+
+                    <p class="text-sm text-muted-foreground leading-relaxed">
+                      {t(descKey)}
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class={`absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 border-background ${item.current ? "bg-accent" : "bg-surface-elevated"}`}
+                >
+                  {item.current && (
+                    <span class="absolute inset-0 rounded-full bg-accent animate-ping opacity-50" />
+                  )}
+                </div>
+
+                <div class="absolute left-0 md:hidden w-8 h-8 flex items-center justify-center text-lg">
+                  {item.icon}
+                </div>
+
+                <div class="hidden md:block md:w-1/2" />
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>

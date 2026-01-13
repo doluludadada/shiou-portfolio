@@ -1,0 +1,36 @@
+---
+// src/pages/playground.astro
+// VS Code Mode - English Only
+import VSCodePlayground from "../features/playground/VSCodePlayground";
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YiShiou's Portfolio - VS Code Mode</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Ensure body takes full height and uses the correct font */
+      body {
+        font-family: "JetBrains Mono", monospace;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <VSCodePlayground client:only="react" />
+  </body>
+</html>

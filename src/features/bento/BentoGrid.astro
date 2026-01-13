@@ -1,0 +1,126 @@
+---
+// src/features/bento/BentoGrid.astro
+import { useTranslations } from "../../i18n/utils";
+import type { Lang } from "../../i18n/ui";
+import { Layers, Zap, Code2, Hexagon } from "lucide-react";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const techStack = {
+  backend: ["Python", "FastAPI", "C#", ".NET"],
+  frontend: ["React", "TypeScript", "Astro"],
+  database: ["PostgreSQL", "Redis", "Oracle"],
+  devops: ["Docker", "GitLab CI", "Linux"],
+};
+---
+
+<section class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <!-- Section Title -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-foreground mb-2">{t("bento.title")}</h2>
+      <div class="w-12 h-1 bg-accent rounded-full"></div>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[140px]">
+      
+      <!-- Projects Count - Large -->
+      <div class="col-span-2 row-span-2 group relative overflow-hidden rounded-2xl border border-border bg-surface p-6 hover:border-border-hover transition-all duration-300">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-colors"></div>
+        <div class="relative h-full flex flex-col justify-between">
+          <div>
+            <Layers className="w-6 h-6 text-accent mb-4" />
+            <p class="text-sm text-muted-foreground">{t("bento.projects_sublabel")}</p>
+          </div>
+          <div>
+            <span class="text-6xl lg:text-7xl font-bold gradient-text">{t("bento.projects_count")}</span>
+            <p class="text-lg text-foreground mt-2">{t("bento.projects_label")}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Performance -->
+      <div class="col-span-1 row-span-1 group relative overflow-hidden rounded-2xl border border-border bg-surface p-4 hover:border-accent/50 transition-all duration-300">
+        <div class="h-full flex flex-col justify-between">
+          <Zap className="w-5 h-5 text-accent" />
+          <div>
+            <span class="text-3xl font-bold text-foreground">{t("bento.performance")}</span>
+            <p class="text-xs text-muted-foreground mt-1">{t("bento.performance_label")}</p>
+          </div>
+        </div>
+        <!-- Subtle glow on hover -->
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-accent/10 blur-xl"></div>
+        </div>
+      </div>
+
+      <!-- Architecture -->
+      <div class="col-span-1 row-span-1 group relative overflow-hidden rounded-2xl border border-border bg-surface p-4 hover:border-accent/50 transition-all duration-300">
+        <div class="h-full flex flex-col justify-between">
+          <Hexagon className="w-5 h-5 text-accent" />
+          <div>
+            <span class="text-2xl font-bold text-foreground font-mono">{t("bento.architecture")}</span>
+            <p class="text-xs text-muted-foreground mt-1">{t("bento.architecture_label")}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Stack - Wide -->
+      <div class="col-span-2 row-span-1 group relative overflow-hidden rounded-2xl border border-border bg-surface p-4 hover:border-border-hover transition-all duration-300">
+        <div class="h-full flex flex-col justify-between">
+          <div class="flex items-center gap-2">
+            <Code2 className="w-5 h-5 text-accent" />
+            <span class="text-sm font-medium text-foreground">{t("bento.stack_label")}</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {techStack.backend.slice(0, 2).map((tech) => (
+              <span class="px-2 py-1 rounded-md bg-cyan-500/10 text-cyan-400 text-xs font-mono">
+                {tech}
+              </span>
+            ))}
+            {techStack.frontend.slice(0, 2).map((tech) => (
+              <span class="px-2 py-1 rounded-md bg-purple-500/10 text-purple-400 text-xs font-mono">
+                {tech}
+              </span>
+            ))}
+            {techStack.devops.slice(0, 1).map((tech) => (
+              <span class="px-2 py-1 rounded-md bg-orange-500/10 text-orange-400 text-xs font-mono">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Performance Detail -->
+      <div class="col-span-2 row-span-1 group relative overflow-hidden rounded-2xl border border-border bg-linear-to-br from-surface to-surface-elevated p-4 hover:border-border-hover transition-all duration-300">
+        <div class="h-full flex items-center justify-between">
+          <div>
+            <p class="text-sm text-muted-foreground mb-1">{t("bento.performance_sublabel")}</p>
+            <div class="flex items-center gap-3">
+              <span class="text-muted-foreground line-through">3 hrs</span>
+              <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+              <span class="text-2xl font-bold text-accent">10 min</span>
+            </div>
+          </div>
+          <!-- Progress visualization -->
+          <div class="hidden md:block">
+            <div class="flex items-end gap-1 h-12">
+              <div class="w-3 bg-muted/30 rounded-t" style="height: 100%"></div>
+              <div class="w-3 bg-accent rounded-t" style="height: 5%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

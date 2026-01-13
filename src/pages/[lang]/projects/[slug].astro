@@ -1,0 +1,316 @@
+---
+// src/pages/[lang]/projects/[slug].astro
+import { languages, type Lang, type UIKey } from "../../../i18n/ui";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { useTranslations } from "../../../i18n/utils";
+import { ArrowLeft, Github, Lock, Layers, Zap, Code2 } from "lucide-react";
+
+// 1. Define the shape of a project to handle optional fields safely
+interface ProjectMetric {
+  label: string;
+  value: string;
+  sublabel: string;
+}
+
+interface ProjectDetail {
+  tech: string[];
+  highlights: string[];
+  architecture?: string;
+  metrics?: ProjectMetric[];
+  repoUrl?: string;
+  comingSoon?: boolean;
+}
+
+// 2. Apply the interface to the data object
+const projectsData: Record<string, ProjectDetail> = {
+  datacontrol: {
+    tech: [
+      "Python 3.13",
+      "FastAPI",
+      "React 18",
+      "TypeScript",
+      "PostgreSQL",
+      "Docker",
+      "GitLab CI/CD",
+      "APScheduler",
+    ],
+    highlights: ["highlight1", "highlight2", "highlight3", "highlight4"],
+    architecture: `
+┌─────────────────────────────────────┐
+│          Presentation Layer         │
+│      (FastAPI Routes, React UI)     │
+├─────────────────────────────────────┤
+│          Application Layer          │
+│      (Use Cases, Orchestration)     │
+├─────────────────────────────────────┤
+│           Domain Layer              │
+│    (Entities, Business Rules)       │
+├─────────────────────────────────────┤
+│        Infrastructure Layer         │
+│  (DB Adapters, File Systems, APIs)  │
+└─────────────────────────────────────┘`,
+    metrics: [
+      { label: "Performance", value: "95%", sublabel: "Faster" },
+      { label: "Processing", value: "10min", sublabel: "vs 3hrs" },
+    ],
+  },
+  authhub: {
+    tech: [
+      "Python 3.13",
+      "FastAPI",
+      "React 19",
+      "TypeScript",
+      "PostgreSQL",
+      "Redis",
+      "JWT (RS256/HS256)",
+      "Argon2",
+    ],
+    highlights: ["highlight1", "highlight2", "highlight3", "highlight4"],
+    architecture: `
+SSO Authentication Flow:
+
+1. User clicks app in dashboard
+2. AuthHub generates one-time ticket
+3. Redirect to app with ticket
+4. App exchanges ticket for JWT
+5. JWT contains user role for that app
+
+┌──────────┐     ┌──────────┐     ┌──────────┐
+│  User    │────▶│ AuthHub  │────▶│   App    │
+└──────────┘     └──────────┘     └──────────┘`,
+    metrics: [{ label: "Apps", value: "7", sublabel: "Integrated" }],
+  },
+  pbill: {
+    tech: ["Python", "Docker", "SQLite", "Mandrill API", "FastAPI"],
+    highlights: ["highlight1", "highlight2", "highlight3", "highlight4"],
+  },
+  gate: {
+    tech: ["C#", ".NET", "JavaScript", "PostgreSQL", "Clean Architecture"],
+    highlights: ["highlight1", "highlight2", "highlight3"],
+  },
+  staff: {
+    tech: [
+      "Python",
+      "FastAPI",
+      "React",
+      "TypeScript",
+      "PostgreSQL",
+      "Zustand",
+      "TanStack Query",
+    ],
+    highlights: ["highlight1", "highlight2", "highlight3"],
+  },
+  marketing: {
+    tech: [
+      "Python",
+      "FastAPI",
+      "React",
+      "TypeScript",
+      "PostgreSQL",
+      "pandas",
+      "openpyxl",
+    ],
+    highlights: ["highlight1", "highlight2", "highlight3"],
+  },
+  abacus: {
+    tech: [
+      "Python",
+      "FastAPI",
+      "React",
+      "TypeScript",
+      "PostgreSQL",
+      "InterBase",
+    ],
+    highlights: ["highlight1", "highlight2"],
+  },
+  dayu: {
+    tech: [
+      "Python",
+      "FastAPI",
+      "React",
+      "Astro",
+      "TypeScript",
+      "PostgreSQL",
+      "Docker",
+      "Caddy",
+      "AWS EC2",
+    ],
+    highlights: ["highlight1", "highlight2", "highlight3", "highlight4"],
+    comingSoon: true,
+  },
+  llmgateway: {
+    tech: [
+      "Python",
+      "FastAPI",
+      "Redis",
+      "LINE Messaging API",
+      "OpenAI API",
+      "xAI Grok",
+    ],
+    highlights: ["highlight1", "highlight2", "highlight3"],
+    repoUrl: "https://github.com/doluludadada/chat_friend",
+  },
+};
+
+export function getStaticPaths() {
+  const paths: { params: { lang: string; slug: string } }[] = [];
+
+  Object.keys(languages).forEach((lang) => {
+    Object.keys(projectsData).forEach((slug) => {
+      paths.push({ params: { lang, slug } });
+    });
+  });
+
+  return paths;
+}
+
+const { lang, slug } = Astro.params;
+const currentLang = lang as Lang;
+const t = useTranslations(currentLang);
+
+const project = projectsData[slug as keyof typeof projectsData];
+
+// 3. Type Assertion (Casting) for dynamic keys
+// We tell TypeScript "Trust me, this string results in a valid UIKey"
+const titleKey = `project.${slug}.title` as UIKey;
+const summaryKey = `project.${slug}.summary` as UIKey;
+---
+
+<BaseLayout
+  title={`${t(titleKey)} | ${t("hero.name")}`}
+  description={t(summaryKey)}
+  lang={currentLang}
+>
+  <div class="max-w-4xl mx-auto px-6 py-12">
+    <a
+      href={`/${currentLang}/projects`}
+      class="inline-flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors mb-8 group"
+    >
+      <ArrowLeft
+        className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+      />
+      {t("projects.back")}
+    </a>
+
+    <header class="mb-12">
+      <h1 class="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+        {t(titleKey)}
+      </h1>
+      <p class="text-xl text-muted-foreground leading-relaxed">
+        {t(summaryKey)}
+      </p>
+
+      <div class="flex flex-wrap gap-4 mt-8">
+        {
+          project.repoUrl ? (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:bg-surface text-foreground transition-colors"
+            >
+              <Github className="w-4 h-4" />
+              {t("projects.source_code")}
+            </a>
+          ) : (
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border text-muted-foreground">
+              <Lock className="w-4 h-4" />
+              {t("projects.proprietary")}
+            </span>
+          )
+        }
+
+        {
+          project.comingSoon && (
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/10 text-accent">
+              {t("projects.coming_soon")}
+            </span>
+          )
+        }
+      </div>
+    </header>
+
+    <hr class="border-border mb-12" />
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2 space-y-8">
+        <section>
+          <h2
+            class="text-xl font-semibold text-foreground mb-4 flex items-center gap-2"
+          >
+            <Zap className="w-5 h-5 text-accent" />
+            {t("projects.highlights")}
+          </h2>
+          <ul class="space-y-3">
+            {
+              project.highlights?.map((highlightKey) => {
+                // 4. Type Assertion for inner map keys
+                const fullKey = `project.${slug}.${highlightKey}` as UIKey;
+                return (
+                  <li class="flex items-start gap-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
+                    <span class="text-muted-foreground">{t(fullKey)}</span>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </section>
+
+        {
+          project.architecture && (
+            <section>
+              <h2 class="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+                <Layers className="w-5 h-5 text-accent" />
+                {t("projects.view_architecture")}
+              </h2>
+              <div class="p-4 rounded-xl bg-surface border border-border overflow-x-auto">
+                <pre class="text-sm text-muted-foreground font-mono whitespace-pre">
+                  {project.architecture}
+                </pre>
+              </div>
+            </section>
+          )
+        }
+
+        {
+          project.metrics && (
+            <section>
+              <div class="grid grid-cols-2 gap-4">
+                {project.metrics.map((metric) => (
+                  <div class="p-4 rounded-xl bg-surface border border-border">
+                    <p class="text-sm text-muted-foreground">{metric.label}</p>
+                    <p class="text-3xl font-bold text-accent">{metric.value}</p>
+                    <p class="text-xs text-muted">{metric.sublabel}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )
+        }
+      </div>
+
+      <aside>
+        <div
+          class="sticky top-24 p-6 rounded-xl bg-surface border border-border"
+        >
+          <h3
+            class="text-sm font-semibold text-foreground uppercase tracking-wider mb-4 flex items-center gap-2"
+          >
+            <Code2 className="w-4 h-4" />
+            {t("projects.tech_stack")}
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {
+              project.tech.map((tech) => (
+                <span class="px-2 py-1 rounded-md bg-surface-elevated text-muted-foreground text-xs font-mono border border-border">
+                  {tech}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
