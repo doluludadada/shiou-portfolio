@@ -7,7 +7,6 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://yishiou.dev', // 之後換成你的網域
   integrations: [
     react(),
     mdx(),

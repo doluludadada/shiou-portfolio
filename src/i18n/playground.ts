@@ -439,8 +439,8 @@ from dataclasses import dataclass
 
 @dataclass
 class Contact:
-    email: str = "your.email@example.com"  # TODO: Update
-    linkedin: str = "linkedin.com/in/yishiou-tsai"
+    email: str = "doluludadada@outlook.com"
+    linkedin: str = "https://www.linkedin.com/in/yishiou-t-b98b0a267/"
     github: str = "github.com/doluludadada"
     location: str = "Taipei, Taiwan"
     
@@ -504,8 +504,8 @@ Focus: Legacy Modernisation | Clean Architecture`,
   ⭐ dayu_tour     - Travel Agency Platform
 
 All: 7 production systems + 2 side projects`,
-    contact: `📧 Email:    your.email@example.com
-💼 LinkedIn: linkedin.com/in/yishiou-tsai
+    contact: `📧 Email:    doluludadada@outlook.com
+💼 LinkedIn: https://www.linkedin.com/in/yishiou-t-b98b0a267/
 🐙 GitHub:   github.com/doluludadada
 📍 Location: Taipei, Taiwan`,
     clear: '',

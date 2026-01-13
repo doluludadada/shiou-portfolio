@@ -242,7 +242,7 @@ export const ui = {
         'timeline.glasgow.company': '格拉斯哥大學',
         'timeline.glasgow.period': '2022 - 2024',
         'timeline.glasgow.role': '軟體開發碩士',
-        'timeline.glasgow.description': '畢業論文：機械電腦數位模擬。成績 A（優等）。',
+        'timeline.glasgow.description': '畢業論文：機械電腦數位模擬。',
         'timeline.glasgow.tag': '教育',
 
         'timeline.itri.company': '工業技術研究院',
