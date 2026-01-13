@@ -1,5 +1,77 @@
 ---
-// src/pages/index.astro
-// Redirect to default language
-return Astro.redirect("/en");
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroSection from "../features/hero/HeroSection.astro";
+import BentoGrid from "../features/bento/BentoGrid.astro";
+import ProjectList from "@/features/projects/components/ProjectList.astro";
+import Timeline from "@/features/timeline/components/Timeline.astro";
 ---
+
+<BaseLayout
+  title="YiShiou | Software Engineer"
+  description="I turn legacy systems into modern architectures."
+  lang="en"
+>
+  <HeroSection lang="en" />
+  <BentoGrid lang="en" />
+  <Timeline lang="en" />
+  <ProjectList lang="en" featuredOnly={true} showViewAll={true} />
+
+  <!-- Contact -->
+  <section class="py-20 px-6 lg:px-16 xl:px-24 border-t border-zinc-800">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl lg:text-4xl font-bold text-zinc-100 mb-4">
+          Get in Touch
+        </h2>
+        <p class="text-zinc-400 text-lg mb-8 max-w-lg">
+          Let's connect and discuss opportunities.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="mailto:doluludadada@outlook.com"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-zinc-100 text-zinc-900 font-medium hover:bg-zinc-200 transition-colors"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path></svg
+            >
+            Email
+          </a>
+          <a
+            href="https://www.linkedin.com/in/yishiou-t-b98b0a267/"
+            target="_blank"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-800 hover:bg-zinc-900 text-zinc-100 font-medium transition-colors"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/doluludadada"
+            target="_blank"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-800 hover:bg-zinc-900 text-zinc-100 font-medium transition-colors"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
+      <div class="hidden lg:flex justify-end">
+        <div
+          class="w-64 h-64 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8 flex flex-col justify-center"
+        >
+          <div class="text-5xl mb-4">👋</div>
+          <p class="text-zinc-400 text-sm">
+            Open to backend engineering, system architecture, and full-stack
+            opportunities.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

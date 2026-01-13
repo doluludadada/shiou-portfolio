@@ -1,0 +1,41 @@
+---
+import HorizontalTimeline from '@/shared/components/HorizontalTimeline';
+import type { Lang } from '@/i18n/ui';
+import { useTranslations } from '@/i18n/utils';
+import { timelineConfig } from '../config';
+
+
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "en" } = Astro.props;
+const t = useTranslations(lang);
+const config = timelineConfig[lang];
+
+// Merge config with i18n strings
+const items = config.map((item) => ({
+  ...item,
+  role: t(`timeline.${item.id}.role` as any),
+  description: t(`timeline.${item.id}.desc` as any),
+}));
+---
+
+<section class="py-20 px-6 lg:px-16 xl:px-24 relative overflow-hidden">
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-cyan-500/5 rounded-full blur-[128px]"
+  >
+  </div>
+
+  <div class="relative">
+    <div class="mb-12">
+      <h2 class="text-3xl lg:text-4xl font-bold text-zinc-100 mb-4">
+        {t("timeline.title")}
+      </h2>
+      <p class="text-zinc-400 text-lg max-w-xl">{t("timeline.subtitle")}</p>
+    </div>
+
+    <HorizontalTimeline client:visible items={items} />
+  </div>
+</section>

@@ -1,0 +1,277 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { ArrowLeft, Github, Lock, Layers, Zap, Code2 } from "lucide-react";
+
+export function getStaticPaths() {
+  const slugs = [
+    "datacontrol",
+    "authhub",
+    "pbill",
+    "gate",
+    "staff",
+    "marketing",
+    "abacus",
+    "dayu",
+    "llmgateway",
+  ];
+  return slugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+
+const projects: Record<string, any> = {
+  datacontrol: {
+    title: "Data Control ETL",
+    summary: "關鍵任務 ETL 平台現代化。從 C# 主控台遷移至 FastAPI + React。",
+    tech: [
+      "Python 3.13",
+      "FastAPI",
+      "React 18",
+      "TypeScript",
+      "PostgreSQL",
+      "Docker",
+      "GitLab CI",
+    ],
+    highlights: [
+      "處理時間縮短 95%（3小時 → 10分鐘）",
+      "Clean Architecture 嚴格分層",
+      "即時監控儀表板",
+      "自動化 CI/CD 部署",
+    ],
+    metrics: [
+      { label: "效能提升", value: "95%", sub: "速度更快" },
+      { label: "處理時間", value: "10 分鐘", sub: "原為 3 小時" },
+    ],
+  },
+  authhub: {
+    title: "AuthHub 單一登入",
+    summary: "內部應用程式的集中式身分管理與單一登入系統。",
+    tech: [
+      "Python 3.13",
+      "FastAPI",
+      "React 19",
+      "TypeScript",
+      "PostgreSQL",
+      "Redis",
+      "JWT",
+    ],
+    highlights: [
+      "JWT 驗證支援 RS256/HS256",
+      "按應用程式的角色權限控制",
+      "Redis Session 管理",
+      "票證式 SSO 流程",
+    ],
+    metrics: [{ label: "應用程式", value: "7", sub: "已整合" }],
+  },
+  pbill: {
+    title: "PBill 郵件系統",
+    summary: "自動化無紙帳單系統，支援 PDF 附件發送。",
+    tech: ["Python", "Docker", "SQLite", "Mandrill API", "FastAPI"],
+    highlights: [
+      "檔案快取縮短讀取時間 90%",
+      "容錯設計與自動恢復",
+      "Mandrill API 可靠發送",
+      "Docker 容器化",
+    ],
+  },
+  gate: {
+    title: "Gate 讀卡系統",
+    summary: "實體門禁控制系統與讀卡器硬體整合。",
+    tech: ["C#", ".NET", "JavaScript", "PostgreSQL", "Clean Architecture"],
+    highlights: [
+      "第一個前端專案（原生 JS）",
+      "C# 中的 Clean Architecture",
+      "PostgreSQL 即時同步",
+    ],
+  },
+  staff: {
+    title: "員工管理系統",
+    summary: "員工資料庫與實體門禁權限管理。",
+    tech: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "Zustand"],
+    highlights: [
+      "完整 CRUD + React Hook Form + Zod",
+      "門禁群組含時間規則",
+      "AuthHub SSO 整合",
+    ],
+  },
+  marketing: {
+    title: "行銷管理系統",
+    summary: "活動槽位管理，支援 Excel 批次上傳與會員標籤。",
+    tech: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "pandas"],
+    highlights: [
+      "10 槽位活動架構",
+      "PostgreSQL Advisory Lock 並發處理",
+      "pandas 處理 Excel",
+    ],
+  },
+  abacus: {
+    title: "Abacus 資料庫遷移",
+    summary: "從 InterBase 遷移至 PostgreSQL，建立現代化 API。",
+    tech: [
+      "Python",
+      "FastAPI",
+      "React",
+      "TypeScript",
+      "PostgreSQL",
+      "InterBase",
+    ],
+    highlights: [
+      "從 ODBC 遷移至 SQLAlchemy",
+      "FastAPI + React + TypeScript 堆疊",
+    ],
+  },
+  dayu: {
+    title: "大宇旅遊系統",
+    summary: "全端旅遊平台。獨立接案，完整掌控。",
+    tech: [
+      "Python",
+      "FastAPI",
+      "React",
+      "Astro",
+      "TypeScript",
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+    ],
+    highlights: [
+      "FastAPI 後端 + Clean Architecture",
+      "React 後台 + Astro 公開網站",
+      "Docker + Caddy 部署 EC2",
+      "詢價單 PDF 產生",
+    ],
+    comingSoon: true,
+  },
+  llmgateway: {
+    title: "多 LLM 閘道",
+    summary: "可擴展後端，串接 LINE Messaging API 與 OpenAI/xAI Grok。",
+    tech: [
+      "Python",
+      "FastAPI",
+      "Redis",
+      "LINE Messaging API",
+      "OpenAI API",
+      "xAI Grok",
+    ],
+    highlights: [
+      "Onion Architecture 解耦設計",
+      "Async/Await 高並發",
+      "Redis 狀態管理",
+    ],
+    repoUrl: "https://github.com/doluludadada/chat_friend",
+  },
+};
+
+const project = projects[slug];
+---
+
+<BaseLayout
+  title={`${project.title} | 蔡易修`}
+  description={project.summary}
+  lang="zh"
+>
+  <div class="px-6 lg:px-16 xl:px-24 py-12">
+    <a
+      href="/zh/projects"
+      class="inline-flex items-center gap-2 text-zinc-400 hover:text-cyan-400 transition-colors mb-8 group"
+    >
+      <ArrowLeft
+        className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+      />
+      返回專案
+    </a>
+
+    <header class="mb-12">
+      <h1 class="text-4xl lg:text-5xl font-bold text-zinc-100 mb-4">
+        {project.title}
+      </h1>
+      <p class="text-xl text-zinc-400 leading-relaxed max-w-3xl">
+        {project.summary}
+      </p>
+      <div class="flex flex-wrap gap-4 mt-8">
+        {
+          project.repoUrl ? (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-zinc-800 hover:bg-zinc-900 text-zinc-100 transition-colors"
+            >
+              <Github className="w-4 h-4" /> 原始碼
+            </a>
+          ) : (
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-zinc-800 text-zinc-500">
+              <Lock className="w-4 h-4" /> 企業專案（不公開）
+            </span>
+          )
+        }
+        {
+          project.comingSoon && (
+            <span class="px-4 py-2 rounded-lg bg-cyan-500/10 text-cyan-400">
+              即將推出
+            </span>
+          )
+        }
+      </div>
+    </header>
+
+    <hr class="border-zinc-800 mb-12" />
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+      <div class="lg:col-span-3 space-y-8">
+        <section>
+          <h2
+            class="text-xl font-semibold text-zinc-100 mb-4 flex items-center gap-2"
+          >
+            <Zap className="w-5 h-5 text-cyan-400" /> 重點
+          </h2>
+          <ul class="space-y-3">
+            {
+              project.highlights.map((h: string) => (
+                <li class="flex items-start gap-3">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0" />
+                  <span class="text-zinc-400">{h}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        {
+          project.metrics && (
+            <section>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {project.metrics.map((m: any) => (
+                  <div class="p-4 rounded-xl bg-zinc-900 border border-zinc-800">
+                    <p class="text-sm text-zinc-400">{m.label}</p>
+                    <p class="text-3xl font-bold text-cyan-400">{m.value}</p>
+                    <p class="text-xs text-zinc-500">{m.sub}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )
+        }
+      </div>
+
+      <aside>
+        <div
+          class="sticky top-24 p-6 rounded-xl bg-zinc-900 border border-zinc-800"
+        >
+          <h3
+            class="text-sm font-semibold text-zinc-100 uppercase tracking-wider mb-4 flex items-center gap-2"
+          >
+            <Code2 className="w-4 h-4" /> 技術堆疊
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {
+              project.tech.map((t: string) => (
+                <span class="px-2 py-1 rounded-md bg-zinc-800 text-zinc-400 text-xs font-mono">
+                  {t}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

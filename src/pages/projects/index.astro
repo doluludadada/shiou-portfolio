@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectList from "../../features/projects/ProjectList.astro";
+---
+
+<BaseLayout
+  title="Projects | YiShiou"
+  description="Systems I architected and delivered."
+  lang="en"
+>
+  <div class="pt-8">
+    <ProjectList lang="en" featuredOnly={false} showViewAll={false} />
+  </div>
+</BaseLayout>

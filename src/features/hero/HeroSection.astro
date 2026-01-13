@@ -1,107 +1,124 @@
 ---
-// src/features/hero/HeroSection.astro
+import { MapPin } from "lucide-react";
+import TypewriterCode from "../../shared/components/TypewriterCode";
 import { useTranslations } from "../../i18n/utils";
 import type { Lang } from "../../i18n/ui";
-import { MapPin, Sparkles } from "lucide-react";
 
 interface Props {
-  lang: Lang;
+  lang?: Lang;
 }
 
-const { lang } = Astro.props;
+const { lang = "en" } = Astro.props;
 const t = useTranslations(lang);
+
+const projectsUrl = lang === "zh" ? "/zh/projects" : "/projects";
 ---
 
 <section class="relative min-h-[90vh] flex items-center overflow-hidden">
-  <!-- Background -->
   <div class="absolute inset-0 grid-pattern"></div>
   <div class="absolute inset-0 noise"></div>
-  
-  <!-- Gradient orb -->
-  <div class="absolute top-1/4 -left-32 w-96 h-96 bg-accent/10 rounded-full blur-[128px] pointer-events-none"></div>
-  <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-cyan-500/10 rounded-full blur-[128px] pointer-events-none"></div>
+  <div
+    class="absolute top-1/4 -left-32 w-96 h-96 bg-cyan-500/10 rounded-full blur-[128px]"
+  >
+  </div>
+  <div
+    class="absolute bottom-1/4 -right-32 w-96 h-96 bg-purple-500/10 rounded-full blur-[128px]"
+  >
+  </div>
 
-  <div class="relative max-w-6xl mx-auto px-6 py-20 lg:py-32">
-    <div class="max-w-3xl space-y-8">
-      <!-- Status Badge -->
-      <div class="animate-fade-in opacity-0">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-surface/50 backdrop-blur-sm">
+  <div class="relative w-full px-6 lg:px-16 xl:px-24 py-20 lg:py-32">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Left: Text -->
+      <div class="space-y-8">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50"
+        >
           <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"
+            ></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"
+            ></span>
           </span>
-          <span class="text-sm text-muted-foreground">{t("hero.status")}</span>
+          <span class="text-sm text-zinc-400">{t("hero.status")}</span>
+        </div>
+
+        <div class="space-y-4">
+          <p class="text-zinc-400 text-lg">{t("hero.greeting")}</p>
+          <h1
+            class="text-5xl lg:text-7xl font-bold tracking-tight text-zinc-100"
+          >
+            {t("hero.name")}
+          </h1>
+          <p class="text-2xl lg:text-3xl text-zinc-400 font-medium">
+            {t("hero.role")}
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <p class="text-xl lg:text-2xl text-zinc-100 leading-relaxed">
+            {t("hero.tagline")}
+          </p>
+          <p class="text-lg text-zinc-400 leading-relaxed">
+            {t("hero.sub_tagline")}
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 text-zinc-400">
+          <MapPin className="w-4 h-4" />
+          <span>{t("hero.location")}</span>
+        </div>
+
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a
+            href={projectsUrl}
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-zinc-100 text-zinc-900 font-medium hover:bg-zinc-200 transition-colors"
+          >
+            {t("hero.cta_projects")}
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+          <a
+            href="/playground"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-100 font-medium transition-colors"
+          >
+            <span class="font-mono text-cyan-400">&lt;/&gt;</span>
+            {t("hero.cta_playground")}
+          </a>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-zinc-100 transition-colors"
+          >
+            {t("hero.cta_resume")}
+          </a>
         </div>
       </div>
 
-      <!-- Main Heading -->
-      <div class="space-y-4">
-        <p class="text-muted-foreground text-lg animate-fade-in opacity-0 stagger-1">
-          {t("hero.greeting")}
-        </p>
-        <h1 class="text-5xl lg:text-7xl font-bold tracking-tight animate-slide-up opacity-0 stagger-2">
-          <span class="text-foreground">{t("hero.name")}</span>
-        </h1>
-        <p class="text-2xl lg:text-3xl text-muted-foreground font-medium animate-slide-up opacity-0 stagger-3">
-          {t("hero.role")}
-        </p>
-      </div>
-
-      <!-- Tagline -->
-      <div class="space-y-4 animate-slide-up opacity-0 stagger-4">
-        <p class="text-xl lg:text-2xl text-foreground leading-relaxed">
-          {t("hero.tagline")}
-        </p>
-        <p class="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-          {t("hero.sub_tagline")}
-        </p>
-      </div>
-
-      <!-- Location -->
-      <div class="flex items-center gap-2 text-muted-foreground animate-fade-in opacity-0 stagger-5">
-        <MapPin className="w-4 h-4" />
-        <span>{t("hero.location")}</span>
-      </div>
-
-      <!-- CTAs -->
-      <div class="flex flex-wrap gap-4 pt-4 animate-slide-up opacity-0 stagger-5">
-        <a
-          href={`/${lang}/projects`}
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-foreground text-background font-medium hover:bg-foreground/90 transition-colors"
-        >
-          {t("hero.cta_projects")}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-          </svg>
-        </a>
-        
-        <a
-          href="/playground"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border bg-surface hover:bg-surface-hover text-foreground font-medium transition-colors group"
-        >
-          <span class="font-mono text-accent">&lt;/&gt;</span>
-          {t("hero.cta_playground")}
-        </a>
-        
-        <a
-          href="/resume.pdf"
-          target="_blank"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border hover:border-border-hover text-muted-foreground hover:text-foreground transition-colors"
-        >
-          {t("hero.cta_resume")}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-          </svg>
-        </a>
+      <!-- Right: Code Animation -->
+      <div class="hidden lg:block">
+        <TypewriterCode client:visible />
       </div>
     </div>
   </div>
 
   <!-- Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-fade-in opacity-0" style="animation-delay: 1s;">
-    <div class="flex flex-col items-center gap-2 text-muted">
-      <span class="text-xs uppercase tracking-widest">{t("hero.scroll_hint")}</span>
-      <div class="w-px h-8 bg-linear-to-b from-muted to-transparent"></div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
+    <div class="flex flex-col items-center gap-2 text-zinc-500">
+      <span class="text-xs uppercase tracking-widest"
+        >{t("hero.scroll_hint")}</span
+      >
+      <div class="w-px h-8 bg-linear-to-b from-zinc-500 to-transparent"></div>
     </div>
   </div>
 </section>
