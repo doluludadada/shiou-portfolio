@@ -1,5 +1,5 @@
 // src/features/playground/VSCodePlayground.tsx
-import { useState } from 'react';
+import { useState, type JSX } from 'react';
 import { playgroundFiles, playgroundCode, terminalContent, statusBar, type PlaygroundFile } from '../../i18n/playground';
 import { 
   ChevronRight, 
