@@ -14,15 +14,18 @@ const t = useTranslations(lang);
 const projectsUrl = lang === "zh" ? "/zh/projects" : "/projects";
 ---
 
-<section class="relative min-h-[90vh] flex items-center overflow-hidden">
+<section class="relative min-h-svh flex items-center overflow-hidden">
+  <!-- Background Effects -->
   <div class="absolute inset-0 grid-pattern"></div>
   <div class="absolute inset-0 noise"></div>
+
+  <!-- Glow Orbs -->
   <div
-    class="absolute top-1/4 -left-32 w-96 h-96 bg-cyan-500/10 rounded-full blur-[128px]"
+    class="absolute top-1/4 -left-32 w-96 h-96 rounded-full blur-[128px] glow-orb-cyan bg-accent-glow"
   >
   </div>
   <div
-    class="absolute bottom-1/4 -right-32 w-96 h-96 bg-purple-500/10 rounded-full blur-[128px]"
+    class="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full blur-[128px] glow-orb-purple bg-purple-500/10"
   >
   </div>
 
@@ -30,49 +33,54 @@ const projectsUrl = lang === "zh" ? "/zh/projects" : "/projects";
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <!-- Left: Text -->
       <div class="space-y-8">
+        <!-- Status Badge -->
         <div
-          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50"
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border theme-transition border-border bg-bg-elevated"
         >
           <span class="relative flex h-2 w-2">
             <span
-              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"
+              class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-accent"
             ></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"
             ></span>
           </span>
-          <span class="text-sm text-zinc-400">{t("hero.status")}</span>
+          <span class="text-sm text-text-secondary">{t("hero.status")}</span>
         </div>
 
+        <!-- Name & Role -->
         <div class="space-y-4">
-          <p class="text-zinc-400 text-lg">{t("hero.greeting")}</p>
+          <p class="text-lg text-text-secondary">{t("hero.greeting")}</p>
           <h1
-            class="text-5xl lg:text-7xl font-bold tracking-tight text-zinc-100"
+            class="text-5xl lg:text-7xl font-bold tracking-tight text-text-primary"
           >
             {t("hero.name")}
           </h1>
-          <p class="text-2xl lg:text-3xl text-zinc-400 font-medium">
+          <p class="text-2xl lg:text-3xl font-medium text-text-secondary">
             {t("hero.role")}
           </p>
         </div>
 
+        <!-- Tagline -->
         <div class="space-y-4">
-          <p class="text-xl lg:text-2xl text-zinc-100 leading-relaxed">
+          <p class="text-xl lg:text-2xl leading-relaxed text-text-primary">
             {t("hero.tagline")}
           </p>
-          <p class="text-lg text-zinc-400 leading-relaxed">
+          <p class="text-lg leading-relaxed text-text-secondary">
             {t("hero.sub_tagline")}
           </p>
         </div>
 
-        <div class="flex items-center gap-2 text-zinc-400">
+        <!-- Location -->
+        <div class="flex items-center gap-2 text-text-secondary">
           <MapPin className="w-4 h-4" />
           <span>{t("hero.location")}</span>
         </div>
 
+        <!-- CTAs -->
         <div class="flex flex-wrap gap-4 pt-4">
           <a
             href={projectsUrl}
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-zinc-100 text-zinc-900 font-medium hover:bg-zinc-200 transition-colors"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90 hover:scale-[1.02] bg-text-primary text-bg-primary"
           >
             {t("hero.cta_projects")}
             <svg
@@ -80,6 +88,7 @@ const projectsUrl = lang === "zh" ? "/zh/projects" : "/projects";
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 stroke-linecap="round"
@@ -90,9 +99,9 @@ const projectsUrl = lang === "zh" ? "/zh/projects" : "/projects";
           </a>
           <a
             href="/playground"
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-100 font-medium transition-colors"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border font-medium transition-all hover:opacity-90 theme-transition border-border bg-bg-secondary text-text-primary"
           >
-            <span class="font-mono text-cyan-400">&lt;/&gt;</span>
+            <span class="font-mono text-accent">&lt;/&gt;</span>
             {t("hero.cta_playground")}
           </a>
         </div>
@@ -106,12 +115,12 @@ const projectsUrl = lang === "zh" ? "/zh/projects" : "/projects";
   </div>
 
   <!-- Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
-    <div class="flex flex-col items-center gap-2 text-zinc-500">
-      <span class="text-xs uppercase tracking-widest"
-        >{t("hero.scroll_hint")}</span
-      >
-      <div class="w-px h-8 bg-linear-to-b from-zinc-500 to-transparent"></div>
-    </div>
+  <div
+    class="scroll-indicator hidden sm:flex flex-col items-center gap-2 text-text-muted"
+  >
+    <span class="text-xs uppercase tracking-widest"
+      >{t("hero.scroll_hint")}</span
+    >
+    <div class="w-px h-8 bg-linear-to-b from-text-muted to-transparent"></div>
   </div>
 </section>

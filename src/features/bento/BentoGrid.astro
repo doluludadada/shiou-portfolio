@@ -12,87 +12,96 @@ const { lang = "en" } = Astro.props;
 const t = useTranslations(lang);
 
 const techStack = {
-  backend: ["Python", "FastAPI", "C#", ".NET"],
+  backend: ["Python", "FastAPI", "C#", ".NET", "Java"],
   frontend: ["React", "TypeScript", "Astro"],
-  devops: ["Docker", "GitLab CI"],
+  devops: ["Docker", "GitLab CI", "AWS EC2"],
 };
 ---
 
 <section class="py-20 px-6 lg:px-16 xl:px-24">
   <div class="mb-12">
-    <h2 class="text-2xl font-bold text-zinc-100 mb-2">{t("bento.title")}</h2>
-    <div class="w-12 h-1 bg-cyan-500 rounded-full"></div>
+    <h2 class="text-2xl font-bold mb-2 text-text-primary">
+      {t("bento.title")}
+    </h2>
+    <div class="w-12 h-1 rounded-full bg-accent"></div>
   </div>
 
   <div
     class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 auto-rows-[140px]"
   >
-    <!-- Projects Count -->
     <div
-      class="col-span-2 row-span-2 group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-6 hover:border-cyan-500/50 transition-all"
+      class="col-span-2 row-span-2 group relative overflow-hidden rounded-2xl border p-6 theme-card theme-transition bg-bg-secondary border-border"
     >
       <div
-        class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-2xl group-hover:bg-cyan-500/10 transition-colors"
+        class="absolute top-0 right-0 w-32 h-32 rounded-full blur-2xl transition-colors bg-accent-glow"
       >
       </div>
       <div class="relative h-full flex flex-col justify-between">
         <div>
-          <Layers className="w-6 h-6 text-cyan-400 mb-4" />
-          <p class="text-sm text-zinc-400">{t("bento.projects_sub")}</p>
+          <Layers className="w-6 h-6 mb-4 text-accent" />
+          <p class="text-sm text-text-secondary">
+            {t("bento.projects_sub")}
+          </p>
         </div>
         <div>
           <span
-            class="text-6xl lg:text-7xl font-bold bg-linear-to-r from-cyan-400 to-cyan-300 bg-clip-text text-transparent"
+            class="text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-linear-to-r from-accent to-[#67e8f9]"
           >
             <CountUp client:visible end={7} duration={2000} />
           </span>
-          <p class="text-lg text-zinc-100 mt-2">{t("bento.projects_label")}</p>
+          <p class="text-lg mt-2 text-text-primary">
+            {t("bento.projects_label")}
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- Performance -->
     <div
-      class="col-span-1 row-span-1 group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-4 hover:border-cyan-500/50 transition-all"
+      class="col-span-1 row-span-1 group relative overflow-hidden rounded-2xl border p-4 theme-card theme-transition bg-bg-secondary border-border"
     >
       <div class="h-full flex flex-col justify-between">
-        <Zap className="w-5 h-5 text-cyan-400" />
+        <Zap className="w-5 h-5 text-accent" />
         <div>
-          <span class="text-3xl font-bold text-zinc-100">
+          <span class="text-3xl font-bold text-text-primary">
             <CountUp client:visible end={95} suffix="%" duration={2500} />
           </span>
-          <p class="text-xs text-zinc-400 mt-1">{t("bento.perf_label")}</p>
+          <p class="text-xs mt-1 text-text-secondary">
+            {t("bento.perf_label")}
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- Architecture -->
     <div
-      class="col-span-1 row-span-1 group rounded-2xl border border-zinc-800 bg-zinc-900 p-4 hover:border-cyan-500/50 transition-all"
+      class="col-span-1 row-span-1 group rounded-2xl border p-4 theme-card theme-transition bg-bg-secondary border-border"
     >
       <div class="h-full flex flex-col justify-between">
-        <Hexagon className="w-5 h-5 text-cyan-400" />
+        <Hexagon className="w-5 h-5 text-accent" />
         <div>
-          <span class="text-2xl font-bold text-zinc-100 font-mono"
-            >{t("bento.arch")}</span
-          >
-          <p class="text-xs text-zinc-400 mt-1">{t("bento.arch_label")}</p>
+          <span class="text-2xl font-bold font-mono text-text-primary">
+            {t("bento.arch")}
+          </span>
+          <p class="text-xs mt-1 text-text-secondary">
+            {t("bento.arch_label")}
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- Performance Detail -->
     <div
-      class="col-span-2 row-span-1 rounded-2xl border border-zinc-800 bg-linear-to-br from-zinc-900 to-zinc-900/50 p-4"
+      class="col-span-2 row-span-1 rounded-2xl border p-4 theme-transition border-border bg-linear-to-br from-bg-secondary to-bg-elevated"
     >
       <div class="h-full flex items-center justify-between">
         <div>
-          <p class="text-sm text-zinc-400 mb-1">{t("bento.perf_sub")}</p>
+          <p class="text-sm mb-1 text-text-secondary">
+            {t("bento.perf_sub")}
+          </p>
           <div class="flex items-center gap-3">
-            <span class="text-zinc-500 line-through">{t("bento.perf_old")}</span
-            >
+            <span class="line-through text-text-muted">
+              {t("bento.perf_old")}
+            </span>
             <svg
-              class="w-5 h-5 text-cyan-400"
+              class="w-5 h-5 text-accent"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -103,47 +112,46 @@ const techStack = {
                 stroke-width="2"
                 d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
-            <span class="text-2xl font-bold text-cyan-400"
-              >{t("bento.perf_new")}</span
-            >
+            <span class="text-2xl font-bold text-accent">
+              {t("bento.perf_new")}
+            </span>
           </div>
         </div>
         <div class="hidden md:flex items-end gap-1 h-12">
-          <div class="w-3 bg-zinc-700 rounded-t h-full"></div>
-          <div class="w-3 bg-cyan-400 rounded-t" style="height: 5%"></div>
+          <div class="w-3 rounded-t h-full bg-border-subtle"></div>
+          <div class="w-3 rounded-t h-[5%] bg-accent"></div>
         </div>
       </div>
     </div>
 
-    <!-- Tech Stack -->
     <div
-      class="col-span-2 lg:col-span-4 row-span-1 rounded-2xl border border-zinc-800 bg-zinc-900 p-4"
+      class="col-span-2 lg:col-span-4 row-span-1 rounded-2xl border p-4 theme-transition bg-bg-secondary border-border"
     >
       <div class="h-full flex flex-col justify-between">
         <div class="flex items-center gap-2">
-          <Code2 className="w-5 h-5 text-cyan-400" />
-          <span class="text-sm font-medium text-zinc-100"
-            >{t("bento.stack_label")}</span
-          >
+          <Code2 className="w-5 h-5 text-accent" />
+          <span class="text-sm font-medium text-text-primary">
+            {t("bento.stack_label")}
+          </span>
         </div>
         <div class="flex flex-wrap gap-2">
           {
             techStack.backend.map((tech) => (
-              <span class="px-2 py-1 rounded-md bg-cyan-500/10 text-cyan-400 text-xs font-mono">
+              <span class="px-2 py-1 rounded-md text-xs font-mono bg-cyan-400/10 text-accent">
                 {tech}
               </span>
             ))
           }
           {
             techStack.frontend.map((tech) => (
-              <span class="px-2 py-1 rounded-md bg-purple-500/10 text-purple-400 text-xs font-mono">
+              <span class="px-2 py-1 rounded-md text-xs font-mono bg-purple-500/10 text-[#a855f7]">
                 {tech}
               </span>
             ))
           }
           {
             techStack.devops.map((tech) => (
-              <span class="px-2 py-1 rounded-md bg-orange-500/10 text-orange-400 text-xs font-mono">
+              <span class="px-2 py-1 rounded-md text-xs font-mono bg-orange-400/10 text-[#fb923c]">
                 {tech}
               </span>
             ))

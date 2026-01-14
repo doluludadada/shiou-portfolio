@@ -16,11 +16,36 @@ interface Props {
 }
 
 const colorMap: Record<string, { bg: string; text: string; border: string; line: string }> = {
-    orange: { bg: 'bg-orange-500/10', text: 'text-orange-400', border: 'border-orange-500/30', line: 'bg-orange-500' },
-    blue: { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/30', line: 'bg-blue-500' },
-    purple: { bg: 'bg-purple-500/10', text: 'text-purple-400', border: 'border-purple-500/30', line: 'bg-purple-500' },
-    green: { bg: 'bg-green-500/10', text: 'text-green-400', border: 'border-green-500/30', line: 'bg-green-500' },
-    cyan: { bg: 'bg-cyan-500/10', text: 'text-cyan-400', border: 'border-cyan-500/30', line: 'bg-cyan-500' },
+    orange: {
+        bg: 'rgba(251, 146, 60, 0.1)',
+        text: '#fb923c',
+        border: 'rgba(251, 146, 60, 0.3)',
+        line: '#fb923c'
+    },
+    blue: {
+        bg: 'rgba(96, 165, 250, 0.1)',
+        text: '#60a5fa',
+        border: 'rgba(96, 165, 250, 0.3)',
+        line: '#60a5fa'
+    },
+    purple: {
+        bg: 'rgba(168, 85, 247, 0.1)',
+        text: '#a855f7',
+        border: 'rgba(168, 85, 247, 0.3)',
+        line: '#a855f7'
+    },
+    green: {
+        bg: 'rgba(74, 222, 128, 0.1)',
+        text: '#4ade80',
+        border: 'rgba(74, 222, 128, 0.3)',
+        line: '#4ade80'
+    },
+    cyan: {
+        bg: 'var(--color-accent-glow)',
+        text: 'var(--color-accent)',
+        border: 'rgba(34, 211, 238, 0.3)',
+        line: 'var(--color-accent)'
+    },
 };
 
 export default function TimelineFun({ items }: Props) {
@@ -40,52 +65,88 @@ export default function TimelineFun({ items }: Props) {
                         onMouseEnter={() => setActiveIndex(index)}
                         onMouseLeave={() => setActiveIndex(null)}
                     >
-                        {/* Left: Year (desktop only) */}
+                        {/* Year - Desktop */}
                         <div className="hidden md:flex w-32 shrink-0 justify-end pt-1">
-                            <span className="text-sm font-mono text-zinc-500">{item.year}</span>
+                            <span
+                                className="text-sm font-mono"
+                                style={{ color: 'var(--color-text-muted)' }}
+                            >
+                                {item.year}
+                            </span>
                         </div>
 
-                        {/* Center: Line and Icon */}
+                        {/* Timeline Line & Dot */}
                         <div className="relative flex flex-col items-center">
-                            {/* Icon circle */}
-                            <div className={`
-                                relative z-10 w-10 h-10 rounded-full border-2 flex items-center justify-center
-                                transition-all duration-300 cursor-pointer
-                                ${item.current ? 'bg-cyan-500 border-cyan-500' : `bg-zinc-900 ${colors.border}`}
-                                ${isActive ? 'scale-110' : ''}
-                            `}>
+                            {/* Dot */}
+                            <div
+                                className={`
+                                    relative z-10 w-10 h-10 rounded-full border-2 flex items-center justify-center
+                                    transition-all duration-300 cursor-pointer
+                                    ${isActive ? 'scale-110' : ''}
+                                `}
+                                style={{
+                                    backgroundColor: item.current ? 'var(--color-accent)' : 'var(--color-bg-secondary)',
+                                    borderColor: item.current ? 'var(--color-accent)' : colors.border,
+                                }}
+                            >
                                 <span className="text-base">{item.icon}</span>
                                 {item.current && (
-                                    <span className="absolute inset-0 rounded-full bg-cyan-500 animate-ping opacity-30" />
+                                    <span
+                                        className="absolute inset-0 rounded-full animate-ping opacity-30"
+                                        style={{ backgroundColor: 'var(--color-accent)' }}
+                                    />
                                 )}
                             </div>
 
-                            {/* Vertical line */}
+                            {/* Line */}
                             {!isLast && (
-                                <div className={`
-                                    w-0.5 flex-1 mt-2
-                                    ${item.current ? 'bg-linear-to-b from-cyan-500 to-zinc-700' : 'bg-zinc-700'}
-                                `} />
+                                <div
+                                    className="w-0.5 flex-1 mt-2"
+                                    style={{
+                                        background: item.current
+                                            ? `linear-gradient(to bottom, var(--color-accent), var(--color-border-subtle))`
+                                            : 'var(--color-border-subtle)'
+                                    }}
+                                />
                             )}
                         </div>
 
-                        {/* Right: Content card */}
+                        {/* Content */}
                         <div className="flex-1 pt-1">
-                            {/* Year (mobile only) */}
-                            <span className="md:hidden text-xs font-mono text-zinc-500 mb-1 block">
+                            {/* Year - Mobile */}
+                            <span
+                                className="md:hidden text-xs font-mono mb-1 block"
+                                style={{ color: 'var(--color-text-muted)' }}
+                            >
                                 {item.year}
                             </span>
 
-                            <div className={`
-                                p-4 rounded-xl border transition-all duration-300
-                                ${isActive ? `${colors.bg} ${colors.border}` : 'bg-zinc-900/50 border-zinc-800'}
-                            `}>
-                                <h3 className="font-semibold text-zinc-100">{item.company}</h3>
-                                <p className={`text-sm font-medium mt-1 ${colors.text}`}>{item.role}</p>
-                                <p className={`
-                                    text-sm text-zinc-400 overflow-hidden transition-all duration-300
-                                    ${isActive ? 'max-h-24 opacity-100 mt-2' : 'max-h-0 opacity-0'}
-                                `}>
+                            <div
+                                className="p-4 rounded-xl border transition-all duration-300"
+                                style={{
+                                    backgroundColor: isActive ? colors.bg : 'var(--color-bg-elevated)',
+                                    borderColor: isActive ? colors.border : 'var(--color-border)',
+                                }}
+                            >
+                                <h3
+                                    className="font-semibold"
+                                    style={{ color: 'var(--color-text-primary)' }}
+                                >
+                                    {item.company}
+                                </h3>
+                                <p
+                                    className="text-sm font-medium mt-1"
+                                    style={{ color: colors.text }}
+                                >
+                                    {item.role}
+                                </p>
+                                <p
+                                    className={`
+                                        text-sm overflow-hidden transition-all duration-300
+                                        ${isActive ? 'max-h-24 opacity-100 mt-2' : 'max-h-0 opacity-0'}
+                                    `}
+                                    style={{ color: 'var(--color-text-secondary)' }}
+                                >
                                     {item.description}
                                 </p>
                             </div>

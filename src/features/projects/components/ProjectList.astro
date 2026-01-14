@@ -25,17 +25,23 @@ const displayProjects = featuredOnly
     class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4"
   >
     <div>
-      <h2 class="text-3xl font-bold text-zinc-100 mb-2">
+      <h2
+        class="text-3xl font-bold mb-2"
+        style="color: var(--color-text-primary);"
+      >
         {t("projects.title")}
       </h2>
-      <p class="text-zinc-400 text-lg">{t("projects.subtitle")}</p>
+      <p class="text-lg" style="color: var(--color-text-secondary);">
+        {t("projects.subtitle")}
+      </p>
     </div>
 
     {
       showViewAll && featuredOnly && (
         <a
           href={projectsUrl}
-          class="inline-flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors group"
+          class="inline-flex items-center gap-2 text-sm transition-colors group hover:opacity-80"
+          style="color: var(--color-accent);"
         >
           {t("projects.view_all")}
           <svg
@@ -43,6 +49,7 @@ const displayProjects = featuredOnly
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"

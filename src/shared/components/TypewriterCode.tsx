@@ -22,16 +22,23 @@ function highlightSyntax(text: string) {
     const stringRegex = /"[^"]*"/g;
 
     let result = text;
-    result = result.replace(stringRegex, '<span class="text-amber-400">$&</span>');
+    // Strings - amber/orange color
+    result = result.replace(stringRegex, '<span class="syntax-string">$&</span>');
+    // Keywords - pink/magenta
     keywords.forEach(kw => {
         const regex = new RegExp(`\\b${kw}\\b`, 'g');
-        result = result.replace(regex, `<span class="text-pink-400">${kw}</span>`);
+        result = result.replace(regex, `<span class="syntax-keyword">${kw}</span>`);
     });
-    result = result.replace(/Developer/g, '<span class="text-cyan-400">Developer</span>');
-    result = result.replace(/build/g, '<span class="text-yellow-300">build</span>');
-    result = result.replace(/legacy_system/g, '<span class="text-orange-300">legacy_system</span>');
-    result = result.replace(/modern_architecture/g, '<span class="text-green-400">modern_architecture</span>');
-    result = result.replace(/\b(name|role|location|skills)\b(?=\s*=)/g, '<span class="text-blue-300">$1</span>');
+    // Class name - cyan/accent
+    result = result.replace(/Developer/g, '<span class="syntax-class">Developer</span>');
+    // Function name - yellow
+    result = result.replace(/build/g, '<span class="syntax-function">build</span>');
+    // Parameter - orange
+    result = result.replace(/legacy_system/g, '<span class="syntax-param">legacy_system</span>');
+    // Return value - green
+    result = result.replace(/modern_architecture/g, '<span class="syntax-return">modern_architecture</span>');
+    // Properties - blue
+    result = result.replace(/\b(name|role|location|skills)\b(?=\s*=)/g, '<span class="syntax-property">$1</span>');
 
     return result;
 }
@@ -72,42 +79,101 @@ export default function TypewriterCode() {
 
     return (
         <div className="relative">
-            <div className="rounded-xl border border-zinc-800 bg-[#1a1a1c] shadow-2xl overflow-hidden">
-                <div className="flex items-center gap-2 px-4 py-3 bg-[#252528] border-b border-zinc-800">
+            {/* Syntax highlighting styles */}
+            <style>{`
+                .syntax-string { color: #fbbf24; }
+                .syntax-keyword { color: #f472b6; }
+                .syntax-class { color: var(--color-accent); }
+                .syntax-function { color: #facc15; }
+                .syntax-param { color: #fb923c; }
+                .syntax-return { color: #4ade80; }
+                .syntax-property { color: #60a5fa; }
+                
+                :root.light .syntax-string { color: #b45309; }
+                :root.light .syntax-keyword { color: #be185d; }
+                :root.light .syntax-function { color: #a16207; }
+                :root.light .syntax-param { color: #c2410c; }
+                :root.light .syntax-return { color: #15803d; }
+                :root.light .syntax-property { color: #1d4ed8; }
+            `}</style>
+
+            <div
+                className="rounded-xl border overflow-hidden theme-transition"
+                style={{
+                    backgroundColor: 'var(--code-bg)',
+                    borderColor: 'var(--color-border)',
+                    boxShadow: 'var(--shadow-lg)',
+                }}
+            >
+                {/* Window Header */}
+                <div
+                    className="flex items-center gap-2 px-4 py-3 border-b theme-transition"
+                    style={{
+                        backgroundColor: 'var(--code-header)',
+                        borderColor: 'var(--color-border)',
+                    }}
+                >
                     <div className="flex gap-2">
-                        <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'rgba(239, 68, 68, 0.8)' }}></div>
+                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'rgba(234, 179, 8, 0.8)' }}></div>
+                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'rgba(34, 197, 94, 0.8)' }}></div>
                     </div>
-                    <span className="ml-4 text-xs text-zinc-500 font-mono">about.py</span>
+                    <span
+                        className="ml-4 text-xs font-mono"
+                        style={{ color: 'var(--color-text-muted)' }}
+                    >
+                        about.py
+                    </span>
                 </div>
 
-                <div className="p-4 font-mono text-sm leading-relaxed min-h-[320px]">
+                {/* Code Content */}
+                <div className="p-4 font-mono text-sm leading-relaxed min-h-80">
                     {displayedLines.map((line, index) => (
                         <div key={index} className="flex">
-                            <span className="w-8 text-right pr-4 text-zinc-600 select-none">
+                            <span
+                                className="w-8 text-right pr-4 select-none"
+                                style={{ color: 'var(--color-text-muted)' }}
+                            >
                                 {index + 1}
                             </span>
                             <span
-                                className="text-gray-300"
+                                style={{ color: 'var(--color-text-secondary)' }}
                                 dangerouslySetInnerHTML={{ __html: highlightSyntax(line) || '&nbsp;' }}
                             />
                             {index === currentLineIndex && isTyping && (
-                                <span className="animate-pulse text-cyan-400">▋</span>
+                                <span
+                                    className="animate-pulse"
+                                    style={{ color: 'var(--color-accent)' }}
+                                >
+                                    ▋
+                                </span>
                             )}
                         </div>
                     ))}
                     {!isTyping && (
                         <div className="flex">
-                            <span className="w-8 text-right pr-4 text-zinc-600 select-none">
+                            <span
+                                className="w-8 text-right pr-4 select-none"
+                                style={{ color: 'var(--color-text-muted)' }}
+                            >
                                 {displayedLines.length + 1}
                             </span>
-                            <span className="animate-pulse text-cyan-400">▋</span>
+                            <span
+                                className="animate-pulse"
+                                style={{ color: 'var(--color-accent)' }}
+                            >
+                                ▋
+                            </span>
                         </div>
                     )}
                 </div>
             </div>
-            <div className="absolute -inset-4 bg-cyan-500/5 rounded-2xl blur-2xl -z-10"></div>
+
+            {/* Glow Effect */}
+            <div
+                className="absolute -inset-4 rounded-2xl blur-2xl -z-10"
+                style={{ background: 'var(--color-accent-glow)' }}
+            ></div>
         </div>
     );
 }
