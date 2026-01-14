@@ -9,13 +9,13 @@ export type Lang = keyof typeof languages;
 
 export const ui = {
     en: {
-        // --- Navigation ---
+        // Navigation
         'nav.home': 'Home',
         'nav.projects': 'Projects',
         'nav.about': 'About',
         'nav.playground_tooltip': 'Open VS Code Mode',
 
-        // --- Hero ---
+        // Hero
         'hero.status': "Available for opportunities",
         'hero.greeting': "Hi, I'm",
         'hero.name': 'Shiou',
@@ -25,22 +25,21 @@ export const ui = {
         'hero.location': 'Taipei, Taiwan',
         'hero.cta_projects': 'View Projects',
         'hero.cta_playground': 'Open Playground',
-        'hero.cta_resume': 'Download CV',
         'hero.scroll_hint': 'Scroll to explore',
 
-        // --- Bento Grid ---
+        // Bento
         'bento.title': "At a Glance",
         'bento.projects_sub': "Delivered in 2025",
         'bento.projects_label': "Production Systems",
         'bento.perf_label': "Faster ETL",
-        'bento.perf_sub': "3hrs → 10min", // Keeping as one string or split if dynamic
+        'bento.perf_sub': "3hrs → 10min",
         'bento.perf_old': "3 hrs",
         'bento.perf_new': "10 min",
         'bento.arch': "Clean",
         'bento.arch_label': "Architecture",
         'bento.stack_label': "Tech Stack",
 
-        // --- Timeline ---
+        // Timeline
         'timeline.title': "Journey",
         'timeline.subtitle': "From aerospace precision to software architecture.",
 
@@ -52,7 +51,7 @@ export const ui = {
         'timeline.stgiles.role': "English Studies",
         'timeline.stgiles.desc': "Language preparation for graduate studies.",
 
-        'timeline.glasgow.company': "U of Glasgow",
+        'timeline.glasgow.company': "University of Glasgow",
         'timeline.glasgow.role': "MSc Software Dev",
         'timeline.glasgow.desc': "Dissertation: Digital Simulation of Mechanical Computer. Grade A.",
 
@@ -64,8 +63,8 @@ export const ui = {
         'timeline.acc.role': "IT System Developer",
         'timeline.acc.desc': "Legacy modernisation. 7 production systems.",
 
-        // --- Projects Page ---
-        'projects.title': "Selected Works",
+        // Projects
+        'projects.title': "Projects",
         'projects.subtitle': "Systems I architected and delivered.",
         'projects.view_all': "View all projects",
         'projects.featured': "Featured",
@@ -78,7 +77,7 @@ export const ui = {
         'projects.tech_stack': "Tech Stack",
         'projects.source_code': "Source Code",
 
-        // --- Individual Projects (Moved from [slug].astro) ---
+        // Project details
 
         // Data Control
         'project.datacontrol.title': "Data Control ETL",
@@ -152,7 +151,7 @@ export const ui = {
         'project.llmgateway.highlight.1': "Async/Await for high concurrency",
         'project.llmgateway.highlight.2': "Redis state management",
 
-        // --- Contact ---
+        // Contact
         'contact.title': "Get in Touch",
         'contact.subtitle': "Let's connect and discuss opportunities.",
         'contact.cta_email': "Email",
@@ -160,18 +159,18 @@ export const ui = {
         'contact.cta_github': "GitHub",
         'contact.card_text': "Open to backend engineering, system architecture, and full-stack opportunities.",
 
-        // --- Footer ---
+        // Footer
         'footer.copyright': "© 2025 YiShiou Tsai",
         'footer.built_with': "Built with Astro, React & Tailwind",
     },
     zh: {
-        // --- Navigation ---
+        // Navigation
         'nav.home': '首頁',
         'nav.projects': '專案作品',
         'nav.about': '關於我',
         'nav.playground_tooltip': '開啟 VS Code 模式',
 
-        // --- Hero ---
+        // Hero
         'hero.status': "開放工作機會",
         'hero.greeting': "嗨，我是",
         'hero.name': "蔡易修",
@@ -181,10 +180,9 @@ export const ui = {
         'hero.location': "台灣，台北",
         'hero.cta_projects': "瀏覽專案",
         'hero.cta_playground': "開啟 Playground",
-        'hero.cta_resume': "下載履歷",
         'hero.scroll_hint': "向下捲動探索",
 
-        // --- Bento Grid ---
+        // Bento
         'bento.title': "一覽",
         'bento.projects_sub': "2025 年交付",
         'bento.projects_label': "個生產系統",
@@ -196,7 +194,7 @@ export const ui = {
         'bento.arch_label': "Architecture",
         'bento.stack_label': "技術堆疊",
 
-        // --- Timeline ---
+        // Timeline
         'timeline.title': "經歷",
         'timeline.subtitle': "從航太精密製造到軟體架構。",
 
@@ -220,8 +218,8 @@ export const ui = {
         'timeline.acc.role': "IT 系統開發者",
         'timeline.acc.desc': "舊系統現代化。交付 7 個生產系統。",
 
-        // --- Projects Page ---
-        'projects.title': "精選作品",
+        // Projects
+        'projects.title': "專案作品",
         'projects.subtitle': "我設計並交付的系統。",
         'projects.view_all': "查看全部專案",
         'projects.featured': "精選",
@@ -234,7 +232,7 @@ export const ui = {
         'projects.tech_stack': "技術堆疊",
         'projects.source_code': "原始碼",
 
-        // --- Individual Projects ---
+        // Project details
 
         // Data Control
         'project.datacontrol.title': "Data Control ETL",
@@ -308,7 +306,7 @@ export const ui = {
         'project.llmgateway.highlight.1': "Async/Await 高並發",
         'project.llmgateway.highlight.2': "Redis 狀態管理",
 
-        // --- Contact ---
+        // Contact
         'contact.title': "聯絡我",
         'contact.subtitle': "歡迎聯繫討論合作機會。",
         'contact.cta_email': "電子郵件",
@@ -316,7 +314,7 @@ export const ui = {
         'contact.cta_github': "GitHub",
         'contact.card_text': "歡迎後端工程、系統架構、全端開發的工作機會。",
 
-        // --- Footer ---
+        // Footer
         'footer.copyright': "© 2025 蔡易修",
         'footer.built_with': "使用 Astro, React & Tailwind 建構",
     },
