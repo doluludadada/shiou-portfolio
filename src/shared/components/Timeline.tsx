@@ -23,7 +23,7 @@ const colorMap: Record<string, { bg: string; text: string; border: string; line:
     cyan: { bg: 'bg-cyan-500/10', text: 'text-cyan-400', border: 'border-cyan-500/30', line: 'bg-cyan-500' },
 };
 
-export default function VerticalTimeline({ items }: Props) {
+export default function TimelineFun({ items }: Props) {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     return (
@@ -64,7 +64,7 @@ export default function VerticalTimeline({ items }: Props) {
                             {!isLast && (
                                 <div className={`
                                     w-0.5 flex-1 mt-2
-                                    ${item.current ? 'bg-gradient-to-b from-cyan-500 to-zinc-700' : 'bg-zinc-700'}
+                                    ${item.current ? 'bg-linear-to-b from-cyan-500 to-zinc-700' : 'bg-zinc-700'}
                                 `} />
                             )}
                         </div>

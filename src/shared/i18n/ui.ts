@@ -9,13 +9,13 @@ export type Lang = keyof typeof languages;
 
 export const ui = {
     en: {
-        // Navigation
+        // --- Navigation ---
         'nav.home': 'Home',
         'nav.projects': 'Projects',
         'nav.about': 'About',
         'nav.playground_tooltip': 'Open VS Code Mode',
 
-        // Hero
+        // --- Hero Section ---
         'hero.status': "Available for opportunities",
         'hero.greeting': "Hi, I'm",
         'hero.name': 'Shiou',
@@ -27,7 +27,7 @@ export const ui = {
         'hero.cta_playground': 'Open Playground',
         'hero.scroll_hint': 'Scroll to explore',
 
-        // Bento
+        // --- Bento Grid ---
         'bento.title': "At a Glance",
         'bento.projects_sub': "Delivered in 2025",
         'bento.projects_label': "Production Systems",
@@ -39,7 +39,7 @@ export const ui = {
         'bento.arch_label': "Architecture",
         'bento.stack_label': "Tech Stack",
 
-        // Timeline
+        // --- Timeline ---
         'timeline.title': "Journey",
         'timeline.subtitle': "From aerospace precision to software architecture.",
 
@@ -63,7 +63,7 @@ export const ui = {
         'timeline.acc.role': "IT System Developer",
         'timeline.acc.desc': "Legacy modernisation. 7 production systems.",
 
-        // Projects
+        // --- Projects Section ---
         'projects.title': "Projects",
         'projects.subtitle': "Systems I architected and delivered.",
         'projects.view_all': "View all projects",
@@ -77,19 +77,15 @@ export const ui = {
         'projects.tech_stack': "Tech Stack",
         'projects.source_code': "Source Code",
 
-        // Project details
+        // --- Project Details ---
 
         // Data Control
         'project.datacontrol.title': "Data Control ETL",
         'project.datacontrol.summary': "Mission-critical ETL platform modernisation. Migrated from C# console to FastAPI + React.",
-        'project.datacontrol.highlight.0': "95% reduction in processing time (3hrs → 10min)",
+        'project.datacontrol.highlight.0': "Modernised legacy C# console application",
         'project.datacontrol.highlight.1': "Clean Architecture with strict layer separation",
         'project.datacontrol.highlight.2': "Real-time monitoring dashboard",
         'project.datacontrol.highlight.3': "Automated CI/CD deployment",
-        'project.datacontrol.metric.perf.label': "Performance",
-        'project.datacontrol.metric.perf.sub': "Faster",
-        'project.datacontrol.metric.proc.label': "Processing",
-        'project.datacontrol.metric.proc.sub': "vs 3hrs",
 
         // AuthHub
         'project.authhub.title': "AuthHub SSO",
@@ -101,13 +97,17 @@ export const ui = {
         'project.authhub.metric.apps.label': "Apps",
         'project.authhub.metric.apps.sub': "Integrated",
 
-        // PBill
+        // PBill (Updated)
         'project.pbill.title': "PBill Email System",
-        'project.pbill.summary': "Automated paperless billing with PDF attachment distribution.",
-        'project.pbill.highlight.0': "90% reduction in file read time via caching",
+        'project.pbill.summary': "Automated paperless billing system with PDF generation and distribution.",
+        'project.pbill.highlight.0': "Processing time reduced by 95% (3hrs → 10min)",
         'project.pbill.highlight.1': "Fault-tolerant with automatic recovery",
         'project.pbill.highlight.2': "Mandrill API for reliable delivery",
         'project.pbill.highlight.3': "Docker containerisation",
+        'project.pbill.metric.perf.label': "Performance",
+        'project.pbill.metric.perf.sub': "Faster",
+        'project.pbill.metric.proc.label': "Processing",
+        'project.pbill.metric.proc.sub': "vs 3hrs",
 
         // Gate
         'project.gate.title': "Gate Reader System",
@@ -151,7 +151,7 @@ export const ui = {
         'project.llmgateway.highlight.1': "Async/Await for high concurrency",
         'project.llmgateway.highlight.2': "Redis state management",
 
-        // Contact
+        // --- Contact Section ---
         'contact.title': "Get in Touch",
         'contact.subtitle': "Let's connect and discuss opportunities.",
         'contact.cta_email': "Email",
@@ -159,30 +159,30 @@ export const ui = {
         'contact.cta_github': "GitHub",
         'contact.card_text': "Open to backend engineering, system architecture, and full-stack opportunities.",
 
-        // Footer
-        'footer.copyright': "© 2025 YiShiou Tsai",
+        // --- Footer ---
+        'footer.copyright': "© 2026 YiShiou Tsai",
         'footer.built_with': "Built with Astro, React & Tailwind",
     },
     zh: {
-        // Navigation
+        // --- Navigation ---
         'nav.home': '首頁',
         'nav.projects': '專案作品',
         'nav.about': '關於我',
         'nav.playground_tooltip': '開啟 VS Code 模式',
 
-        // Hero
+        // --- Hero Section ---
         'hero.status': "開放工作機會",
         'hero.greeting': "嗨，我是",
         'hero.name': "蔡易修",
         'hero.role': "軟體工程師",
-        'hero.tagline': "我把老舊系統變成現代架構。",
+        'hero.tagline': "負責將老舊系統變成現代架構。",
         'hero.sub_tagline': "專精 Clean Architecture、Python 與全端開發。",
         'hero.location': "台灣，台北",
         'hero.cta_projects': "瀏覽專案",
         'hero.cta_playground': "開啟 Playground",
         'hero.scroll_hint': "向下捲動探索",
 
-        // Bento
+        // --- Bento Grid ---
         'bento.title': "一覽",
         'bento.projects_sub': "2025 年交付",
         'bento.projects_label': "個生產系統",
@@ -194,13 +194,13 @@ export const ui = {
         'bento.arch_label': "Architecture",
         'bento.stack_label': "技術堆疊",
 
-        // Timeline
+        // --- Timeline ---
         'timeline.title': "經歷",
         'timeline.subtitle': "從航太精密製造到軟體架構。",
 
         'timeline.aidc.company': "漢翔航空",
         'timeline.aidc.role': "航太結構技師",
-        'timeline.aidc.desc': "國防航空器精密製造。",
+        'timeline.aidc.desc': "國防機隊現代化升級。",
 
         'timeline.stgiles.company': "St Giles",
         'timeline.stgiles.role': "英語進修",
@@ -208,7 +208,7 @@ export const ui = {
 
         'timeline.glasgow.company': "格拉斯哥大學",
         'timeline.glasgow.role': "軟體開發碩士",
-        'timeline.glasgow.desc': "畢業論文：機械電腦數位模擬。成績 A。",
+        'timeline.glasgow.desc': "畢業論文：Turning Tumble數位模擬。成績 A。",
 
         'timeline.itri.company': "工研院",
         'timeline.itri.role': "軟體工程師",
@@ -218,7 +218,7 @@ export const ui = {
         'timeline.acc.role': "IT 系統開發者",
         'timeline.acc.desc': "舊系統現代化。交付 7 個生產系統。",
 
-        // Projects
+        // --- Projects Section ---
         'projects.title': "專案作品",
         'projects.subtitle': "我設計並交付的系統。",
         'projects.view_all': "查看全部專案",
@@ -232,19 +232,15 @@ export const ui = {
         'projects.tech_stack': "技術堆疊",
         'projects.source_code': "原始碼",
 
-        // Project details
+        // --- Project Details ---
 
         // Data Control
         'project.datacontrol.title': "Data Control ETL",
         'project.datacontrol.summary': "關鍵任務 ETL 平台現代化。從 C# 主控台遷移至 FastAPI + React。",
-        'project.datacontrol.highlight.0': "處理時間縮短 95%（3小時 → 10分鐘）",
+        'project.datacontrol.highlight.0': "成功將舊版 C# 應用程式現代化",
         'project.datacontrol.highlight.1': "Clean Architecture 嚴格分層",
         'project.datacontrol.highlight.2': "即時監控儀表板",
         'project.datacontrol.highlight.3': "自動化 CI/CD 部署",
-        'project.datacontrol.metric.perf.label': "效能提升",
-        'project.datacontrol.metric.perf.sub': "速度更快",
-        'project.datacontrol.metric.proc.label': "處理時間",
-        'project.datacontrol.metric.proc.sub': "原為 3 小時",
 
         // AuthHub
         'project.authhub.title': "AuthHub 單一登入",
@@ -256,13 +252,17 @@ export const ui = {
         'project.authhub.metric.apps.label': "應用程式",
         'project.authhub.metric.apps.sub': "已整合",
 
-        // PBill
+        // PBill (Updated)
         'project.pbill.title': "PBill 郵件系統",
-        'project.pbill.summary': "自動化無紙帳單系統，支援 PDF 附件發送。",
-        'project.pbill.highlight.0': "檔案快取縮短讀取時間 90%",
+        'project.pbill.summary': "自動化無紙帳單系統，支援 PDF 附件生成與發送。",
+        'project.pbill.highlight.0': "處理時間縮短 95%（3小時 → 10分鐘）",
         'project.pbill.highlight.1': "容錯設計與自動恢復",
         'project.pbill.highlight.2': "Mandrill API 可靠發送",
         'project.pbill.highlight.3': "Docker 容器化",
+        'project.pbill.metric.perf.label': "效能提升",
+        'project.pbill.metric.perf.sub': "速度更快",
+        'project.pbill.metric.proc.label': "處理時間",
+        'project.pbill.metric.proc.sub': "原為 3 小時",
 
         // Gate
         'project.gate.title': "Gate 讀卡系統",
@@ -306,7 +306,7 @@ export const ui = {
         'project.llmgateway.highlight.1': "Async/Await 高並發",
         'project.llmgateway.highlight.2': "Redis 狀態管理",
 
-        // Contact
+        // --- Contact Section ---
         'contact.title': "聯絡我",
         'contact.subtitle': "歡迎聯繫討論合作機會。",
         'contact.cta_email': "電子郵件",
@@ -314,8 +314,8 @@ export const ui = {
         'contact.cta_github': "GitHub",
         'contact.card_text': "歡迎後端工程、系統架構、全端開發的工作機會。",
 
-        // Footer
-        'footer.copyright': "© 2025 蔡易修",
+        // --- Footer ---
+        'footer.copyright': "© 2026 蔡易修",
         'footer.built_with': "使用 Astro, React & Tailwind 建構",
     },
 } as const;

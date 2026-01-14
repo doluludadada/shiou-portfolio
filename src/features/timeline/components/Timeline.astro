@@ -1,5 +1,5 @@
 ---
-import VerticalTimeline from "@/shared/components/VerticalTimeline";
+import TimelineFun from "@/shared/components/Timeline";
 import type { Lang } from "@/shared/i18n/ui";
 import { useTranslations } from "@/shared/i18n/utils";
 import { timelineConfig } from "../config";
@@ -34,6 +34,6 @@ const items = timelineConfig.map((item) => ({
       <p class="text-zinc-400 text-lg max-w-xl">{t("timeline.subtitle")}</p>
     </div>
 
-    <VerticalTimeline client:visible items={items} />
+    <TimelineFun client:visible items={items} />
   </div>
 </section>

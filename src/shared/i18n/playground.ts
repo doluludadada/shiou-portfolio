@@ -1,20 +1,17 @@
-// VS Code Playground Content - Pure English
-// All content rendered as Python-style code
-
 export const playgroundFiles = {
-  'about.py': 'about',
-  'skills.py': 'skills',
-  'experience.py': 'experience',
-  'projects/__init__.py': 'projects_init',
-  'projects/data_control.py': 'project_datacontrol',
-  'projects/auth_hub.py': 'project_authhub',
-  'contact.py': 'contact',
+    'about.py': 'about',
+    'skills.py': 'skills',
+    'experience.py': 'experience',
+    'projects/__init__.py': 'projects_init',
+    'projects/data_control.py': 'project_datacontrol',
+    'projects/auth_hub.py': 'project_authhub',
+    'contact.py': 'contact',
 } as const;
 
 export type PlaygroundFile = keyof typeof playgroundFiles;
 
 export const playgroundCode: Record<string, string> = {
-  about: `# about.py
+    about: `# about.py
 """
 Portfolio of YiShiou Tsai
 Software Engineer | System Architect
@@ -64,7 +61,7 @@ if __name__ == "__main__":
     print(dev.introduce())
 `,
 
-  skills: `# skills.py
+    skills: `# skills.py
 """Technical expertise and proficiencies."""
 
 from typing import TypeAlias, Literal
@@ -137,7 +134,7 @@ def get_primary_skills() -> list[str]:
     ]
 `,
 
-  experience: `# experience.py
+    experience: `# experience.py
 """Career journey and work experience."""
 
 from dataclasses import dataclass
@@ -165,10 +162,10 @@ career: list[Experience] = [
         location="Taipei, Taiwan",
         highlights=[
             "Led migration of legacy .NET systems to Python microservices",
-            "Reduced ETL processing time by 95% (3 hours → 10 minutes)",
             "Delivered 7 production systems in 10 months",
             "Established CI/CD pipelines with GitLab",
             "Implemented Clean Architecture across all projects",
+            "Optimized ETL processes and system reliability",
         ],
         tech_stack=[
             "Python", "FastAPI", "React", "TypeScript",
@@ -229,7 +226,7 @@ def get_total_months_in_software() -> int:
     return (today.year - start.year) * 12 + (today.month - start.month)
 `,
 
-  projects_init: `# projects/__init__.py
+    projects_init: `# projects/__init__.py
 """
 Portfolio Projects
 ==================
@@ -277,7 +274,7 @@ ALL_PROJECTS = [
 ]
 `,
 
-  project_datacontrol: `# projects/data_control.py
+    project_datacontrol: `# projects/data_control.py
 """
 Data Control ETL Platform
 =========================
@@ -304,7 +301,7 @@ class Project:
         "stack": "C# Console Application",
         "execution": "Manual trigger",
         "monitoring": "None",
-        "processing_time": "3 hours",
+        "maintainability": "Low",
     }
     
     # The Solution
@@ -312,7 +309,7 @@ class Project:
         "stack": "FastAPI + React + TypeScript",
         "execution": "Scheduled (APScheduler)",
         "monitoring": "Real-time dashboard",
-        "processing_time": "10 minutes",  # 95% reduction!
+        "maintainability": "High",
     }
     
     tech_stack: list[str] = [
@@ -329,16 +326,16 @@ class Project:
     Clean Architecture (Hexagonal)
     
     ┌─────────────────────────────────────┐
-    │         Presentation Layer          │
-    │     (FastAPI Routes, React UI)      │
+    │          Presentation Layer         │
+    │      (FastAPI Routes, React UI)     │
     ├─────────────────────────────────────┤
-    │         Application Layer           │
-    │     (Use Cases, Orchestration)      │
+    │          Application Layer          │
+    │      (Use Cases, Orchestration)     │
     ├─────────────────────────────────────┤
     │          Domain Layer               │
-    │   (Entities, Business Rules)        │
+    │    (Entities, Business Rules)       │
     ├─────────────────────────────────────┤
-    │       Infrastructure Layer          │
+    │        Infrastructure Layer         │
     │  (DB Adapters, File Systems, APIs)  │
     └─────────────────────────────────────┘
     
@@ -347,7 +344,7 @@ class Project:
     """
     
     highlights: list[str] = [
-        "95% reduction in processing time",
+        "Modernised legacy C# console application",
         "Real-time monitoring dashboard",
         "Automated CI/CD deployment",
         "Clean Architecture implementation",
@@ -355,7 +352,7 @@ class Project:
     ]
 `,
 
-  project_authhub: `# projects/auth_hub.py
+    project_authhub: `# projects/auth_hub.py
 """
 AuthHub - Identity Management & SSO
 ===================================
@@ -404,14 +401,14 @@ class AuthHubProject:
     5. JWT contains user role for that app
     
     ┌──────────┐     ┌──────────┐     ┌──────────┐
-    │  User    │────▶│ AuthHub  │────▶│   App    │
+    │   User   │────▶│ AuthHub  │────▶│    App   │
     │          │     │  (SSO)   │     │          │
     └──────────┘     └──────────┘     └──────────┘
          │               │                 │
-         │   1. Login    │                 │
+         │    1. Login   │                 │
          │──────────────▶│                 │
          │               │                 │
-         │   2. Ticket   │                 │
+         │    2. Ticket  │                 │
          │◀──────────────│                 │
          │               │                 │
          │          3. Redirect + Ticket   │
@@ -425,7 +422,7 @@ class AuthHubProject:
     """
 `,
 
-  contact: `# contact.py
+    contact: `# contact.py
 """
 Contact Information
 ===================
@@ -474,48 +471,48 @@ if __name__ == "__main__":
 `,
 };
 
-// Terminal content
+
 export const terminalContent = {
-  welcomeMessage: `~/portfolio $ `,
-  commands: {
-    help: `Available commands:
+    welcomeMessage: `~/portfolio $ `,
+    commands: {
+        help: `Available commands:
   whoami    - About me
   ls        - List files
   skills    - Show tech stack
   projects  - List projects
   contact   - Contact info
   clear     - Clear terminal`,
-    whoami: `YiShiou Tsai
+        whoami: `YiShiou Tsai
 Software Engineer @ American Club Taipei
 Focus: Legacy Modernisation | Clean Architecture`,
-    ls: `about.py    contact.py    experience.py    projects/    skills.py`,
-    'ls projects': `__init__.py    auth_hub.py    data_control.py`,
-    skills: `{
+        ls: `about.py    contact.py    experience.py    projects/    skills.py`,
+        'ls projects': `__init__.py    auth_hub.py    data_control.py`,
+        skills: `{
   "backend": ["Python", "FastAPI", "C#"],
   "frontend": ["React", "TypeScript", "Astro"],
   "database": ["PostgreSQL", "Redis", "Oracle"],
   "devops": ["Docker", "GitLab CI", "Linux"]
 }`,
-    'skills --backend': `["Python", "FastAPI", "C#", ".NET", "SQLAlchemy"]`,
-    'skills --frontend': `["React", "TypeScript", "Astro", "Tailwind"]`,
-    projects: `Featured:
-  ⭐ data_control  - ETL Modernisation (95% faster)
+        'skills --backend': `["Python", "FastAPI", "C#", ".NET", "SQLAlchemy"]`,
+        'skills --frontend': `["React", "TypeScript", "Astro", "Tailwind"]`,
+        projects: `Featured:
+  ⭐ data_control  - ETL Modernisation (Legacy to Modern)
   ⭐ auth_hub      - SSO System
   ⭐ dayu_tour     - Travel Agency Platform
 
 All: 7 production systems + 2 side projects`,
-    contact: `📧 Email:    doluludadada@outlook.com
+        contact: `📧 Email:    doluludadada@outlook.com
 💼 LinkedIn: https://www.linkedin.com/in/yishiou-t-b98b0a267/
 🐙 GitHub:   github.com/doluludadada
 📍 Location: Taipei, Taiwan`,
-    clear: '',
-  } as Record<string, string>,
+        clear: '',
+    } as Record<string, string>,
 };
 
-// Status bar content
+
 export const statusBar = {
-  branch: 'main',
-  encoding: 'UTF-8',
-  language: 'Python',
-  position: 'Ln 1, Col 1',
+    branch: 'main',
+    encoding: 'UTF-8',
+    language: 'Python',
+    position: 'Ln 1, Col 1',
 };

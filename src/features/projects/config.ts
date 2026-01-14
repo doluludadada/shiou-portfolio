@@ -19,10 +19,6 @@ export const projectsConfig: ProjectConfig[] = [
         featured: true,
         tech: ["Python 3.13", "FastAPI", "React 18", "TypeScript", "PostgreSQL", "Docker", "GitLab CI/CD"],
         hasArchitecture: true,
-        metrics: [
-            { id: "perf", value: "95%" },
-            { id: "proc", value: "10 min" },
-        ],
     },
     {
         id: "authhub",
@@ -35,7 +31,7 @@ export const projectsConfig: ProjectConfig[] = [
     },
     {
         id: "dayu",
-        featured: false, // Not in main 3 grid, but has page
+        featured: false,
         tech: ["Python", "FastAPI", "React", "Astro", "TypeScript", "PostgreSQL", "Docker", "AWS EC2"],
         comingSoon: true,
     },
@@ -43,6 +39,10 @@ export const projectsConfig: ProjectConfig[] = [
         id: "pbill",
         featured: false,
         tech: ["Python", "Docker", "SQLite", "Mandrill API", "FastAPI"],
+        metrics: [
+            { id: "perf", value: "95%" },
+            { id: "proc", value: "10 min" },
+        ],
     },
     {
         id: "gate",
