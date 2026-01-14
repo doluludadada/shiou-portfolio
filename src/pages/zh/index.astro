@@ -1,11 +1,11 @@
 ---
 import BaseLayout from "@/shared/layouts/BaseLayout.astro";
-import HeroSection from "../../features/hero/HeroSection.astro";
-import BentoGrid from "../../features/bento/BentoGrid.astro";
 import ProjectList from "@/features/projects/components/ProjectList.astro";
 import Timeline from "@/features/timeline/components/Timeline.astro";
 import ContactSection from "@/features/contact/ContactSection.astro";
-import { useTranslations } from "../../shared/i18n/utils";
+import { useTranslations } from "@/shared/i18n/utils";
+import BentoGrid from "@/features/bento/BentoGrid.astro";
+import HeroSection from "@/features/hero/HeroSection.astro";
 
 const lang = "zh";
 const t = useTranslations(lang);

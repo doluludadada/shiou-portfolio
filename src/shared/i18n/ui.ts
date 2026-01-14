@@ -16,7 +16,7 @@ export const ui = {
         'nav.playground_tooltip': 'Open VS Code Mode',
 
         // --- Hero Section ---
-        'hero.status': "Available for opportunities",
+        'hero.status': "On the job",
         'hero.greeting': "Hi, I'm",
         'hero.name': 'Shiou',
         'hero.role': 'Software Engineer',
@@ -171,7 +171,7 @@ export const ui = {
         'nav.playground_tooltip': '開啟 VS Code 模式',
 
         // --- Hero Section ---
-        'hero.status': "開放工作機會",
+        'hero.status': "在職工程師",
         'hero.greeting': "嗨，我是",
         'hero.name': "蔡易修",
         'hero.role': "軟體工程師",

@@ -42,7 +42,7 @@ export default function ThemeToggle() {
     return (
         <button
             onClick={toggleTheme}
-            className="relative p-2 rounded-lg border theme-transition hover:border-(--color-accent) group"
+            className="relative p-2 rounded-lg border theme-transition hover:border-accent group"
             style={{
                 backgroundColor: 'var(--color-bg-secondary)',
                 borderColor: 'var(--color-border)',
