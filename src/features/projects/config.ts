@@ -11,7 +11,6 @@ export interface ProjectConfig {
     repoUrl?: string;
     comingSoon?: boolean;
     featured?: boolean;
-    highlightCount: number; // Used to fetch highlight.0, highlight.1, etc.
 }
 
 export const projectsConfig: ProjectConfig[] = [
@@ -24,7 +23,6 @@ export const projectsConfig: ProjectConfig[] = [
             { id: "perf", value: "95%" },
             { id: "proc", value: "10 min" },
         ],
-        highlightCount: 4
     },
     {
         id: "authhub",
@@ -34,51 +32,43 @@ export const projectsConfig: ProjectConfig[] = [
         metrics: [
             { id: "apps", value: "7" },
         ],
-        highlightCount: 4
     },
     {
         id: "dayu",
         featured: false, // Not in main 3 grid, but has page
         tech: ["Python", "FastAPI", "React", "Astro", "TypeScript", "PostgreSQL", "Docker", "AWS EC2"],
         comingSoon: true,
-        highlightCount: 3
     },
     {
         id: "pbill",
         featured: false,
         tech: ["Python", "Docker", "SQLite", "Mandrill API", "FastAPI"],
-        highlightCount: 3
     },
     {
         id: "gate",
         featured: false,
         tech: ["C#", ".NET", "JavaScript", "PostgreSQL", "Clean Architecture"],
-        highlightCount: 3
     },
     {
         id: "staff",
         featured: false,
         tech: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "Zustand"],
-        highlightCount: 3
     },
     {
         id: "marketing",
         featured: false,
         tech: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "pandas"],
-        highlightCount: 3
     },
     {
         id: "abacus",
         featured: false,
         tech: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "InterBase"],
-        highlightCount: 2
     },
     {
         id: "llmgateway",
         featured: false,
         tech: ["Python", "FastAPI", "Redis", "LINE Messaging API", "OpenAI API", "xAI Grok"],
         repoUrl: "https://github.com/doluludadada/chat_friend",
-        highlightCount: 3
     },
 ];
 

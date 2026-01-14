@@ -1,23 +1,21 @@
 ---
+// src/layouts/BaseLayout.astro
 import "../styles/global.css";
-import MouseGlow from "../shared/components/MouseGlow";
+import { useTranslations } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+import MouseGlow from "../components/MouseGlow";
 
 interface Props {
   title: string;
   description?: string;
-  lang?: "en" | "zh";
+  lang?: Lang;
 }
 
 const { title, description = "", lang = "en" } = Astro.props;
+const t = useTranslations(lang);
 
 const homeUrl = lang === "zh" ? "/zh" : "/";
 const projectsUrl = lang === "zh" ? "/zh/projects" : "/projects";
-const switchLangUrl = lang === "zh" ? "/" : "/zh";
-
-const nav = {
-  en: { home: "Home", projects: "Projects" },
-  zh: { home: "首頁", projects: "專案作品" },
-}[lang];
 ---
 
 <!doctype html>
@@ -58,13 +56,15 @@ const nav = {
             <a
               href={homeUrl}
               class="text-zinc-400 hover:text-zinc-100 transition-colors"
-              >{nav.home}</a
             >
+              {t("nav.home")}
+            </a>
             <a
               href={projectsUrl}
               class="text-zinc-400 hover:text-zinc-100 transition-colors"
-              >{nav.projects}</a
             >
+              {t("nav.projects")}
+            </a>
           </div>
 
           <div class="w-px h-5 bg-zinc-800 hidden sm:block"></div>
@@ -92,6 +92,7 @@ const nav = {
 
           <a
             href="/playground"
+            title={t("nav.playground_tooltip")}
             class="hidden sm:flex items-center px-3 py-1.5 rounded-md bg-zinc-900 border border-zinc-800 text-sm font-mono text-zinc-400 hover:text-cyan-400 transition-all"
           >
             &lt;/&gt;
@@ -111,10 +112,10 @@ const nav = {
           class="flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <div class="flex items-center gap-4 text-sm text-zinc-500">
-            <span>© 2025 YiShiou Tsai</span>
+            <span>{t("footer.copyright")}</span>
             <span class="hidden md:inline">•</span>
             <span class="hidden md:inline font-mono text-xs"
-              >Built with Astro, React & Tailwind</span
+              >{t("footer.built_with")}</span
             >
           </div>
           <div class="flex items-center gap-4">

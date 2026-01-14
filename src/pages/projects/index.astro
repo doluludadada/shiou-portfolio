@@ -1,14 +1,18 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import ProjectList from "../../features/projects/ProjectList.astro";
+import ProjectList from "@/features/projects/components/ProjectList.astro";
+import { useTranslations } from "@/shared/i18n/utils";
+import BaseLayout from "@/shared/layouts/BaseLayout.astro";
+
+const lang = "en";
+const t = useTranslations(lang);
 ---
 
 <BaseLayout
-  title="Projects | YiShiou"
-  description="Systems I architected and delivered."
-  lang="en"
+  title={`${t("nav.projects")} | ${t("hero.name")}`}
+  description={t("projects.subtitle")}
+  lang={lang}
 >
   <div class="pt-8">
-    <ProjectList lang="en" featuredOnly={false} showViewAll={false} />
+    <ProjectList lang={lang} featuredOnly={false} showViewAll={false} />
   </div>
 </BaseLayout>

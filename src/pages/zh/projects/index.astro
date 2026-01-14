@@ -1,14 +1,18 @@
 ---
 import ProjectList from "@/features/projects/components/ProjectList.astro";
-import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { useTranslations } from "@/shared/i18n/utils";
+import BaseLayout from "@/shared/layouts/BaseLayout.astro";
+
+const lang = "zh";
+const t = useTranslations(lang);
 ---
 
 <BaseLayout
-  title="專案作品 | 蔡易修"
-  description="我設計並交付的系統。"
-  lang="zh"
+  title={`${t("nav.projects")} | ${t("hero.name")}`}
+  description={t("projects.subtitle")}
+  lang={lang}
 >
   <div class="pt-8">
-    <ProjectList lang="zh" featuredOnly={false} showViewAll={false} />
+    <ProjectList lang={lang} featuredOnly={false} showViewAll={false} />
   </div>
 </BaseLayout>

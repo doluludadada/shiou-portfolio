@@ -1,10 +1,8 @@
 ---
-import HorizontalTimeline from '@/shared/components/HorizontalTimeline';
-import type { Lang } from '@/i18n/ui';
-import { useTranslations } from '@/i18n/utils';
-import { timelineConfig } from '../config';
-
-
+import HorizontalTimeline from "@/shared/components/HorizontalTimeline";
+import type { Lang } from "@/shared/i18n/ui";
+import { useTranslations } from "@/shared/i18n/utils";
+import { timelineConfig } from "../config";
 
 interface Props {
   lang?: Lang;
@@ -12,11 +10,11 @@ interface Props {
 
 const { lang = "en" } = Astro.props;
 const t = useTranslations(lang);
-const config = timelineConfig[lang];
 
-// Merge config with i18n strings
-const items = config.map((item) => ({
+// Merge config with i18n strings dynamically
+const items = timelineConfig.map((item) => ({
   ...item,
+  company: t(`timeline.${item.id}.company` as any),
   role: t(`timeline.${item.id}.role` as any),
   description: t(`timeline.${item.id}.desc` as any),
 }));

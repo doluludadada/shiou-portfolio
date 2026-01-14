@@ -1,0 +1,129 @@
+---
+import { ArrowLeft, Github, Lock, Zap, Code2 } from "lucide-react";
+import { useTranslations } from "@/shared/i18n/utils";
+import type { Lang } from "@/shared/i18n/ui";
+
+interface Props {
+  lang: Lang;
+  data: {
+    config: any;
+    title: string;
+    summary: string;
+    highlights: string[];
+    metrics?: { value: string; label: string; sub: string }[];
+  };
+}
+
+const { lang, data } = Astro.props;
+const t = useTranslations(lang);
+const backLink = lang === "zh" ? "/zh/projects" : "/projects";
+---
+
+<div class="px-6 lg:px-16 xl:px-24 py-12">
+  <a
+    href={backLink}
+    class="inline-flex items-center gap-2 text-zinc-400 hover:text-cyan-400 transition-colors mb-8 group"
+  >
+    <ArrowLeft
+      className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+    />
+    {t("projects.back")}
+  </a>
+
+  <header class="mb-12">
+    <h1 class="text-4xl lg:text-5xl font-bold text-zinc-100 mb-4">
+      {data.title}
+    </h1>
+    <p class="text-xl text-zinc-400 leading-relaxed max-w-3xl">
+      {data.summary}
+    </p>
+
+    <div class="flex flex-wrap gap-4 mt-8">
+      {
+        data.config.repoUrl ? (
+          <a
+            href={data.config.repoUrl}
+            target="_blank"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-zinc-800 hover:bg-zinc-900 text-zinc-100 transition-colors"
+          >
+            <Github className="w-4 h-4" /> {t("projects.source_code")}
+          </a>
+        ) : (
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-zinc-800 text-zinc-500">
+            <Lock className="w-4 h-4" /> {t("projects.enterprise_desc")}
+          </span>
+        )
+      }
+      {
+        data.config.comingSoon && (
+          <span class="px-4 py-2 rounded-lg bg-cyan-500/10 text-cyan-400">
+            {t("projects.coming_soon")}
+          </span>
+        )
+      }
+    </div>
+  </header>
+
+  <hr class="border-zinc-800 mb-12" />
+
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+    <div class="lg:col-span-3 space-y-8">
+      <section>
+        <h2
+          class="text-xl font-semibold text-zinc-100 mb-4 flex items-center gap-2"
+        >
+          <Zap className="w-5 h-5 text-cyan-400" />
+          {t("projects.highlights")}
+        </h2>
+        <ul class="space-y-3">
+          {
+            data.highlights.map((h) => (
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0" />
+                <span class="text-zinc-400">{h}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      {
+        data.metrics && (
+          <section>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {data.metrics.map((m) => (
+                <div class="p-4 rounded-xl bg-zinc-900 border border-zinc-800">
+                  <p class="text-sm text-zinc-400">{m.label}</p>
+                  <p class="text-3xl font-bold text-cyan-400">{m.value}</p>
+                  <p class="text-xs text-zinc-500">{m.sub}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )
+      }
+    </div>
+
+    <aside>
+      <div
+        class="sticky top-24 p-6 rounded-xl bg-zinc-900 border border-zinc-800"
+      >
+        <h3
+          class="text-sm font-semibold text-zinc-100 uppercase tracking-wider mb-4 flex items-center gap-2"
+        >
+          <Code2 className="w-4 h-4" />
+          {t("projects.tech_stack")}
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {
+            data.config.tech.map((t: string) => (
+              <span class="px-2 py-1 rounded-md bg-zinc-800 text-zinc-400 text-xs font-mono">
+                {t}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>

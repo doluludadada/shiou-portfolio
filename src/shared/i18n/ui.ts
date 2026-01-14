@@ -15,7 +15,7 @@ export const ui = {
         'nav.about': 'About',
         'nav.playground_tooltip': 'Open VS Code Mode',
 
-        // --- Hero Section ---
+        // --- Hero ---
         'hero.status': "Available for opportunities",
         'hero.greeting': "Hi, I'm",
         'hero.name': 'Shiou',
@@ -33,7 +33,9 @@ export const ui = {
         'bento.projects_sub': "Delivered in 2025",
         'bento.projects_label': "Production Systems",
         'bento.perf_label': "Faster ETL",
-        'bento.perf_sub': "3hrs → 10min",
+        'bento.perf_sub': "3hrs → 10min", // Keeping as one string or split if dynamic
+        'bento.perf_old': "3 hrs",
+        'bento.perf_new': "10 min",
         'bento.arch': "Clean",
         'bento.arch_label': "Architecture",
         'bento.stack_label': "Tech Stack",
@@ -42,39 +44,49 @@ export const ui = {
         'timeline.title': "Journey",
         'timeline.subtitle': "From aerospace precision to software architecture.",
 
-        // Timeline Items (Keys match IDs in config)
+        'timeline.aidc.company': "AIDC",
         'timeline.aidc.role': "Aerospace Technician",
         'timeline.aidc.desc': "Precision manufacturing for defense aircraft.",
+
+        'timeline.stgiles.company': "St Giles",
         'timeline.stgiles.role': "English Studies",
         'timeline.stgiles.desc': "Language preparation for graduate studies.",
+
+        'timeline.glasgow.company': "U of Glasgow",
         'timeline.glasgow.role': "MSc Software Dev",
         'timeline.glasgow.desc': "Dissertation: Digital Simulation of Mechanical Computer. Grade A.",
+
+        'timeline.itri.company': "ITRI",
         'timeline.itri.role': "Software Programmer",
         'timeline.itri.desc': "Internal tools with C# and .NET.",
+
+        'timeline.acc.company': "American Club",
         'timeline.acc.role': "IT System Developer",
         'timeline.acc.desc': "Legacy modernisation. 7 production systems.",
 
-        // --- Projects Section ---
+        // --- Projects Page ---
         'projects.title': "Selected Works",
         'projects.subtitle': "Systems I architected and delivered.",
         'projects.view_all': "View all projects",
         'projects.featured': "Featured",
         'projects.case_study': "Case Study",
         'projects.enterprise': "Enterprise",
+        'projects.enterprise_desc': "Enterprise (Proprietary)",
         'projects.coming_soon': "Coming Soon",
         'projects.back': "Back to Projects",
         'projects.highlights': "Highlights",
         'projects.tech_stack': "Tech Stack",
         'projects.source_code': "Source Code",
 
-        // --- Individual Projects (Keys match IDs in config) ---
+        // --- Individual Projects (Moved from [slug].astro) ---
+
         // Data Control
         'project.datacontrol.title': "Data Control ETL",
-        'project.datacontrol.summary': "Mission-critical ETL platform modernisation. 95% faster processing.",
+        'project.datacontrol.summary': "Mission-critical ETL platform modernisation. Migrated from C# console to FastAPI + React.",
         'project.datacontrol.highlight.0': "95% reduction in processing time (3hrs → 10min)",
-        'project.datacontrol.highlight.1': "Real-time monitoring dashboard",
-        'project.datacontrol.highlight.2': "Automated CI/CD deployment",
-        'project.datacontrol.highlight.3': "Clean Architecture implementation",
+        'project.datacontrol.highlight.1': "Clean Architecture with strict layer separation",
+        'project.datacontrol.highlight.2': "Real-time monitoring dashboard",
+        'project.datacontrol.highlight.3': "Automated CI/CD deployment",
         'project.datacontrol.metric.perf.label': "Performance",
         'project.datacontrol.metric.perf.sub': "Faster",
         'project.datacontrol.metric.proc.label': "Processing",
@@ -82,60 +94,62 @@ export const ui = {
 
         // AuthHub
         'project.authhub.title': "AuthHub SSO",
-        'project.authhub.summary': "Centralised identity management and SSO for internal apps.",
-        'project.authhub.highlight.0': "JWT Authentication (RS256/HS256)",
-        'project.authhub.highlight.1': "Role-Based Access Control",
-        'project.authhub.highlight.2': "Redis Session Management",
-        'project.authhub.highlight.3': "Ticket-Based SSO Flow",
+        'project.authhub.summary': "Centralised identity management and single sign-on for internal applications.",
+        'project.authhub.highlight.0': "JWT authentication with RS256/HS256",
+        'project.authhub.highlight.1': "Role-based access control per app",
+        'project.authhub.highlight.2': "Redis session management",
+        'project.authhub.highlight.3': "Ticket-based SSO flow",
         'project.authhub.metric.apps.label': "Apps",
         'project.authhub.metric.apps.sub': "Integrated",
 
         // PBill
         'project.pbill.title': "PBill Email System",
-        'project.pbill.summary': "Automated paperless billing with PDF distribution.",
-        'project.pbill.highlight.0': "File system caching reduced read time by 90%",
-        'project.pbill.highlight.1': "Fault-tolerant design",
-        'project.pbill.highlight.2': "Mandrill API integration",
+        'project.pbill.summary': "Automated paperless billing with PDF attachment distribution.",
+        'project.pbill.highlight.0': "90% reduction in file read time via caching",
+        'project.pbill.highlight.1': "Fault-tolerant with automatic recovery",
+        'project.pbill.highlight.2': "Mandrill API for reliable delivery",
+        'project.pbill.highlight.3': "Docker containerisation",
 
         // Gate
         'project.gate.title': "Gate Reader System",
-        'project.gate.summary': "Physical access control with card reader hardware.",
-        'project.gate.highlight.0': "First frontend project (Vanilla JS)",
-        'project.gate.highlight.1': "C# Clean Architecture",
+        'project.gate.summary': "Physical access control integration with card reader hardware.",
+        'project.gate.highlight.0': "First frontend project with vanilla JS",
+        'project.gate.highlight.1': "Clean Architecture in C#",
         'project.gate.highlight.2': "Real-time PostgreSQL sync",
 
         // Staff
         'project.staff.title': "Staff Management",
-        'project.staff.summary': "Employee database and access permission management.",
-        'project.staff.highlight.0': "Full CRUD with Zod validation",
-        'project.staff.highlight.1': "Access group management",
-        'project.staff.highlight.2': "SSO integration",
+        'project.staff.summary': "Employee database and physical access permission management.",
+        'project.staff.highlight.0': "Full CRUD with React Hook Form + Zod",
+        'project.staff.highlight.1': "Access group management with time rules",
+        'project.staff.highlight.2': "AuthHub SSO integration",
 
         // Marketing
         'project.marketing.title': "Marketing System",
-        'project.marketing.summary': "Campaign slot management with Excel bulk upload.",
-        'project.marketing.highlight.0': "10-slot architecture",
-        'project.marketing.highlight.1': "PostgreSQL advisory locks",
-        'project.marketing.highlight.2': "Excel processing (pandas)",
+        'project.marketing.summary': "Campaign slot management with Excel bulk upload and member tagging.",
+        'project.marketing.highlight.0': "10-slot campaign architecture",
+        'project.marketing.highlight.1': "PostgreSQL advisory locks for concurrency",
+        'project.marketing.highlight.2': "Excel processing with pandas",
 
         // Abacus
         'project.abacus.title': "Abacus Migration",
-        'project.abacus.summary': "Database migration from InterBase to PostgreSQL.",
-        'project.abacus.highlight.0': "Legacy ODBC to SQLAlchemy",
-        'project.abacus.highlight.1': "Modern API Layer",
+        'project.abacus.summary': "Database migration from InterBase to PostgreSQL with modern API.",
+        'project.abacus.highlight.0': "Legacy ODBC to modern SQLAlchemy",
+        'project.abacus.highlight.1': "FastAPI + React + TypeScript stack",
 
-        // Dayu
+        // DaYu
         'project.dayu.title': "DaYu Tour System",
-        'project.dayu.summary': "Full-stack travel agency platform. Freelance project.",
-        'project.dayu.highlight.0': "FastAPI + Clean Architecture",
-        'project.dayu.highlight.1': "React Admin + Astro Public Site",
+        'project.dayu.summary': "Full-stack travel agency platform. Freelance project with complete ownership.",
+        'project.dayu.highlight.0': "FastAPI backend with Clean Architecture",
+        'project.dayu.highlight.1': "React admin + Astro public site",
         'project.dayu.highlight.2': "Docker + Caddy on EC2",
+        'project.dayu.highlight.3': "PDF generation for inquiries",
 
-        // LLM
+        // LLM Gateway
         'project.llmgateway.title': "Multi-LLM Gateway",
-        'project.llmgateway.summary': "LINE bot bridging OpenAI & xAI Grok.",
-        'project.llmgateway.highlight.0': "Onion Architecture",
-        'project.llmgateway.highlight.1': "Async/Await concurrency",
+        'project.llmgateway.summary': "Scalable backend bridging LINE Messaging API with OpenAI & xAI Grok.",
+        'project.llmgateway.highlight.0': "Onion Architecture for decoupling",
+        'project.llmgateway.highlight.1': "Async/Await for high concurrency",
         'project.llmgateway.highlight.2': "Redis state management",
 
         // --- Contact ---
@@ -157,7 +171,7 @@ export const ui = {
         'nav.about': '關於我',
         'nav.playground_tooltip': '開啟 VS Code 模式',
 
-        // --- Hero Section ---
+        // --- Hero ---
         'hero.status': "開放工作機會",
         'hero.greeting': "嗨，我是",
         'hero.name': "蔡易修",
@@ -176,6 +190,8 @@ export const ui = {
         'bento.projects_label': "個生產系統",
         'bento.perf_label': "ETL 效能提升",
         'bento.perf_sub': "3小時 → 10分鐘",
+        'bento.perf_old': "3小時",
+        'bento.perf_new': "10分鐘",
         'bento.arch': "Clean",
         'bento.arch_label': "Architecture",
         'bento.stack_label': "技術堆疊",
@@ -184,24 +200,34 @@ export const ui = {
         'timeline.title': "經歷",
         'timeline.subtitle': "從航太精密製造到軟體架構。",
 
+        'timeline.aidc.company': "漢翔航空",
         'timeline.aidc.role': "航太結構技師",
         'timeline.aidc.desc': "國防航空器精密製造。",
+
+        'timeline.stgiles.company': "St Giles",
         'timeline.stgiles.role': "英語進修",
         'timeline.stgiles.desc': "研究所語言準備。",
+
+        'timeline.glasgow.company': "格拉斯哥大學",
         'timeline.glasgow.role': "軟體開發碩士",
         'timeline.glasgow.desc': "畢業論文：機械電腦數位模擬。成績 A。",
+
+        'timeline.itri.company': "工研院",
         'timeline.itri.role': "軟體工程師",
         'timeline.itri.desc': "C# 與 .NET 內部工具開發。",
+
+        'timeline.acc.company': "台北美國俱樂部",
         'timeline.acc.role': "IT 系統開發者",
         'timeline.acc.desc': "舊系統現代化。交付 7 個生產系統。",
 
-        // --- Projects Section ---
+        // --- Projects Page ---
         'projects.title': "精選作品",
         'projects.subtitle': "我設計並交付的系統。",
         'projects.view_all': "查看全部專案",
         'projects.featured': "精選",
         'projects.case_study': "案例研究",
         'projects.enterprise': "企業專案",
+        'projects.enterprise_desc': "企業專案（不公開）",
         'projects.coming_soon': "即將推出",
         'projects.back': "返回專案",
         'projects.highlights': "重點",
@@ -209,13 +235,14 @@ export const ui = {
         'projects.source_code': "原始碼",
 
         // --- Individual Projects ---
+
         // Data Control
         'project.datacontrol.title': "Data Control ETL",
-        'project.datacontrol.summary': "關鍵任務 ETL 平台現代化。處理速度提升 95%。",
+        'project.datacontrol.summary': "關鍵任務 ETL 平台現代化。從 C# 主控台遷移至 FastAPI + React。",
         'project.datacontrol.highlight.0': "處理時間縮短 95%（3小時 → 10分鐘）",
-        'project.datacontrol.highlight.1': "即時監控儀表板",
-        'project.datacontrol.highlight.2': "自動化 CI/CD 部署",
-        'project.datacontrol.highlight.3': "Clean Architecture 實作",
+        'project.datacontrol.highlight.1': "Clean Architecture 嚴格分層",
+        'project.datacontrol.highlight.2': "即時監控儀表板",
+        'project.datacontrol.highlight.3': "自動化 CI/CD 部署",
         'project.datacontrol.metric.perf.label': "效能提升",
         'project.datacontrol.metric.perf.sub': "速度更快",
         'project.datacontrol.metric.proc.label': "處理時間",
@@ -223,9 +250,9 @@ export const ui = {
 
         // AuthHub
         'project.authhub.title': "AuthHub 單一登入",
-        'project.authhub.summary': "內部應用程式的集中式身分管理與單一登入。",
-        'project.authhub.highlight.0': "JWT 驗證 (RS256/HS256)",
-        'project.authhub.highlight.1': "角色權限控制",
+        'project.authhub.summary': "內部應用程式的集中式身分管理與單一登入系統。",
+        'project.authhub.highlight.0': "JWT 驗證支援 RS256/HS256",
+        'project.authhub.highlight.1': "按應用程式的角色權限控制",
         'project.authhub.highlight.2': "Redis Session 管理",
         'project.authhub.highlight.3': "票證式 SSO 流程",
         'project.authhub.metric.apps.label': "應用程式",
@@ -233,49 +260,51 @@ export const ui = {
 
         // PBill
         'project.pbill.title': "PBill 郵件系統",
-        'project.pbill.summary': "自動化無紙帳單，支援 PDF 發送。",
+        'project.pbill.summary': "自動化無紙帳單系統，支援 PDF 附件發送。",
         'project.pbill.highlight.0': "檔案快取縮短讀取時間 90%",
-        'project.pbill.highlight.1': "容錯設計",
-        'project.pbill.highlight.2': "Mandrill API 整合",
+        'project.pbill.highlight.1': "容錯設計與自動恢復",
+        'project.pbill.highlight.2': "Mandrill API 可靠發送",
+        'project.pbill.highlight.3': "Docker 容器化",
 
         // Gate
         'project.gate.title': "Gate 讀卡系統",
-        'project.gate.summary': "實體門禁控制與讀卡器整合。",
-        'project.gate.highlight.0': "第一個前端專案 (原生 JS)",
-        'project.gate.highlight.1': "C# Clean Architecture",
+        'project.gate.summary': "實體門禁控制系統與讀卡器硬體整合。",
+        'project.gate.highlight.0': "第一個前端專案（原生 JS）",
+        'project.gate.highlight.1': "C# 中的 Clean Architecture",
         'project.gate.highlight.2': "PostgreSQL 即時同步",
 
         // Staff
         'project.staff.title': "員工管理系統",
-        'project.staff.summary': "員工資料庫與門禁權限管理。",
-        'project.staff.highlight.0': "完整 CRUD (Zod 驗證)",
-        'project.staff.highlight.1': "門禁群組管理",
-        'project.staff.highlight.2': "SSO 整合",
+        'project.staff.summary': "員工資料庫與實體門禁權限管理。",
+        'project.staff.highlight.0': "完整 CRUD + React Hook Form + Zod",
+        'project.staff.highlight.1': "門禁群組含時間規則",
+        'project.staff.highlight.2': "AuthHub SSO 整合",
 
         // Marketing
         'project.marketing.title': "行銷管理系統",
-        'project.marketing.summary': "活動槽位管理，Excel 批次上傳。",
-        'project.marketing.highlight.0': "10 槽位架構",
-        'project.marketing.highlight.1': "PostgreSQL Advisory Lock",
-        'project.marketing.highlight.2': "Excel 處理 (pandas)",
+        'project.marketing.summary': "活動槽位管理，支援 Excel 批次上傳與會員標籤。",
+        'project.marketing.highlight.0': "10 槽位活動架構",
+        'project.marketing.highlight.1': "PostgreSQL Advisory Lock 並發處理",
+        'project.marketing.highlight.2': "pandas 處理 Excel",
 
         // Abacus
         'project.abacus.title': "Abacus 資料庫遷移",
-        'project.abacus.summary': "從 InterBase 遷移至 PostgreSQL。",
-        'project.abacus.highlight.0': "ODBC 轉移至 SQLAlchemy",
-        'project.abacus.highlight.1': "現代化 API 層",
+        'project.abacus.summary': "從 InterBase 遷移至 PostgreSQL，建立現代化 API。",
+        'project.abacus.highlight.0': "從 ODBC 遷移至 SQLAlchemy",
+        'project.abacus.highlight.1': "FastAPI + React + TypeScript 堆疊",
 
-        // Dayu
+        // DaYu
         'project.dayu.title': "大宇旅遊系統",
-        'project.dayu.summary': "全端旅遊平台。獨立接案。",
-        'project.dayu.highlight.0': "FastAPI + Clean Architecture",
-        'project.dayu.highlight.1': "React 後台 + Astro 網站",
-        'project.dayu.highlight.2': "Docker + Caddy + EC2",
+        'project.dayu.summary': "全端旅遊平台。獨立接案，完整掌控。",
+        'project.dayu.highlight.0': "FastAPI 後端 + Clean Architecture",
+        'project.dayu.highlight.1': "React 後台 + Astro 公開網站",
+        'project.dayu.highlight.2': "Docker + Caddy 部署 EC2",
+        'project.dayu.highlight.3': "詢價單 PDF 產生",
 
-        // LLM
+        // LLM Gateway
         'project.llmgateway.title': "多 LLM 閘道",
-        'project.llmgateway.summary': "LINE 機器人串接 OpenAI 與 xAI Grok。",
-        'project.llmgateway.highlight.0': "Onion Architecture",
+        'project.llmgateway.summary': "可擴展後端，串接 LINE Messaging API 與 OpenAI/xAI Grok。",
+        'project.llmgateway.highlight.0': "Onion Architecture 解耦設計",
         'project.llmgateway.highlight.1': "Async/Await 高並發",
         'project.llmgateway.highlight.2': "Redis 狀態管理",
 

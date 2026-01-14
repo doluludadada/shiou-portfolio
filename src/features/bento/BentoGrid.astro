@@ -1,8 +1,8 @@
 ---
 import { Layers, Zap, Hexagon, Code2 } from "lucide-react";
 import CountUp from "../../shared/components/CountUp";
-import { useTranslations } from "../../i18n/utils";
-import type { Lang } from "../../i18n/ui";
+import { useTranslations } from "../../shared/i18n/utils";
+import type { Lang } from "../../shared/i18n/ui";
 
 interface Props {
   lang?: Lang;
@@ -89,7 +89,8 @@ const techStack = {
         <div>
           <p class="text-sm text-zinc-400 mb-1">{t("bento.perf_sub")}</p>
           <div class="flex items-center gap-3">
-            <span class="text-zinc-500 line-through">3 hrs</span>
+            <span class="text-zinc-500 line-through">{t("bento.perf_old")}</span
+            >
             <svg
               class="w-5 h-5 text-cyan-400"
               fill="none"
@@ -102,7 +103,9 @@ const techStack = {
                 stroke-width="2"
                 d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
-            <span class="text-2xl font-bold text-cyan-400">10 min</span>
+            <span class="text-2xl font-bold text-cyan-400"
+              >{t("bento.perf_new")}</span
+            >
           </div>
         </div>
         <div class="hidden md:flex items-end gap-1 h-12">
