@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type JSX } from 'react';
 
 const codeLines = [
     { text: 'class Developer:', delay: 0 },
@@ -17,30 +17,78 @@ const codeLines = [
     { text: '        return modern_architecture', delay: 1300 },
 ];
 
-function highlightSyntax(text: string) {
-    const keywords = ['class', 'def', 'return', 'self'];
-    const stringRegex = /"[^"]*"/g;
+// Tokenizer-based syntax highlighting to avoid regex conflicts
+function highlightSyntax(text: string): JSX.Element[] {
+    const keywords = new Set(['class', 'def', 'return', 'self']);
+    const elements: JSX.Element[] = [];
+    let i = 0;
+    let key = 0;
 
-    let result = text;
-    // Strings - amber/orange color
-    result = result.replace(stringRegex, '<span class="syntax-string">$&</span>');
-    // Keywords - pink/magenta
-    keywords.forEach(kw => {
-        const regex = new RegExp(`\\b${kw}\\b`, 'g');
-        result = result.replace(regex, `<span class="syntax-keyword">${kw}</span>`);
-    });
-    // Class name - cyan/accent
-    result = result.replace(/Developer/g, '<span class="syntax-class">Developer</span>');
-    // Function name - yellow
-    result = result.replace(/build/g, '<span class="syntax-function">build</span>');
-    // Parameter - orange
-    result = result.replace(/legacy_system/g, '<span class="syntax-param">legacy_system</span>');
-    // Return value - green
-    result = result.replace(/modern_architecture/g, '<span class="syntax-return">modern_architecture</span>');
-    // Properties - blue
-    result = result.replace(/\b(name|role|location|skills)\b(?=\s*=)/g, '<span class="syntax-property">$1</span>');
+    const pushToken = (content: string, className?: string) => {
+        if (!content) return;
+        elements.push(
+            <span key={key++} className={className}>
+                {content}
+            </span>
+        );
+    };
 
-    return result;
+    while (i < text.length) {
+        // Match strings (double quotes)
+        if (text[i] === '"') {
+            const start = i;
+            i++; // skip opening quote
+            while (i < text.length && text[i] !== '"') {
+                if (text[i] === '\\') i++; // skip escaped char
+                i++;
+            }
+            i++; // skip closing quote
+            pushToken(text.slice(start, i), 'syntax-string');
+            continue;
+        }
+
+        // Match identifiers and keywords
+        if (/[a-zA-Z_]/.test(text[i])) {
+            const start = i;
+            while (i < text.length && /[a-zA-Z0-9_]/.test(text[i])) {
+                i++;
+            }
+            const word = text.slice(start, i);
+
+            if (keywords.has(word)) {
+                pushToken(word, 'syntax-keyword');
+            } else if (word === 'Developer') {
+                pushToken(word, 'syntax-class');
+            } else if (word === 'build') {
+                pushToken(word, 'syntax-function');
+            } else if (word === 'legacy_system') {
+                pushToken(word, 'syntax-param');
+            } else if (word === 'modern_architecture') {
+                pushToken(word, 'syntax-return');
+            } else if (['name', 'role', 'location', 'skills'].includes(word)) {
+                pushToken(word, 'syntax-property');
+            } else {
+                pushToken(word);
+            }
+            continue;
+        }
+
+        // Match numbers
+        if (/[0-9]/.test(text[i])) {
+            const start = i;
+            while (i < text.length && /[0-9.]/.test(text[i])) {
+                i++;
+            }
+            pushToken(text.slice(start, i), 'syntax-number');
+            continue;
+        }
+
+        // Everything else (whitespace, operators, punctuation)
+        pushToken(text[i]);
+        i++;
+    }
+
+    return elements;
 }
 
 export default function TypewriterCode() {
@@ -136,10 +184,9 @@ export default function TypewriterCode() {
                             >
                                 {index + 1}
                             </span>
-                            <span
-                                style={{ color: 'var(--color-text-secondary)' }}
-                                dangerouslySetInnerHTML={{ __html: highlightSyntax(line) || '&nbsp;' }}
-                            />
+                            <span style={{ color: 'var(--color-text-secondary)', whiteSpace: 'pre' }}>
+                                {line ? highlightSyntax(line) : '\u00A0'}
+                            </span>
                             {index === currentLineIndex && isTyping && (
                                 <span
                                     className="animate-pulse"
