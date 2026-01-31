@@ -47,6 +47,10 @@ export const ui = {
         'timeline.aidc.role': "Aerospace Technician",
         'timeline.aidc.desc': "Precision manufacturing for defense aircraft.",
 
+        'timeline.jieqi.company': "Jieqi Trading",
+        'timeline.jieqi.role': "Tech Support Specialist",
+        'timeline.jieqi.desc': "ERP administration and IT infrastructure maintenance.",
+
         'timeline.stgiles.company': "St Giles",
         'timeline.stgiles.role': "English Studies",
         'timeline.stgiles.desc': "Language preparation for graduate studies.",
@@ -201,6 +205,10 @@ export const ui = {
         'timeline.aidc.company': "漢翔航空",
         'timeline.aidc.role': "航太結構技師",
         'timeline.aidc.desc': "國防機隊現代化升級。",
+
+        'timeline.jieqi.company': "捷棋貿易",
+        'timeline.jieqi.role': "技術支援專員",
+        'timeline.jieqi.desc': "負責 ERP 系統管理與 IT 基礎設施維護。",
 
         'timeline.stgiles.company': "St Giles",
         'timeline.stgiles.role': "英語進修",
