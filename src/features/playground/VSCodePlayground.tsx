@@ -14,8 +14,8 @@ import {
     Check,
     Terminal as TerminalIcon,
     AlertCircle,
-    Info,
-    Menu // Added for mobile sidebar toggle
+    Menu,
+    Mail
 } from 'lucide-react';
 
 // Improved parser that handles multi-line strings with prefixes (f-strings) correctly
@@ -329,11 +329,11 @@ export default function VSCodePlayground() {
                         <Square className="w-3.5 h-3.5" />
                     </button>
                     <a
-                        href="/"
-                        className="p-1 hover:bg-red-500 rounded"
-                        title="Exit to normal site"
+                        href="mailto:shiou.tsai.84@gmail.com"
+                        className="p-1 hover:bg-white/10 rounded"
+                        title="Email Ethan"
                     >
-                        <X className="w-5 h-5 md:w-4 md:h-4" />
+                        <Mail className="w-5 h-5 md:w-4 md:h-4" />
                     </a>
                 </div>
             </div>
