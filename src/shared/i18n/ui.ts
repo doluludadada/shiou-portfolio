@@ -18,7 +18,7 @@ export const ui = {
         // --- Hero Section ---
         'hero.status': "Open to UK opportunities",
         'hero.greeting': "Hi, I'm",
-        'hero.name': 'Ethan Tsai',
+        'hero.name': 'Ethan',
         'hero.role': 'Full-Stack Software Engineer',
         'hero.tagline': 'I build the data workflows and internal tools businesses rely on.',
         'hero.sub_tagline': 'Python/FastAPI, PostgreSQL, React/TypeScript and Docker/Linux — from first requirement to production support.',
@@ -200,7 +200,7 @@ export const ui = {
         // --- Hero Section ---
         'hero.status': "尋找英國工作機會",
         'hero.greeting': "嗨，我是",
-        'hero.name': "Ethan Tsai",
+        'hero.name': "Ethan",
         'hero.role': "軟體工程師",
         'hero.tagline': "我打造企業日常營運真正依賴的資料流程與內部系統。",
         'hero.sub_tagline': "使用 Python/FastAPI、PostgreSQL、React/TypeScript 與 Docker/Linux，從需求一路負責到正式環境維運。",
