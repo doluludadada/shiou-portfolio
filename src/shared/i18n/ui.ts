@@ -16,40 +16,51 @@ export const ui = {
         'nav.playground_tooltip': 'Open VS Code Mode',
 
         // --- Hero Section ---
-        'hero.status': "On the job",
+        'hero.status': "Open to UK opportunities",
         'hero.greeting': "Hi, I'm",
-        'hero.name': 'Shiou',
-        'hero.role': 'Software Engineer',
-        'hero.tagline': 'I turn legacy systems into modern architectures.',
-        'hero.sub_tagline': 'Specialising in Clean Architecture, Python, and full-stack development.',
-        'hero.location': 'Taipei, Taiwan',
+        'hero.name': 'Ethan Tsai',
+        'hero.role': 'Full-Stack Software Engineer',
+        'hero.tagline': 'I build the data workflows and internal tools businesses rely on.',
+        'hero.sub_tagline': 'Python/FastAPI, PostgreSQL, React/TypeScript and Docker/Linux — from first requirement to production support.',
+        'hero.location': 'London, UK · Open to UK remote',
         'hero.cta_projects': 'View Projects',
-        'hero.cta_playground': 'Open Playground',
+        'hero.cta_playground': 'Email me',
         'hero.scroll_hint': 'Scroll to explore',
 
         // --- Bento Grid ---
-        'bento.title': "At a Glance",
-        'bento.projects_sub': "Delivered in 2025",
+        'bento.title': "Production impact",
+        'bento.projects_sub': "Built and maintained",
         'bento.projects_label': "Production Systems",
-        'bento.perf_label': "Faster ETL",
+        'bento.perf_label': "Runtime reduction",
         'bento.perf_sub': "3hrs → 10min",
         'bento.perf_old': "3 hrs",
         'bento.perf_new': "10 min",
-        'bento.arch': "Clean",
-        'bento.arch_label': "Architecture",
-        'bento.stack_label': "Tech Stack",
+        'bento.arch': "ETL",
+        'bento.arch_label': "Core focus",
+        'bento.stack_label': "Core stack",
+
+        // --- Current Work ---
+        'impact.eyebrow': "CURRENT ROLE · AMERICAN CLUB TAIPEI",
+        'impact.title': "From legacy data to systems people can trust.",
+        'impact.intro': "I own six internal applications used across billing, membership data, authentication, reporting and daily operations.",
+        'impact.etl.title': "ETL & integrations",
+        'impact.etl.body': "Built a central data hub connecting ERP records with billing, email, website and access-control workflows. Validated pipelines now replace fragmented exports and manual checks.",
+        'impact.billing.title': "Billing & email delivery",
+        'impact.billing.body': "Rebuilt a monthly mailing workflow with asynchronous processing and automated validation, reducing runtime from about three hours to ten minutes.",
+        'impact.ownership.title': "Production ownership",
+        'impact.ownership.body': "Run PostgreSQL databases and Dockerised Linux services through deployment, monitoring and support. I also helped interview and onboard a new developer and now share delivery and production work.",
 
         // --- Timeline ---
         'timeline.title': "Journey",
-        'timeline.subtitle': "From aerospace precision to software architecture.",
+        'timeline.subtitle': "A practical route into software, followed by hands-on production ownership.",
 
         'timeline.aidc.company': "AIDC",
         'timeline.aidc.role': "Aerospace Technician",
         'timeline.aidc.desc': "Precision manufacturing for defense aircraft.",
 
         'timeline.jieqi.company': "Jieqi Trading",
-        'timeline.jieqi.role': "Tech Support Specialist",
-        'timeline.jieqi.desc': "ERP administration and IT infrastructure maintenance.",
+        'timeline.jieqi.role': "IT & Business Systems Assistant",
+        'timeline.jieqi.desc': "ERP reporting, CSV data checks and small C# utilities.",
 
         'timeline.stgiles.company': "St Giles",
         'timeline.stgiles.role': "English Studies",
@@ -65,11 +76,11 @@ export const ui = {
 
         'timeline.acc.company': "American Club",
         'timeline.acc.role': "IT System Developer",
-        'timeline.acc.desc': "Legacy modernisation. 7 production systems.",
+        'timeline.acc.desc': "Six production systems across data, billing, access and operations.",
 
         // --- Projects Section ---
         'projects.title': "Projects",
-        'projects.subtitle': "Systems I architected and delivered.",
+        'projects.subtitle': "Selected production systems and independent work.",
         'projects.view_all': "View all projects",
         'projects.featured': "Featured",
         'projects.case_study': "Case Study",
@@ -85,11 +96,11 @@ export const ui = {
 
         // Data Control
         'project.datacontrol.title': "Data Control ETL",
-        'project.datacontrol.summary': "Mission-critical ETL platform modernisation. Migrated from C# console to FastAPI + React.",
-        'project.datacontrol.highlight.0': "Modernised legacy C# console application",
-        'project.datacontrol.highlight.1': "Clean Architecture with strict layer separation",
-        'project.datacontrol.highlight.2': "Real-time monitoring dashboard",
-        'project.datacontrol.highlight.3': "Automated CI/CD deployment",
+        'project.datacontrol.summary': "Production data hub connecting ERP, billing, email, website and access-control workflows.",
+        'project.datacontrol.highlight.0': "Replaced fragmented C# jobs and manual exports with validated Python pipelines",
+        'project.datacontrol.highlight.1': "Moved application data and legacy workflows into PostgreSQL",
+        'project.datacontrol.highlight.2': "Added an internal React dashboard for operations and issue tracing",
+        'project.datacontrol.highlight.3': "Runs in Docker on Linux with automated GitLab deployment",
 
         // AuthHub
         'project.authhub.title': "AuthHub SSO",
@@ -102,12 +113,12 @@ export const ui = {
         'project.authhub.metric.apps.sub': "Integrated",
 
         // PBill (Updated)
-        'project.pbill.title': "PBill Email System",
-        'project.pbill.summary': "Automated paperless billing system with PDF generation and distribution.",
-        'project.pbill.highlight.0': "Processing time reduced by 95% (3hrs → 10min)",
-        'project.pbill.highlight.1': "Fault-tolerant with automatic recovery",
-        'project.pbill.highlight.2': "Mandrill API for reliable delivery",
-        'project.pbill.highlight.3': "Docker containerisation",
+        'project.pbill.title': "Billing & Email Workflow",
+        'project.pbill.summary': "Monthly invoice preparation and email delivery rebuilt for speed, validation and easier recovery.",
+        'project.pbill.highlight.0': "Reduced processing time from about three hours to ten minutes",
+        'project.pbill.highlight.1': "Added automated validation and restart-safe processing",
+        'project.pbill.highlight.2': "Integrated invoice files, schedules and Mandrill email delivery",
+        'project.pbill.highlight.3': "Deployed and monitored as a Dockerised Linux service",
         'project.pbill.metric.perf.label': "Performance",
         'project.pbill.metric.perf.sub': "Faster",
         'project.pbill.metric.proc.label': "Processing",
@@ -117,7 +128,7 @@ export const ui = {
         'project.gate.title': "Gate Reader System",
         'project.gate.summary': "Physical access control integration with card reader hardware.",
         'project.gate.highlight.0': "First frontend project with vanilla JS",
-        'project.gate.highlight.1': "Clean Architecture in C#",
+        'project.gate.highlight.1': "Separated hardware, data and business logic in C#",
         'project.gate.highlight.2': "Real-time PostgreSQL sync",
 
         // Staff
@@ -143,28 +154,28 @@ export const ui = {
         // DaYu
         'project.dayu.title': "DaYu Tour System",
         'project.dayu.summary': "Full-stack travel agency platform. Freelance project with complete ownership.",
-        'project.dayu.highlight.0': "FastAPI backend with Clean Architecture",
+        'project.dayu.highlight.0': "FastAPI backend with modular business services",
         'project.dayu.highlight.1': "React admin + Astro public site",
         'project.dayu.highlight.2': "Docker + Caddy on EC2",
         'project.dayu.highlight.3': "PDF generation for inquiries",
 
         // LLM Gateway
         'project.llmgateway.title': "Multi-LLM Gateway",
-        'project.llmgateway.summary': "Scalable backend bridging LINE Messaging API with OpenAI & xAI Grok.",
-        'project.llmgateway.highlight.0': "Onion Architecture for decoupling",
-        'project.llmgateway.highlight.1': "Async/Await for high concurrency",
+        'project.llmgateway.summary': "Backend service connecting LINE Messaging API with OpenAI and xAI Grok.",
+        'project.llmgateway.highlight.0': "Provider adapters keep messaging and model integrations separate",
+        'project.llmgateway.highlight.1': "Asynchronous webhook processing",
         'project.llmgateway.highlight.2': "Redis state management",
 
         // --- Contact Section ---
         'contact.title': "Get in Touch",
-        'contact.subtitle': "Let's connect and discuss opportunities.",
+        'contact.subtitle': "Looking for a full-stack or Python-focused role where production ownership matters.",
         'contact.cta_email': "Email",
         'contact.cta_linkedin': "LinkedIn",
         'contact.cta_github': "GitHub",
-        'contact.card_text': "Open to backend engineering, system architecture, and full-stack opportunities.",
+        'contact.card_text': "Open to UK remote, hybrid and on-site opportunities.",
 
         // --- Footer ---
-        'footer.copyright': "© 2026 YiShiou Tsai",
+        'footer.copyright': "© 2026 Ethan Tsai",
         'footer.built_with': "Built with Astro, React & Tailwind",
     },
     zh: {
@@ -175,28 +186,39 @@ export const ui = {
         'nav.playground_tooltip': '開啟 VS Code 模式',
 
         // --- Hero Section ---
-        'hero.status': "在職工程師",
+        'hero.status': "尋找英國工作機會",
         'hero.greeting': "嗨，我是",
-        'hero.name': "蔡易修",
+        'hero.name': "Ethan Tsai",
         'hero.role': "軟體工程師",
-        'hero.tagline': "負責將老舊系統變成現代架構。",
-        'hero.sub_tagline': "專精 Clean Architecture、Python 與全端開發。",
-        'hero.location': "台灣，台北",
+        'hero.tagline': "我打造企業日常營運真正依賴的資料流程與內部系統。",
+        'hero.sub_tagline': "使用 Python/FastAPI、PostgreSQL、React/TypeScript 與 Docker/Linux，從需求一路負責到正式環境維運。",
+        'hero.location': "英國，倫敦 · 接受英國遠端工作",
         'hero.cta_projects': "瀏覽專案",
-        'hero.cta_playground': "開啟 Playground",
+        'hero.cta_playground': "寄信給我",
         'hero.scroll_hint': "向下捲動探索",
 
         // --- Bento Grid ---
-        'bento.title': "一覽",
-        'bento.projects_sub': "2025 年交付",
+        'bento.title': "正式環境成果",
+        'bento.projects_sub': "開發並維護",
         'bento.projects_label': "個生產系統",
-        'bento.perf_label': "ETL 效能提升",
+        'bento.perf_label': "執行時間縮短",
         'bento.perf_sub': "3小時 → 10分鐘",
         'bento.perf_old': "3小時",
         'bento.perf_new': "10分鐘",
-        'bento.arch': "Clean",
-        'bento.arch_label': "Architecture",
-        'bento.stack_label': "技術堆疊",
+        'bento.arch': "ETL",
+        'bento.arch_label': "主要領域",
+        'bento.stack_label': "核心技術",
+
+        // --- Current Work ---
+        'impact.eyebrow': "目前職務 · 台北美國俱樂部",
+        'impact.title': "把分散的舊資料，變成大家能信任的系統。",
+        'impact.intro': "我負責六套內部應用，涵蓋帳務、會員資料、驗證、報表與日常營運。",
+        'impact.etl.title': "ETL 與系統整合",
+        'impact.etl.body': "建立中央資料平台，串接 ERP、帳務、郵件、網站與門禁流程，以具驗證機制的 PostgreSQL pipeline 取代零散匯出與人工檢查。",
+        'impact.billing.title': "帳務與郵件流程",
+        'impact.billing.body': "以非同步處理與自動驗證重建每月郵件流程，將執行時間從約三小時縮短至十分鐘。",
+        'impact.ownership.title': "正式環境維運",
+        'impact.ownership.body': "負責 PostgreSQL、Docker/Linux 服務、部署、監控與維護，也協助面試及帶領新進工程師，現在共同進行開發與 production support。",
 
         // --- Timeline ---
         'timeline.title': "經歷",
@@ -207,8 +229,8 @@ export const ui = {
         'timeline.aidc.desc': "國防機隊現代化升級。",
 
         'timeline.jieqi.company': "捷棋貿易",
-        'timeline.jieqi.role': "技術支援專員",
-        'timeline.jieqi.desc': "負責 ERP 系統管理與 IT 基礎設施維護。",
+        'timeline.jieqi.role': "IT 與企業系統助理",
+        'timeline.jieqi.desc': "ERP 報表、CSV 資料檢查與小型 C# 工具。",
 
         'timeline.stgiles.company': "St Giles",
         'timeline.stgiles.role': "英語進修",
@@ -224,7 +246,7 @@ export const ui = {
 
         'timeline.acc.company': "台北美國俱樂部",
         'timeline.acc.role': "IT 系統開發者",
-        'timeline.acc.desc': "舊系統現代化。交付 7 個生產系統。",
+        'timeline.acc.desc': "六套涵蓋資料、帳務、門禁與營運的正式系統。",
 
         // --- Projects Section ---
         'projects.title': "專案作品",
@@ -246,7 +268,7 @@ export const ui = {
         'project.datacontrol.title': "Data Control ETL",
         'project.datacontrol.summary': "關鍵任務 ETL 平台現代化。從 C# 主控台遷移至 FastAPI + React。",
         'project.datacontrol.highlight.0': "成功將舊版 C# 應用程式現代化",
-        'project.datacontrol.highlight.1': "Clean Architecture 嚴格分層",
+        'project.datacontrol.highlight.1': "將應用資料與舊流程遷移至 PostgreSQL",
         'project.datacontrol.highlight.2': "即時監控儀表板",
         'project.datacontrol.highlight.3': "自動化 CI/CD 部署",
 
@@ -276,7 +298,7 @@ export const ui = {
         'project.gate.title': "Gate 讀卡系統",
         'project.gate.summary': "實體門禁控制系統與讀卡器硬體整合。",
         'project.gate.highlight.0': "第一個前端專案（原生 JS）",
-        'project.gate.highlight.1': "C# 中的 Clean Architecture",
+        'project.gate.highlight.1': "以 C# 分離硬體、資料與商業邏輯",
         'project.gate.highlight.2': "PostgreSQL 即時同步",
 
         // Staff
@@ -302,7 +324,7 @@ export const ui = {
         // DaYu
         'project.dayu.title': "大宇旅遊系統",
         'project.dayu.summary': "全端旅遊平台。獨立接案，完整掌控。",
-        'project.dayu.highlight.0': "FastAPI 後端 + Clean Architecture",
+        'project.dayu.highlight.0': "FastAPI 後端與模組化商業服務",
         'project.dayu.highlight.1': "React 後台 + Astro 公開網站",
         'project.dayu.highlight.2': "Docker + Caddy 部署 EC2",
         'project.dayu.highlight.3': "詢價單 PDF 產生",
@@ -310,8 +332,8 @@ export const ui = {
         // LLM Gateway
         'project.llmgateway.title': "多 LLM 閘道",
         'project.llmgateway.summary': "可擴展後端，串接 LINE Messaging API 與 OpenAI/xAI Grok。",
-        'project.llmgateway.highlight.0': "Onion Architecture 解耦設計",
-        'project.llmgateway.highlight.1': "Async/Await 高並發",
+        'project.llmgateway.highlight.0': "Provider adapter 分離訊息與模型整合",
+        'project.llmgateway.highlight.1': "非同步 webhook 處理",
         'project.llmgateway.highlight.2': "Redis 狀態管理",
 
         // --- Contact Section ---
@@ -323,7 +345,7 @@ export const ui = {
         'contact.card_text': "歡迎後端工程、系統架構、全端開發的工作機會。",
 
         // --- Footer ---
-        'footer.copyright': "© 2026 蔡易修",
+        'footer.copyright': "© 2026 Ethan Tsai",
         'footer.built_with': "使用 Astro, React & Tailwind 建構",
     },
 } as const;

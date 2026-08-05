@@ -1,20 +1,20 @@
 import { useState, useEffect, type JSX } from 'react';
 
 const codeLines = [
-    { text: 'class Developer:', delay: 0 },
-    { text: '    name = "YiShiou"', delay: 100 },
-    { text: '    role = "Software Engineer"', delay: 200 },
-    { text: '    location = "Taipei"', delay: 300 },
+    { text: 'class FullStackEngineer:', delay: 0 },
+    { text: '    name = "Ethan Tsai"', delay: 100 },
+    { text: '    location = "London, UK"', delay: 200 },
+    { text: '    focus = "data + internal tools"', delay: 300 },
     { text: '', delay: 400 },
     { text: '    skills = [', delay: 500 },
     { text: '        "Python",', delay: 600 },
     { text: '        "FastAPI",', delay: 700 },
-    { text: '        "React",', delay: 800 },
-    { text: '        "Clean Architecture",', delay: 900 },
+    { text: '        "PostgreSQL",', delay: 800 },
+    { text: '        "React / TypeScript",', delay: 900 },
     { text: '    ]', delay: 1000 },
     { text: '', delay: 1100 },
-    { text: '    def build(self, legacy_system):', delay: 1200 },
-    { text: '        return modern_architecture', delay: 1300 },
+    { text: '    def deliver(self, workflow):', delay: 1200 },
+    { text: '        return reliable_system', delay: 1300 },
 ];
 
 // Tokenizer-based syntax highlighting to avoid regex conflicts
@@ -57,15 +57,15 @@ function highlightSyntax(text: string): JSX.Element[] {
 
             if (keywords.has(word)) {
                 pushToken(word, 'syntax-keyword');
-            } else if (word === 'Developer') {
+            } else if (word === 'FullStackEngineer') {
                 pushToken(word, 'syntax-class');
-            } else if (word === 'build') {
+            } else if (word === 'deliver') {
                 pushToken(word, 'syntax-function');
-            } else if (word === 'legacy_system') {
+            } else if (word === 'workflow') {
                 pushToken(word, 'syntax-param');
-            } else if (word === 'modern_architecture') {
+            } else if (word === 'reliable_system') {
                 pushToken(word, 'syntax-return');
-            } else if (['name', 'role', 'location', 'skills'].includes(word)) {
+            } else if (['name', 'location', 'focus', 'skills'].includes(word)) {
                 pushToken(word, 'syntax-property');
             } else {
                 pushToken(word);

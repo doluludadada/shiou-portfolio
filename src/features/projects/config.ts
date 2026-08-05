@@ -17,16 +17,16 @@ export const projectsConfig: ProjectConfig[] = [
     {
         id: "datacontrol",
         featured: true,
-        tech: ["Python 3.13", "FastAPI", "React 18", "TypeScript", "PostgreSQL", "Docker", "GitLab CI/CD"],
+        tech: ["Python", "FastAPI", "PostgreSQL", "React", "TypeScript", "Docker", "GitLab CI/CD"],
         hasArchitecture: true,
     },
     {
         id: "authhub",
-        featured: true,
-        tech: ["Python 3.13", "FastAPI", "React 19", "TypeScript", "PostgreSQL", "Redis", "JWT"],
+        featured: false,
+        tech: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "Redis", "JWT"],
         hasArchitecture: true,
         metrics: [
-            { id: "apps", value: "7" },
+            { id: "apps", value: "6" },
         ],
     },
     {
@@ -37,8 +37,8 @@ export const projectsConfig: ProjectConfig[] = [
     },
     {
         id: "pbill",
-        featured: false,
-        tech: ["Python", "Docker", "SQLite", "Mandrill API", "FastAPI"],
+        featured: true,
+        tech: ["Python", "FastAPI", "PostgreSQL", "AsyncIO", "Docker", "Mandrill API"],
         metrics: [
             { id: "perf", value: "95%" },
             { id: "proc", value: "10 min" },
@@ -47,7 +47,7 @@ export const projectsConfig: ProjectConfig[] = [
     {
         id: "gate",
         featured: false,
-        tech: ["C#", ".NET", "JavaScript", "PostgreSQL", "Clean Architecture"],
+        tech: ["C#", ".NET", "JavaScript", "PostgreSQL"],
     },
     {
         id: "staff",

@@ -319,7 +319,7 @@ export default function VSCodePlayground() {
                     >
                         <Menu className="w-5 h-5" />
                     </button>
-                    <span className="font-semibold truncate">YiShiou's Portfolio - VS Code</span>
+                    <span className="font-semibold truncate">Ethan Tsai's Portfolio - VS Code</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <button className="p-1 hover:bg-white/10 rounded hidden md:block">

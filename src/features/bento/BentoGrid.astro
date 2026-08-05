@@ -12,9 +12,9 @@ const { lang = "en" } = Astro.props;
 const t = useTranslations(lang);
 
 const techStack = {
-  backend: ["Python", "FastAPI", "C#", ".NET", "Java"],
-  frontend: ["React", "TypeScript", "Astro"],
-  devops: ["Docker", "GitLab CI", "AWS EC2"],
+  backend: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy"],
+  frontend: ["React", "TypeScript"],
+  devops: ["Docker", "Linux", "GitLab CI/CD"],
 };
 ---
 
@@ -47,7 +47,7 @@ const techStack = {
           <span
             class="text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-linear-to-r from-accent to-[#67e8f9]"
           >
-            <CountUp client:visible end={7} duration={2000} />
+            <CountUp client:visible end={6} duration={2000} />
           </span>
           <p class="text-lg mt-2 text-text-primary">
             {t("bento.projects_label")}
@@ -63,7 +63,7 @@ const techStack = {
         <Zap className="w-5 h-5 text-accent" />
         <div>
           <span class="text-3xl font-bold text-text-primary">
-            <CountUp client:visible end={95} suffix="%" duration={2500} />
+            <CountUp client:visible end={94} suffix="%" duration={2500} />
           </span>
           <p class="text-xs mt-1 text-text-secondary">
             {t("bento.perf_label")}

@@ -16,16 +16,16 @@ interface Props {
 
 const {
   title,
-  description = "YiShiou Tsai - Software Engineer specializing in Clean Architecture, Python, and full-stack development.",
+  description = "Ethan Tsai is a full-stack software engineer building Python, PostgreSQL and React systems for data-heavy business workflows.",
   lang = "en",
   canonicalUrl,
-  ogImage = "/og-image.png",
+  ogImage = "/og.png",
 } = Astro.props;
 const t = useTranslations(lang);
 
 const homeUrl = lang === "zh" ? "/zh" : "/";
 const projectsUrl = lang === "zh" ? "/zh/projects" : "/projects";
-const siteUrl = Astro.site || new URL("https://yishiou.dev");
+const siteUrl = Astro.site || new URL("https://shiou-portfolio.vercel.app");
 const canonical =
   canonicalUrl || new URL(Astro.url.pathname, siteUrl).toString();
 ---
@@ -43,7 +43,7 @@ const canonical =
     <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="author" content="YiShiou Tsai" />
+    <meta name="author" content="Ethan Tsai" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonical} />
 
@@ -147,7 +147,7 @@ const canonical =
           class="font-semibold text-lg hover:opacity-80 transition-opacity"
           style="color: var(--color-text-primary);"
         >
-          YiShiou<span style="color: var(--color-accent);">.</span>
+          Ethan Tsai<span style="color: var(--color-accent);">.</span>
         </a>
 
         <div class="flex items-center gap-4 sm:gap-6">
@@ -256,7 +256,7 @@ const canonical =
               </svg>
             </a>
             <a
-              href="https://www.linkedin.com/in/yishiou-t-b98b0a267/"
+              href="https://www.linkedin.com/in/ethan-t-b98b0a267/"
               target="_blank"
               rel="noopener noreferrer"
               class="transition-colors hover:opacity-80"
@@ -285,25 +285,27 @@ const canonical =
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Person",
-        name: "YiShiou Tsai",
-        alternateName: "蔡易修",
+        name: "Ethan Tsai",
+        alternateName: ["蔡易修"],
         url: siteUrl.toString(),
-        jobTitle: "Software Engineer",
+        jobTitle: "Full-Stack Software Engineer",
         worksFor: {
           "@type": "Organisation",
           name: "American Club Taipei",
         },
         sameAs: [
           "https://github.com/doluludadada",
-          "https://www.linkedin.com/in/yishiou-t-b98b0a267/",
+          "https://www.linkedin.com/in/ethan-t-b98b0a267/",
         ],
         knowsAbout: [
           "Python",
           "FastAPI",
           "React",
           "TypeScript",
-          "Clean Architecture",
-          "Software Development",
+          "PostgreSQL",
+          "ETL",
+          "System Integration",
+          "Full-Stack Development",
         ],
       })}
     />

@@ -13,46 +13,46 @@ export type PlaygroundFile = keyof typeof playgroundFiles;
 export const playgroundCode: Record<string, string> = {
     about: `# about.py
 """
-Portfolio of YiShiou Tsai
-Software Engineer | System Architect
+Portfolio of Ethan Tsai
+Full-Stack Software Engineer
 """
 
 from dataclasses import dataclass, field
 from typing import Literal
 
-Role = Literal["Software Engineer", "System Architect", "Full-Stack Developer"]
+Role = Literal["Full-Stack Software Engineer", "Python Software Engineer"]
 
 
 @dataclass
 class Developer:
-    """A software engineer who turns legacy systems into modern architectures."""
+    """A software engineer who builds reliable data workflows and internal tools."""
     
-    name: str = "YiShiou Tsai"
+    name: str = "Ethan Tsai"
     chinese_name: str = "蔡易修"
-    role: Role = "Software Engineer"
-    location: str = "Taipei, Taiwan"
+    role: Role = "Full-Stack Software Engineer"
+    location: str = "London, UK"
     
     focus: list[str] = field(default_factory=lambda: [
-        "Legacy Modernisation",
-        "Clean Architecture",
-        "System Design",
-        "Developer Experience",
+        "ETL and Integrations",
+        "Internal Tools",
+        "PostgreSQL",
+        "Production Operations",
     ])
     
     def introduce(self) -> str:
         return f"""
         Hi, I'm {self.name}.
-        I turn legacy systems into modern architectures.
+        I build the data workflows and internal tools businesses rely on.
         
         Currently at American Club Taipei, where I've delivered
-        7 production systems in less than a year.
+        six production systems across data, billing and operations.
         """
     
     def philosophy(self) -> str:
         return """
-        I believe in writing code that others can easily understand
-        and maintain. Clean Architecture isn't just a pattern—it's
-        a commitment to sustainable software.
+        I keep systems understandable, observable and practical to run.
+        The engineer who ships a service should also understand how it
+        behaves in production.
         """
 
 
@@ -105,12 +105,12 @@ class TechStack:
         "Caddy",
     ]
     
-    architecture: list[str] = [
-        "Clean Architecture",
-        "Hexagonal (Ports & Adapters)",
-        "Domain-Driven Design",
-        "Onion Architecture",
-        "Microservices",
+    design: list[str] = [
+        "Layered services",
+        "Dependency injection",
+        "Provider adapters",
+        "Clear domain boundaries",
+        "Observable production workflows",
     ]
     
     tools: list[str] = [
@@ -130,7 +130,7 @@ def get_primary_skills() -> list[str]:
         "React",
         "PostgreSQL",
         "Docker",
-        "Clean Architecture",
+        "ETL and system integration",
     ]
 `,
 
@@ -159,13 +159,13 @@ career: list[Experience] = [
         role="IT System Developer",
         start_date=date(2025, 3, 1),
         end_date=None,  # Current
-        location="Taipei, Taiwan",
+        location="London, UK",
         highlights=[
-            "Led migration of legacy .NET systems to Python microservices",
-            "Delivered 7 production systems in 10 months",
+            "Built the ETL hub linking ERP, billing, email, website and access workflows",
+            "Built and maintained six production systems",
             "Established CI/CD pipelines with GitLab",
-            "Implemented Clean Architecture across all projects",
-            "Optimized ETL processes and system reliability",
+            "Migrated InterBase and Access workflows to PostgreSQL",
+            "Helped interview and onboard a new developer",
         ],
         tech_stack=[
             "Python", "FastAPI", "React", "TypeScript",
@@ -283,8 +283,8 @@ Mission-critical ETL system modernisation project.
 Migrated from legacy C# console application to modern
 FastAPI + React stack.
 
-This was the flagship project that established the
-architecture patterns used across all subsequent systems.
+This became the central data hub used by downstream
+billing, email, website and access-control workflows.
 """
 
 from dataclasses import dataclass
@@ -322,8 +322,8 @@ class Project:
         "GitLab CI/CD",
     ]
     
-    architecture: str = """
-    Clean Architecture (Hexagonal)
+    structure: str = """
+    Layered service structure
     
     ┌─────────────────────────────────────┐
     │          Presentation Layer         │
@@ -347,7 +347,7 @@ class Project:
         "Modernised legacy C# console application",
         "Real-time monitoring dashboard",
         "Automated CI/CD deployment",
-        "Clean Architecture implementation",
+        "Clear separation between workflow, data and external integrations",
         "Comprehensive error handling",
     ]
 `,
@@ -436,10 +436,10 @@ from dataclasses import dataclass
 
 @dataclass
 class Contact:
-    email: str = "doluludadada@outlook.com"
-    linkedin: str = "https://www.linkedin.com/in/yishiou-t-b98b0a267/"
+    email: str = "shiou.tsai.84@gmail.com"
+    linkedin: str = "https://www.linkedin.com/in/ethan-t-b98b0a267/"
     github: str = "github.com/doluludadada"
-    location: str = "Taipei, Taiwan"
+    location: str = "London, UK"
     
     availability: str = "Open to opportunities"
     
@@ -451,9 +451,9 @@ class Contact:
         
         I'm particularly interested in:
         - Backend engineering roles
-        - System architecture positions
+        - Data and integration engineering roles
         - Full-stack opportunities
-        - Clean Architecture discussions
+        - Internal tools and production systems
         """
         print(f"Message received: {message}")
         return True
@@ -482,9 +482,9 @@ export const terminalContent = {
   projects  - List projects
   contact   - Contact info
   clear     - Clear terminal`,
-        whoami: `YiShiou Tsai
-Software Engineer @ American Club Taipei
-Focus: Legacy Modernisation | Clean Architecture`,
+        whoami: `Ethan Tsai
+Full-Stack Software Engineer @ American Club Taipei
+Focus: Python | PostgreSQL | ETL & Integrations`,
         ls: `about.py    contact.py    experience.py    projects/    skills.py`,
         'ls projects': `__init__.py    auth_hub.py    data_control.py`,
         skills: `{
@@ -500,11 +500,11 @@ Focus: Legacy Modernisation | Clean Architecture`,
   ⭐ auth_hub      - SSO System
   ⭐ dayu_tour     - Travel Agency Platform
 
-All: 7 production systems + 2 side projects`,
-        contact: `📧 Email:    doluludadada@outlook.com
-💼 LinkedIn: https://www.linkedin.com/in/yishiou-t-b98b0a267/
+All: 6 production systems + 2 side projects`,
+        contact: `📧 Email:    shiou.tsai.84@gmail.com
+💼 LinkedIn: https://www.linkedin.com/in/ethan-t-b98b0a267/
 🐙 GitHub:   github.com/doluludadada
-📍 Location: Taipei, Taiwan`,
+📍 Location: London, UK`,
         clear: '',
     } as Record<string, string>,
 };
