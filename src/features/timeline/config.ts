@@ -14,4 +14,5 @@ export const timelineConfig: TimelineItemConfig[] = [
     { id: "glasgow", year: "2022-2024", icon: "🎓", color: "purple" },
     { id: "itri", year: "Jan-Mar 2025", icon: "💼", color: "green" },
     { id: "acc", year: "Mar 2025-", icon: "🚀", color: "cyan", current: true },
+    { id: "contract", year: "Dec 2025-Jan 2026", icon: "🧩", color: "purple" },
 ];

@@ -4,7 +4,9 @@ export const playgroundFiles = {
     'experience.py': 'experience',
     'projects/__init__.py': 'projects_init',
     'projects/data_control.py': 'project_datacontrol',
-    'projects/auth_hub.py': 'project_authhub',
+    'projects/billing_email.py': 'project_billing_email',
+    'projects/stock_screening.py': 'project_stock_screening',
+    'projects/llm_gateway.py': 'project_llm_gateway',
     'contact.py': 'contact',
 } as const;
 
@@ -156,36 +158,50 @@ class Experience:
 career: list[Experience] = [
     Experience(
         company="American Club Taipei",
-        role="IT System Developer",
+        role="IT System Developer (Full-Stack Software Engineer)",
         start_date=date(2025, 3, 1),
         end_date=None,  # Current
-        location="London, UK",
+        location="Taipei, Taiwan",
         highlights=[
-            "Built the ETL hub linking ERP, billing, email, website and access workflows",
-            "Built and maintained six production systems",
-            "Established CI/CD pipelines with GitLab",
-            "Migrated InterBase and Access workflows to PostgreSQL",
-            "Helped interview and onboard a new developer",
+            "Built the Python ETL hub linking Oracle ERP, billing, email, website and access workflows",
+            "Own six production applications from development through production support",
+            "Rebuilt monthly invoice emailing, reducing runtime from three hours to ten minutes",
+            "Migrated InterBase and Microsoft Access workflows to PostgreSQL",
+            "Helped interview and onboard a new developer, then worked with them on delivery and support",
         ],
         tech_stack=[
             "Python", "FastAPI", "React", "TypeScript",
             "PostgreSQL", "Docker", "GitLab CI",
         ],
     ),
+
+    Experience(
+        company="Private Client",
+        role="Full-Stack Software Engineer — Part-Time Contract",
+        start_date=date(2025, 12, 1),
+        end_date=date(2026, 1, 31),
+        location="Remote",
+        highlights=[
+            "Delivered an internal corporate portal MVP in eight weeks",
+            "Implemented role-based access control for users and administrators",
+            "Deployed to AWS EC2 using Docker, Caddy and CI/CD",
+        ],
+        tech_stack=["AWS EC2", "Docker", "Caddy", "RBAC", "CI/CD"],
+    ),
     
     Experience(
         company="ITRI (Industrial Technology Research Institute)",
-        role="Software Programmer",
+        role="Software Programmer — C#/.NET",
         start_date=date(2025, 1, 1),
         end_date=date(2025, 3, 1),
-        location="Taiwan",
+        location="Hsinchu, Taiwan",
         highlights=[
             "Developed internal software tools",
             "First professional software role after graduation",
         ],
         tech_stack=["C#", ".NET Framework"],
     ),
-    
+
     Experience(
         company="University of Glasgow",
         role="MSc Software Development",
@@ -194,11 +210,26 @@ career: list[Experience] = [
         location="Glasgow, Scotland",
         highlights=[
             "Dissertation: Digital Simulation of Mechanical Computer",
-            "Grade: A (Distinction)",
+            "Dissertation grade: A5",
             "Integrated Box2D physics with LibGDX",
             "Applied design patterns: Factory, State, Observer",
         ],
         tech_stack=["Java", "Box2D", "LibGDX", "OOP"],
+    ),
+
+    Experience(
+        company="Jieqi Trading Co., Ltd.",
+        role="IT & Business Systems Assistant",
+        start_date=date(2020, 7, 1),
+        end_date=date(2021, 6, 30),
+        location="Taichung, Taiwan",
+        highlights=[
+            "Supported ERP order records and internal reporting workflows",
+            "Prepared customer and billing-cycle reports from CSV exports",
+            "Built C#/.NET utilities for validation and Excel-readable summaries",
+            "Worked with an external contractor on requirements and user testing",
+        ],
+        tech_stack=["C#", ".NET", "CSV", "Data Validation", "UAT"],
     ),
     
     Experience(
@@ -217,9 +248,8 @@ career: list[Experience] = [
 ]
 
 
-def get_total_months_in_software() -> int:
-    """Calculate total months in software development."""
-    # Started Jan 2025
+def get_direct_software_months() -> int:
+    """Calculate months in direct software delivery roles."""
     from datetime import date
     today = date.today()
     start = date(2025, 1, 1)
@@ -253,24 +283,20 @@ class ProjectStatus(Enum):
     MAINTAINED = "maintained"
 
 
-# Featured projects
+# Featured work shown across LinkedIn and this portfolio
 FEATURED = [
     "data_control",
-    "auth_hub",
-    "dayu_tour",
+    "billing_email",
+    "stock_screening",
+    "llm_gateway",
 ]
 
 # All projects
 ALL_PROJECTS = [
-    "data_control",   # ETL Modernisation
-    "auth_hub",       # SSO System
-    "pbill",          # Email System
-    "gate_system",    # Access Control
-    "staff_system",   # Employee Management
-    "marketing",      # Campaign Management
-    "abacus",         # Database Migration
-    "dayu_tour",      # Travel Agency (Side)
-    "llm_gateway",    # Multi-LLM (Side)
+    "data_control",       # Production ETL and integration hub
+    "billing_email",      # Production invoice-email workflow
+    "stock_screening",    # Personal project
+    "llm_gateway",        # Personal project
 ]
 `,
 
@@ -352,74 +378,74 @@ class Project:
     ]
 `,
 
-    project_authhub: `# projects/auth_hub.py
-"""
-AuthHub - Identity Management & SSO
-===================================
-
-Centralised authentication and authorisation system
-for internal applications. Provides single sign-on
-across all enterprise tools.
-"""
+    project_billing_email: `# projects/billing_email.py
+"""Monthly invoice-email workflow used in production."""
 
 from dataclasses import dataclass
-from typing import Literal
 
 
-@dataclass  
-class AuthHubProject:
-    name: str = "AuthHub SSO"
+@dataclass
+class BillingEmailWorkflow:
+    name: str = "Invoice Emailing System"
     status: str = "Production"
-    
-    features: list[str] = [
-        "JWT Authentication (RS256/HS256)",
-        "Role-Based Access Control",
-        "Per-Application Permissions",
-        "Redis Session Management",
-        "Ticket-Based SSO Flow",
-        "Admin Approval Workflow",
-        "Audit Logging",
+    result: str = "Runtime reduced from about 3 hours to 10 minutes"
+
+    responsibilities: list[str] = [
+        "Rebuilt the legacy workflow in Python",
+        "Added asynchronous processing and automated validation",
+        "Added recovery handling for interrupted runs",
+        "Integrated invoice files, schedules and email delivery",
     ]
-    
+
     tech_stack: list[str] = [
-        "Python 3.13",
-        "FastAPI",
-        "React 19",
-        "TypeScript",
-        "PostgreSQL",
-        "Redis",
-        "Docker",
+        "Python", "FastAPI", "PostgreSQL", "Docker", "Mandrill"
     ]
-    
-    sso_flow: str = """
-    SSO Authentication Flow:
-    
-    1. User clicks app in dashboard
-    2. AuthHub generates one-time ticket
-    3. Redirect to app with ticket
-    4. App exchanges ticket for JWT
-    5. JWT contains user role for that app
-    
-    ┌──────────┐     ┌──────────┐     ┌──────────┐
-    │   User   │────▶│ AuthHub  │────▶│    App   │
-    │          │     │  (SSO)   │     │          │
-    └──────────┘     └──────────┘     └──────────┘
-         │               │                 │
-         │    1. Login   │                 │
-         │──────────────▶│                 │
-         │               │                 │
-         │    2. Ticket  │                 │
-         │◀──────────────│                 │
-         │               │                 │
-         │          3. Redirect + Ticket   │
-         │────────────────────────────────▶│
-         │               │                 │
-         │               │  4. Exchange    │
-         │               │◀────────────────│
-         │               │                 │
-         │               │  5. JWT         │
-         │               │────────────────▶│
-    """
+`,
+
+    project_stock_screening: `# projects/stock_screening.py
+"""Automated Stock Screening Agent — personal project."""
+
+from dataclasses import dataclass
+
+
+@dataclass
+class StockScreeningAgent:
+    market: str = "TWSE / TPEX"
+    status: str = "In development"
+    repository: str = "github.com/doluludadada/stock-agent"
+
+    features: list[str] = [
+        "End-of-day trend, momentum, volume and volatility screening",
+        "PTT sentiment collection",
+        "OpenAI, Gemini and Grok provider adapters",
+        "Configurable scoring and risk policies",
+        "Candidate reports for manual review",
+    ]
+
+    tech_stack: list[str] = ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy"]
+`,
+
+    project_llm_gateway: `# projects/llm_gateway.py
+"""Backend gateway connecting LINE with multiple LLM providers."""
+
+from dataclasses import dataclass
+
+
+@dataclass
+class MultiLLMGateway:
+    status: str = "Completed"
+    repository: str = "github.com/doluludadada/chat_friend"
+
+    features: list[str] = [
+        "Asynchronous FastAPI webhooks for LINE messages",
+        "Interchangeable OpenAI and xAI provider adapters",
+        "Redis-backed conversation state",
+        "Dependency injection and layered service boundaries",
+    ]
+
+    tech_stack: list[str] = [
+        "Python", "FastAPI", "Redis", "LINE Messaging API", "OpenAI API", "xAI API"
+    ]
 `,
 
     contact: `# contact.py
@@ -486,7 +512,7 @@ export const terminalContent = {
 Full-Stack Software Engineer @ American Club Taipei
 Focus: Python | PostgreSQL | ETL & Integrations`,
         ls: `about.py    contact.py    experience.py    projects/    skills.py`,
-        'ls projects': `__init__.py    auth_hub.py    data_control.py`,
+        'ls projects': `__init__.py    billing_email.py    data_control.py    llm_gateway.py    stock_screening.py`,
         skills: `{
   "backend": ["Python", "FastAPI", "C#"],
   "frontend": ["React", "TypeScript", "Astro"],
@@ -496,11 +522,12 @@ Focus: Python | PostgreSQL | ETL & Integrations`,
         'skills --backend': `["Python", "FastAPI", "C#", ".NET", "SQLAlchemy"]`,
         'skills --frontend': `["React", "TypeScript", "Astro", "Tailwind"]`,
         projects: `Featured:
-  ⭐ data_control  - ETL Modernisation (Legacy to Modern)
-  ⭐ auth_hub      - SSO System
-  ⭐ dayu_tour     - Travel Agency Platform
+  ⭐ data_control     - Production ETL and integration hub
+  ⭐ billing_email    - Invoice-email workflow (3 hours → 10 minutes)
+  ⭐ stock_screening  - TWSE/TPEX screening and analysis
+  ⭐ llm_gateway      - LINE and multi-provider LLM gateway
 
-All: 6 production systems + 2 side projects`,
+Experience: 6 production applications + contract and personal projects`,
         contact: `📧 Email:    shiou.tsai.84@gmail.com
 💼 LinkedIn: https://www.linkedin.com/in/ethan-t-b98b0a267/
 🐙 GitHub:   github.com/doluludadada

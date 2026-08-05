@@ -15,7 +15,8 @@ import {
     Terminal as TerminalIcon,
     AlertCircle,
     Menu,
-    Mail
+    Mail,
+    ExternalLink
 } from 'lucide-react';
 
 // Improved parser that handles multi-line strings with prefixes (f-strings) correctly
@@ -329,6 +330,13 @@ export default function VSCodePlayground() {
                         <Square className="w-3.5 h-3.5" />
                     </button>
                     <a
+                        href="/portfolio"
+                        className="p-1 hover:bg-white/10 rounded"
+                        title="Open full portfolio"
+                    >
+                        <ExternalLink className="w-5 h-5 md:w-4 md:h-4" />
+                    </a>
+                    <a
                         href="mailto:shiou.tsai.84@gmail.com"
                         className="p-1 hover:bg-white/10 rounded"
                         title="Email Ethan"
@@ -409,10 +417,22 @@ export default function VSCodePlayground() {
                                         onClick={() => handleFileClick('projects/data_control.py')}
                                     />
                                     <FileTreeItem
-                                        name="auth_hub.py"
-                                        isActive={activeFile === 'projects/auth_hub.py'}
+                                        name="billing_email.py"
+                                        isActive={activeFile === 'projects/billing_email.py'}
                                         level={2}
-                                        onClick={() => handleFileClick('projects/auth_hub.py')}
+                                        onClick={() => handleFileClick('projects/billing_email.py')}
+                                    />
+                                    <FileTreeItem
+                                        name="stock_screening.py"
+                                        isActive={activeFile === 'projects/stock_screening.py'}
+                                        level={2}
+                                        onClick={() => handleFileClick('projects/stock_screening.py')}
+                                    />
+                                    <FileTreeItem
+                                        name="llm_gateway.py"
+                                        isActive={activeFile === 'projects/llm_gateway.py'}
+                                        level={2}
+                                        onClick={() => handleFileClick('projects/llm_gateway.py')}
                                     />
                                 </>
                             )}

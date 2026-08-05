@@ -78,6 +78,10 @@ export const ui = {
         'timeline.acc.role': "IT System Developer",
         'timeline.acc.desc': "Six production systems across data, billing, access and operations.",
 
+        'timeline.contract.company': "Private Client",
+        'timeline.contract.role': "Full-Stack Software Engineer · Part-Time Contract",
+        'timeline.contract.desc': "Delivered an internal portal with RBAC, AWS deployment and CI/CD.",
+
         // --- Projects Section ---
         'projects.title': "Projects",
         'projects.subtitle': "Selected production systems and independent work.",
@@ -166,6 +170,14 @@ export const ui = {
         'project.llmgateway.highlight.1': "Asynchronous webhook processing",
         'project.llmgateway.highlight.2': "Redis state management",
 
+        // Stock Screening Agent
+        'project.stockscreening.title': "Automated Stock Screening Agent",
+        'project.stockscreening.summary': "Python screening and analysis system for Taiwan-listed equities across TWSE and TPEX.",
+        'project.stockscreening.highlight.0': "End-of-day screening across trend, momentum, volume and volatility",
+        'project.stockscreening.highlight.1': "PTT sentiment collection with OpenAI, Gemini and Grok adapters",
+        'project.stockscreening.highlight.2': "Configurable scoring and risk policies",
+        'project.stockscreening.highlight.3': "Produces candidate reports for manual review before trading decisions",
+
         // --- Contact Section ---
         'contact.title': "Get in Touch",
         'contact.subtitle': "Looking for a full-stack or Python-focused role where production ownership matters.",
@@ -247,6 +259,10 @@ export const ui = {
         'timeline.acc.company': "台北美國俱樂部",
         'timeline.acc.role': "IT 系統開發者",
         'timeline.acc.desc': "六套涵蓋資料、帳務、門禁與營運的正式系統。",
+
+        'timeline.contract.company': "私人客戶",
+        'timeline.contract.role': "全端軟體工程師・兼職合約",
+        'timeline.contract.desc': "交付具備 RBAC、AWS 部署與 CI/CD 的企業內部入口網站。",
 
         // --- Projects Section ---
         'projects.title': "專案作品",
@@ -335,6 +351,14 @@ export const ui = {
         'project.llmgateway.highlight.0': "Provider adapter 分離訊息與模型整合",
         'project.llmgateway.highlight.1': "非同步 webhook 處理",
         'project.llmgateway.highlight.2': "Redis 狀態管理",
+
+        // Stock Screening Agent
+        'project.stockscreening.title': "自動化股票篩選系統",
+        'project.stockscreening.summary': "針對台灣上市櫃股票建立的 Python 篩選與分析系統。",
+        'project.stockscreening.highlight.0': "涵蓋趨勢、動能、成交量與波動度的每日篩選流程",
+        'project.stockscreening.highlight.1': "整合 PTT 情緒資料與 OpenAI、Gemini、Grok adapters",
+        'project.stockscreening.highlight.2': "可設定的評分與風險規則",
+        'project.stockscreening.highlight.3': "產生候選清單供交易決策前人工審查",
 
         // --- Contact Section ---
         'contact.title': "聯絡我",

@@ -66,9 +66,15 @@ export const projectsConfig: ProjectConfig[] = [
     },
     {
         id: "llmgateway",
-        featured: false,
+        featured: true,
         tech: ["Python", "FastAPI", "Redis", "LINE Messaging API", "OpenAI API", "xAI Grok"],
         repoUrl: "https://github.com/doluludadada/chat_friend",
+    },
+    {
+        id: "stockscreening",
+        featured: true,
+        tech: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "OpenAI API", "Gemini API", "xAI API"],
+        repoUrl: "https://github.com/doluludadada/stock-agent",
     },
 ];
 
