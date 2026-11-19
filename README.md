@@ -1,43 +1,32 @@
-# Astro Starter Kit: Minimal
+# shiou-portfolio
+
+Ethan Tsai's portfolio, live at https://shiou-portfolio.vercel.app.
+
+- `/` is a VS Code-style page: each project is a Python file you open from the explorer, and each screenshot an image tab.
+- `/portfolio`, `/projects` and `/zh/...` show the same work as cards, in English and Traditional Chinese.
+
+## Run it
+
+Needs Node and pnpm.
 
 ```sh
-pnpm create astro@latest -- --template minimal
+pnpm install
+pnpm dev        # http://localhost:4321
+pnpm build      # static site in dist/
+pnpm preview    # serve dist/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Vercel builds and deploys `main`.
 
-## 🚀 Project Structure
+## Where things are
 
-Inside of your Astro project, you'll see the following folders and files:
+| You want to change | Edit |
+| --- | --- |
+| The VS Code page's files, terminal and screenshots | `src/shared/i18n/playground.ts` |
+| The VS Code page itself | `src/features/playground/VSCodePlayground.tsx` |
+| Card text, English and Chinese | `src/shared/i18n/ui.ts` |
+| Which projects the card pages list, their stack and links | `src/features/projects/config.ts` |
+| The timeline | `src/features/timeline/config.ts` and the `timeline.*` keys in `ui.ts` |
+| Images | `public/screenshots/`, `public/og.png` |
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Stack: Astro 5, React 19, Tailwind CSS 4.

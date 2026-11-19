@@ -1,3 +1,5 @@
+import type { PlaygroundImageFile } from "@/shared/i18n/playground";
+
 export interface ProjectMetricData {
     id: string;
     value: string;
@@ -11,6 +13,7 @@ export interface ProjectConfig {
     repoUrl?: string;
     comingSoon?: boolean;
     featured?: boolean;
+    screenshots?: PlaygroundImageFile[];
 }
 
 export const projectsConfig: ProjectConfig[] = [
@@ -23,6 +26,7 @@ export const projectsConfig: ProjectConfig[] = [
     {
         id: "cafe",
         featured: true,
+        screenshots: ["screenshots/cafe_back_office.jpg"],
         tech: ["TypeScript", "React", "Vite", "Firebase Auth", "Firestore", "Playwright"],
     },
     {
@@ -34,6 +38,11 @@ export const projectsConfig: ProjectConfig[] = [
     {
         id: "whereisthis",
         featured: true,
+        screenshots: [
+            "screenshots/where_is_this_home.jpg",
+            "screenshots/where_is_this_guess.jpg",
+            "screenshots/where_is_this_reveal.jpg",
+        ],
         tech: ["Swift 6", "SwiftUI", "MapKit", "GameKit"],
     },
     {

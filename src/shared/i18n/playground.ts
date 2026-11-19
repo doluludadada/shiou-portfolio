@@ -1,5 +1,5 @@
-// Content of the VS Code homepage. The explorer tree is built from playgroundFiles,
-// so adding a project means adding one entry here and one in playgroundCode.
+// Content of the VS Code homepage. The explorer tree is built from these two maps,
+// grouped by folder, so adding a file means adding one entry here.
 export const playgroundFiles = {
     'about.py': 'about',
     'skills.py': 'skills',
@@ -16,7 +16,50 @@ export const playgroundFiles = {
     'contact.py': 'contact',
 } as const;
 
-export type PlaygroundFile = keyof typeof playgroundFiles;
+export interface PlaygroundImage {
+    src: string;
+    srcZh?: string;
+    caption: string;
+    captionZh: string;
+}
+
+export const playgroundImages = {
+    'screenshots/where_is_this_home.jpg': {
+        src: '/screenshots/where-is-this-01-home.jpg',
+        srcZh: '/screenshots/where-is-this-zh-01-home.jpg',
+        caption: 'Where Is This? Home screen: daily challenge, solo, Pass & Play, online party.',
+        captionZh: '首頁：每日挑戰、單人、一支手機輪流玩、多支手機連線。',
+    },
+    'screenshots/where_is_this_guess.jpg': {
+        src: '/screenshots/where-is-this-03-guess-map.jpg',
+        srcZh: '/screenshots/where-is-this-zh-03-guess-map.jpg',
+        caption: 'Where Is This? Placing a guess on the map.',
+        captionZh: '看街景，在地圖上標出你猜的位置。',
+    },
+    'screenshots/where_is_this_reveal.jpg': {
+        src: '/screenshots/where-is-this-04-reveal.jpg',
+        srcZh: '/screenshots/where-is-this-zh-04-reveal.jpg',
+        caption: 'Where Is This? Round result: every guess, its distance and the points.',
+        captionZh: '回合結果：每個人猜的位置、距離和得分。',
+    },
+    'screenshots/cafe_back_office.jpg': {
+        src: '/screenshots/cafe-back-office.jpg',
+        caption: 'Café shop system. Back office product list, with test data.',
+        captionZh: '咖啡店系統後台的商品列表（測試資料）。',
+    },
+} as const satisfies Record<string, PlaygroundImage>;
+
+export type PlaygroundCodeFile = keyof typeof playgroundFiles;
+export type PlaygroundImageFile = keyof typeof playgroundImages;
+export type PlaygroundFile = PlaygroundCodeFile | PlaygroundImageFile;
+
+export const allPlaygroundFiles = [
+    ...Object.keys(playgroundFiles),
+    ...Object.keys(playgroundImages),
+] as PlaygroundFile[];
+
+export const isImageFile = (file: PlaygroundFile): file is PlaygroundImageFile =>
+    file in playgroundImages;
 
 export const playgroundCode: Record<string, string> = {
     about: `# about.py
@@ -24,6 +67,14 @@ export const playgroundCode: Record<string, string> = {
 Ethan Tsai (蔡易修)
 Full-Stack Software Engineer
 """
+
+# Start here. Click a file name to open it.
+#   projects/club_internal_systems.py   six systems I built at my last job
+#   projects/cafe_shop_system.py        freelance: a café's iPad menu and back office
+#   projects/stock_agent.py             my own: Taiwan stock research tool
+#   projects/where_is_this.py           my own: iOS party game, in App Store review
+#   projects/__init__.py                the full list
+#   contact.py                          email, LinkedIn, GitHub
 
 from dataclasses import dataclass, field
 
@@ -61,7 +112,6 @@ class Developer:
         """
 
 
-# Start here: open the projects/ folder in the explorer.
 if __name__ == "__main__":
     print(Developer().introduce())
 `,
@@ -181,6 +231,7 @@ class Project:
     built: list[str] = field(default_factory=list)
     stack: list[str] = field(default_factory=list)
     link: str | None = None
+    screenshots: list[str] = field(default_factory=list)
 `,
 
     project_club: `# projects/club_internal_systems.py
@@ -252,6 +303,7 @@ CAFE_SHOP = Project(
     ],
     stack=["TypeScript", "React", "Vite", "Firebase Auth", "Firestore",
            "Playwright", "Node.js"],
+    screenshots=["screenshots/cafe_back_office.jpg"],
 )
 `,
 
@@ -301,6 +353,11 @@ WHERE_IS_THIS = Project(
         "Clean Architecture in Swift packages, strict concurrency",
     ],
     stack=["Swift 6", "SwiftUI", "MapKit", "GameKit", "XcodeGen"],
+    screenshots=[
+        "screenshots/where_is_this_home.jpg",
+        "screenshots/where_is_this_guess.jpg",
+        "screenshots/where_is_this_reveal.jpg",
+    ],
 )
 `,
 
@@ -396,13 +453,15 @@ export const terminalContent = {
   skills    - Show tech stack
   projects  - List projects
   contact   - Contact info
+  open FILE - Open a file, e.g. open projects/stock_agent.py
   clear     - Clear terminal`,
         whoami: `Ethan Tsai
 Full-Stack Software Engineer · Taiwan
 Python | FastAPI | React | PostgreSQL`,
-        ls: `about.py    contact.py    experience.py    projects/    skills.py`,
+        ls: `about.py    contact.py    experience.py    projects/    screenshots/    skills.py`,
         'ls projects': `__init__.py  club_internal_systems.py  company_portal.py  cafe_shop_system.py
 stock_agent.py  where_is_this.py  duoary.py  cheque_printing.py  dissertation.py`,
+        'ls screenshots': `where_is_this_home.jpg  where_is_this_guess.jpg  where_is_this_reveal.jpg  cafe_back_office.jpg`,
         skills: `{
   "daily": ["Python", "FastAPI", "PostgreSQL", "TypeScript", "React", "Docker"],
   "regularly": ["Firebase", "Playwright", "GitLab CI/CD", "AWS EC2"],

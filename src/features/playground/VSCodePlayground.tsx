@@ -1,5 +1,14 @@
 import { useState, type JSX, useEffect } from 'react';
-import { playgroundFiles, playgroundCode, terminalContent, statusBar, type PlaygroundFile } from '../../shared/i18n/playground';
+import {
+    playgroundFiles,
+    playgroundCode,
+    playgroundImages,
+    allPlaygroundFiles,
+    isImageFile,
+    terminalContent,
+    statusBar,
+    type PlaygroundFile,
+} from '../../shared/i18n/playground';
 import {
     ChevronRight,
     ChevronDown,
@@ -16,11 +25,51 @@ import {
     AlertCircle,
     Menu,
     Mail,
-    ExternalLink
+    LayoutGrid,
+    Languages,
+    Image as ImageIcon,
 } from 'lucide-react';
 
+const escapeRegExp = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+// URLs, email addresses and the explorer's own file names, longest name first so
+// "projects/__init__.py" wins over shorter matches.
+const LINK_PATTERN = new RegExp(
+    [
+        'https?://[^\\s"\'`]+',
+        '[\\w.+-]+@[\\w-]+\\.[\\w.]+',
+        ...[...allPlaygroundFiles].sort((a, b) => b.length - a.length).map(escapeRegExp),
+    ].join('|'),
+    'g',
+);
+
+const linkClass = 'underline decoration-dotted underline-offset-2 hover:text-[#4fc1ff] cursor-pointer';
+
+function linkify(text: string, className: string, current: PlaygroundFile, onOpen: (file: PlaygroundFile) => void): (JSX.Element | string)[] {
+    const parts: (JSX.Element | string)[] = [];
+    let last = 0;
+    for (const match of text.matchAll(LINK_PATTERN)) {
+        const value = match[0];
+        const start = match.index ?? 0;
+        if (value === current) continue;
+        if (start > last) parts.push(text.slice(last, start));
+        if (value.startsWith('http')) {
+            parts.push(<a key={start} href={value} target="_blank" rel="noopener noreferrer" className={linkClass}>{value}</a>);
+        } else if (value.includes('@')) {
+            parts.push(<a key={start} href={`mailto:${value}`} className={linkClass}>{value}</a>);
+        } else {
+            const file = value as PlaygroundFile;
+            parts.push(<button key={start} type="button" onClick={() => onOpen(file)} className={`${linkClass} text-left`}>{value}</button>);
+        }
+        last = start + value.length;
+    }
+    if (last === 0) return [text];
+    if (last < text.length) parts.push(text.slice(last));
+    return parts.map((part, i) => typeof part === 'string' ? <span key={`t${i}`} className={className}>{part}</span> : part);
+}
+
 // Improved parser that handles multi-line strings with prefixes (f-strings) correctly
-function highlightPython(code: string): JSX.Element[] {
+function highlightPython(code: string, current: PlaygroundFile, onOpen: (file: PlaygroundFile) => void): JSX.Element[] {
     const lines = code.split('\n');
     const elements: JSX.Element[] = [];
 
@@ -36,6 +85,10 @@ function highlightPython(code: string): JSX.Element[] {
         // Helper to push text
         const pushToken = (text: string, className?: string) => {
             if (!text) return;
+            if (className === 'vscode-string' || className === 'vscode-comment') {
+                tokens.push(<span key={key++} className={className}>{linkify(text, className, current, onOpen)}</span>);
+                return;
+            }
             tokens.push(<span key={key++} className={className}>{text}</span>);
         };
 
@@ -155,7 +208,7 @@ function highlightPython(code: string): JSX.Element[] {
                 <span className="table-cell pr-4 text-right select-none vscode-text-muted w-8 md:w-12 text-[10px] md:text-sm pt-0.5 align-top">
                     {lineIndex + 1}
                 </span>
-                <span className="table-cell whitespace-pre-wrap break-all align-top">
+                <span className="table-cell whitespace-pre-wrap wrap-anywhere align-top">
                     {tokens.length > 0 ? tokens : '\u00A0'}
                 </span>
             </div>
@@ -165,9 +218,13 @@ function highlightPython(code: string): JSX.Element[] {
     return elements;
 }
 
-const allFiles = Object.keys(playgroundFiles) as PlaygroundFile[];
-const projectFiles = allFiles.filter(f => f.startsWith('projects/'));
-const topLevelFiles = allFiles.filter(f => !f.startsWith('projects/'));
+const FOLDERS = ['projects', 'screenshots'] as const;
+type Folder = typeof FOLDERS[number];
+const filesIn = (folder: Folder) => allPlaygroundFiles.filter(f => f.startsWith(`${folder}/`));
+const topLevelFiles = allPlaygroundFiles.filter(f => !f.includes('/'));
+const fileIcon = (name: string) => /\.(jpg|png)$/.test(name)
+    ? <ImageIcon className="w-4 h-4 shrink-0 text-purple-400" />
+    : <File className="w-4 h-4 shrink-0 text-blue-400" />;
 
 interface FileTreeItemProps {
     name: string;
@@ -207,7 +264,7 @@ function FileTreeItem({ name, isFolder, isOpen, isActive, level = 0, onClick }: 
             ) : (
                 <>
                     <span className="w-4" />
-                    <File className="w-4 h-4 shrink-0 text-blue-400" />
+                    {fileIcon(name)}
                 </>
             )}
             <span className="truncate">{name}</span>
@@ -231,7 +288,7 @@ function Tab({ name, isActive, onSelect, onClose }: TabProps) {
       `}
             onClick={onSelect}
         >
-            <File className="w-4 h-4 text-blue-400" />
+            {fileIcon(name)}
             <span className="text-sm">{name}</span>
             <button
                 onClick={(e) => {
@@ -249,7 +306,7 @@ function Tab({ name, isActive, onSelect, onClose }: TabProps) {
 export default function VSCodePlayground() {
     const [openFiles, setOpenFiles] = useState<PlaygroundFile[]>(['about.py']);
     const [activeFile, setActiveFile] = useState<PlaygroundFile>('about.py');
-    const [projectsOpen, setProjectsOpen] = useState(true);
+    const [openFolders, setOpenFolders] = useState<Record<Folder, boolean>>({ projects: true, screenshots: true });
     const [terminalOpen, setTerminalOpen] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(true); // Control sidebar visibility
     const [terminalInput, setTerminalInput] = useState('');
@@ -291,7 +348,12 @@ export default function VSCodePlayground() {
     const handleTerminalSubmit = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && terminalInput.trim()) {
             const cmd = terminalInput.trim();
-            const response = terminalContent.commands[cmd] || `Command not found: ${cmd}. Type 'help' for available commands.`;
+            const target = cmd.startsWith('open ') ? cmd.slice(5).trim() as PlaygroundFile : null;
+            const canOpen = target !== null && allPlaygroundFiles.includes(target);
+            if (canOpen) handleFileClick(target);
+            const response = canOpen
+                ? `Opened ${target}`
+                : terminalContent.commands[cmd] || `Command not found: ${cmd}. Type 'help' for available commands.`;
 
             if (cmd === 'clear') {
                 setTerminalHistory(['$ _']);
@@ -307,16 +369,32 @@ export default function VSCodePlayground() {
         }
     };
 
-    const getFileContent = (file: PlaygroundFile): string => {
-        const contentKey = playgroundFiles[file];
-        return playgroundCode[contentKey] || '# File not found';
+    const renderFile = (file: PlaygroundFile) => {
+        if (isImageFile(file)) {
+            const image = playgroundImages[file];
+            return (
+                <figure className="flex flex-col items-center gap-3 py-4">
+                    <img
+                        src={image.src}
+                        alt={image.caption}
+                        className="max-h-[70vh] max-w-full rounded-lg border vscode-border object-contain"
+                    />
+                    <figcaption className="vscode-text-muted text-xs text-center max-w-xl">{image.caption}</figcaption>
+                </figure>
+            );
+        }
+        return (
+            <div className="table w-full">
+                {highlightPython(playgroundCode[playgroundFiles[file]] || '# File not found', file, handleFileClick)}
+            </div>
+        );
     };
 
     return (
         <div className="h-screen w-screen flex flex-col vscode-bg overflow-hidden font-mono text-sm">
             {/* Title Bar */}
             <div className="flex items-center justify-between px-4 h-10 md:h-8 bg-[#323233] vscode-text text-xs select-none shrink-0">
-                <div className="flex items-center gap-3 md:gap-4">
+                <div className="flex items-center gap-3 md:gap-4 min-w-0">
                     {/* Mobile Menu Toggle */}
                     <button
                         className="md:hidden p-1 hover:bg-white/10 rounded"
@@ -324,9 +402,11 @@ export default function VSCodePlayground() {
                     >
                         <Menu className="w-5 h-5" />
                     </button>
-                    <span className="font-semibold truncate">Ethan Tsai's Portfolio - VS Code</span>
+                    <span className="font-semibold truncate">
+                        Ethan Tsai<span className="hidden sm:inline">'s Portfolio - VS Code</span>
+                    </span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 shrink-0 whitespace-nowrap">
                     <button className="p-1 hover:bg-white/10 rounded hidden md:block">
                         <Minus className="w-4 h-4" />
                     </button>
@@ -335,10 +415,20 @@ export default function VSCodePlayground() {
                     </button>
                     <a
                         href="/portfolio"
-                        className="p-1 hover:bg-white/10 rounded"
-                        title="Open full portfolio"
+                        className="flex items-center gap-1 px-1.5 py-1 hover:bg-white/10 rounded"
+                        title="Same content as cards"
                     >
-                        <ExternalLink className="w-5 h-5 md:w-4 md:h-4" />
+                        <LayoutGrid className="w-5 h-5 md:w-4 md:h-4" />
+                        <span className="hidden sm:inline">Card view</span>
+                    </a>
+                    <a
+                        href="/zh"
+                        className="flex items-center gap-1 px-1.5 py-1 hover:bg-white/10 rounded"
+                        title="中文版"
+                        lang="zh-Hant"
+                    >
+                        <Languages className="w-5 h-5 md:w-4 md:h-4" />
+                        <span>中文</span>
                     </a>
                     <a
                         href="mailto:shiou.tsai.84@gmail.com"
@@ -387,22 +477,25 @@ export default function VSCodePlayground() {
                                 />
                             ))}
 
-                            <FileTreeItem
-                                name="projects"
-                                isFolder
-                                isOpen={projectsOpen}
-                                level={1}
-                                onClick={() => setProjectsOpen(!projectsOpen)}
-                            />
-
-                            {projectsOpen && projectFiles.map(file => (
-                                <FileTreeItem
-                                    key={file}
-                                    name={file.slice('projects/'.length)}
-                                    isActive={activeFile === file}
-                                    level={2}
-                                    onClick={() => handleFileClick(file)}
-                                />
+                            {FOLDERS.map(folder => (
+                                <div key={folder}>
+                                    <FileTreeItem
+                                        name={folder}
+                                        isFolder
+                                        isOpen={openFolders[folder]}
+                                        level={1}
+                                        onClick={() => setOpenFolders({ ...openFolders, [folder]: !openFolders[folder] })}
+                                    />
+                                    {openFolders[folder] && filesIn(folder).map(file => (
+                                        <FileTreeItem
+                                            key={file}
+                                            name={file.slice(folder.length + 1)}
+                                            isActive={activeFile === file}
+                                            level={2}
+                                            onClick={() => handleFileClick(file)}
+                                        />
+                                    ))}
+                                </div>
                             ))}
 
                             <FileTreeItem
@@ -432,11 +525,7 @@ export default function VSCodePlayground() {
 
                     {/* Editor Content */}
                     <div className="flex-1 overflow-auto vscode-bg p-2 md:p-4" onClick={() => window.innerWidth < 768 && setSidebarOpen(false)}>
-                        {activeFile && (
-                            <div className="table w-full">
-                                {highlightPython(getFileContent(activeFile))}
-                            </div>
-                        )}
+                        {activeFile && renderFile(activeFile)}
                     </div>
 
                     {/* Terminal Panel */}

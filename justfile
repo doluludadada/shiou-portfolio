@@ -1,7 +1,7 @@
-set shell := ["powershell.exe", "-c"]
-
-scan:
-    uv run --with pathspec python scan.py
+set windows-shell := ["powershell.exe", "-c"]
 
 run:
-    pnpm run dev
+    pnpm dev
+
+build:
+    pnpm build
