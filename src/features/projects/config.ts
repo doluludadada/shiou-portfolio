@@ -15,66 +15,43 @@ export interface ProjectConfig {
 
 export const projectsConfig: ProjectConfig[] = [
     {
-        id: "datacontrol",
+        id: "club",
         featured: true,
-        tech: ["Python", "FastAPI", "PostgreSQL", "React", "TypeScript", "Docker", "GitLab CI/CD"],
-        hasArchitecture: true,
+        tech: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "Docker", "GitLab CI/CD"],
+        metrics: [{ id: "billing", value: "3h → 10 min" }],
     },
     {
-        id: "authhub",
-        featured: false,
-        tech: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "Redis", "JWT"],
-        hasArchitecture: true,
-        metrics: [
-            { id: "apps", value: "6" },
-        ],
-    },
-    {
-        id: "dayu",
-        featured: false,
-        tech: ["Python", "FastAPI", "React", "Astro", "TypeScript", "PostgreSQL", "Docker", "AWS EC2"],
-        comingSoon: true,
-    },
-    {
-        id: "pbill",
+        id: "cafe",
         featured: true,
-        tech: ["Python", "FastAPI", "PostgreSQL", "AsyncIO", "Docker", "Mandrill API"],
-        metrics: [
-            { id: "perf", value: "95%" },
-            { id: "proc", value: "10 min" },
-        ],
+        tech: ["TypeScript", "React", "Vite", "Firebase Auth", "Firestore", "Playwright"],
     },
     {
-        id: "gate",
-        featured: false,
-        tech: ["C#", ".NET", "JavaScript", "PostgreSQL"],
-    },
-    {
-        id: "staff",
-        featured: false,
-        tech: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "Zustand"],
-    },
-    {
-        id: "marketing",
-        featured: false,
-        tech: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "pandas"],
-    },
-    {
-        id: "abacus",
-        featured: false,
-        tech: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "InterBase"],
-    },
-    {
-        id: "llmgateway",
+        id: "stockagent",
         featured: true,
-        tech: ["Python", "FastAPI", "Redis", "LINE Messaging API", "OpenAI API", "xAI Grok"],
-        repoUrl: "https://github.com/doluludadada/chat_friend",
-    },
-    {
-        id: "stockscreening",
-        featured: true,
-        tech: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "OpenAI API", "Gemini API", "xAI API"],
+        tech: ["Python", "FastAPI", "SQLAlchemy", "PostgreSQL", "React", "TypeScript"],
         repoUrl: "https://github.com/doluludadada/stock-agent",
+    },
+    {
+        id: "whereisthis",
+        featured: true,
+        tech: ["Swift 6", "SwiftUI", "MapKit", "GameKit"],
+    },
+    {
+        id: "portal",
+        tech: ["Python", "FastAPI", "React", "TypeScript", "Docker", "Caddy", "AWS EC2"],
+    },
+    {
+        id: "duoary",
+        tech: ["Python", "FastAPI", "PostgreSQL", "React Native", "React", "TypeScript"],
+    },
+    {
+        id: "cheques",
+        tech: ["TypeScript", "React", "Vite", "Firestore", "Vitest"],
+    },
+    {
+        id: "dissertation",
+        tech: ["Java", "LibGDX", "Box2D"],
+        repoUrl: "https://github.com/doluludadada/Dissertation_TuringTumble_Java",
     },
 ];
 

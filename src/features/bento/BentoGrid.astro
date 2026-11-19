@@ -1,6 +1,7 @@
 ---
 import { Layers, Zap, Hexagon, Code2 } from "lucide-react";
 import CountUp from "../../shared/components/CountUp";
+import { projectsConfig } from "../projects/config";
 import { useTranslations } from "../../shared/i18n/utils";
 import type { Lang } from "../../shared/i18n/ui";
 
@@ -63,10 +64,10 @@ const techStack = {
         <Zap className="w-5 h-5 text-accent" />
         <div>
           <span class="text-3xl font-bold text-text-primary">
-            <CountUp client:visible end={94} suffix="%" duration={2500} />
+            <CountUp client:visible end={projectsConfig.length} duration={2500} />
           </span>
           <p class="text-xs mt-1 text-text-secondary">
-            {t("bento.perf_label")}
+            {t("bento.count_label")}
           </p>
         </div>
       </div>

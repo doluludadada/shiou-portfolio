@@ -3,8 +3,8 @@ import { useState, useEffect, type JSX } from 'react';
 const codeLines = [
     { text: 'class FullStackEngineer:', delay: 0 },
     { text: '    name = "Ethan Tsai"', delay: 100 },
-    { text: '    location = "London, UK"', delay: 200 },
-    { text: '    focus = "data + internal tools"', delay: 300 },
+    { text: '    location = "Taiwan"', delay: 200 },
+    { text: '    focus = "business systems, end to end"', delay: 300 },
     { text: '', delay: 400 },
     { text: '    skills = [', delay: 500 },
     { text: '        "Python",', delay: 600 },

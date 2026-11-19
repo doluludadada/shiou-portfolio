@@ -165,6 +165,10 @@ function highlightPython(code: string): JSX.Element[] {
     return elements;
 }
 
+const allFiles = Object.keys(playgroundFiles) as PlaygroundFile[];
+const projectFiles = allFiles.filter(f => f.startsWith('projects/'));
+const topLevelFiles = allFiles.filter(f => !f.startsWith('projects/'));
+
 interface FileTreeItemProps {
     name: string;
     isFolder?: boolean;
@@ -245,7 +249,7 @@ function Tab({ name, isActive, onSelect, onClose }: TabProps) {
 export default function VSCodePlayground() {
     const [openFiles, setOpenFiles] = useState<PlaygroundFile[]>(['about.py']);
     const [activeFile, setActiveFile] = useState<PlaygroundFile>('about.py');
-    const [projectsOpen, setProjectsOpen] = useState(false);
+    const [projectsOpen, setProjectsOpen] = useState(true);
     const [terminalOpen, setTerminalOpen] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(true); // Control sidebar visibility
     const [terminalInput, setTerminalInput] = useState('');
@@ -373,26 +377,15 @@ export default function VSCodePlayground() {
                                 level={0}
                             />
 
-                            <FileTreeItem
-                                name="about.py"
-                                isActive={activeFile === 'about.py'}
-                                level={1}
-                                onClick={() => handleFileClick('about.py')}
-                            />
-
-                            <FileTreeItem
-                                name="skills.py"
-                                isActive={activeFile === 'skills.py'}
-                                level={1}
-                                onClick={() => handleFileClick('skills.py')}
-                            />
-
-                            <FileTreeItem
-                                name="experience.py"
-                                isActive={activeFile === 'experience.py'}
-                                level={1}
-                                onClick={() => handleFileClick('experience.py')}
-                            />
+                            {topLevelFiles.filter(f => f !== 'contact.py').map(file => (
+                                <FileTreeItem
+                                    key={file}
+                                    name={file}
+                                    isActive={activeFile === file}
+                                    level={1}
+                                    onClick={() => handleFileClick(file)}
+                                />
+                            ))}
 
                             <FileTreeItem
                                 name="projects"
@@ -402,40 +395,15 @@ export default function VSCodePlayground() {
                                 onClick={() => setProjectsOpen(!projectsOpen)}
                             />
 
-                            {projectsOpen && (
-                                <>
-                                    <FileTreeItem
-                                        name="__init__.py"
-                                        isActive={activeFile === 'projects/__init__.py'}
-                                        level={2}
-                                        onClick={() => handleFileClick('projects/__init__.py')}
-                                    />
-                                    <FileTreeItem
-                                        name="data_control.py"
-                                        isActive={activeFile === 'projects/data_control.py'}
-                                        level={2}
-                                        onClick={() => handleFileClick('projects/data_control.py')}
-                                    />
-                                    <FileTreeItem
-                                        name="billing_email.py"
-                                        isActive={activeFile === 'projects/billing_email.py'}
-                                        level={2}
-                                        onClick={() => handleFileClick('projects/billing_email.py')}
-                                    />
-                                    <FileTreeItem
-                                        name="stock_screening.py"
-                                        isActive={activeFile === 'projects/stock_screening.py'}
-                                        level={2}
-                                        onClick={() => handleFileClick('projects/stock_screening.py')}
-                                    />
-                                    <FileTreeItem
-                                        name="llm_gateway.py"
-                                        isActive={activeFile === 'projects/llm_gateway.py'}
-                                        level={2}
-                                        onClick={() => handleFileClick('projects/llm_gateway.py')}
-                                    />
-                                </>
-                            )}
+                            {projectsOpen && projectFiles.map(file => (
+                                <FileTreeItem
+                                    key={file}
+                                    name={file.slice('projects/'.length)}
+                                    isActive={activeFile === file}
+                                    level={2}
+                                    onClick={() => handleFileClick(file)}
+                                />
+                            ))}
 
                             <FileTreeItem
                                 name="contact.py"

@@ -1,12 +1,18 @@
+// Content of the VS Code homepage. The explorer tree is built from playgroundFiles,
+// so adding a project means adding one entry here and one in playgroundCode.
 export const playgroundFiles = {
     'about.py': 'about',
     'skills.py': 'skills',
     'experience.py': 'experience',
     'projects/__init__.py': 'projects_init',
-    'projects/data_control.py': 'project_datacontrol',
-    'projects/billing_email.py': 'project_billing_email',
-    'projects/stock_screening.py': 'project_stock_screening',
-    'projects/llm_gateway.py': 'project_llm_gateway',
+    'projects/club_internal_systems.py': 'project_club',
+    'projects/company_portal.py': 'project_portal',
+    'projects/cafe_shop_system.py': 'project_cafe',
+    'projects/stock_agent.py': 'project_stock_agent',
+    'projects/where_is_this.py': 'project_where_is_this',
+    'projects/duoary.py': 'project_duoary',
+    'projects/cheque_printing.py': 'project_cheques',
+    'projects/dissertation.py': 'project_dissertation',
     'contact.py': 'contact',
 } as const;
 
@@ -15,485 +21,368 @@ export type PlaygroundFile = keyof typeof playgroundFiles;
 export const playgroundCode: Record<string, string> = {
     about: `# about.py
 """
-Portfolio of Ethan Tsai
+Ethan Tsai (蔡易修)
 Full-Stack Software Engineer
 """
 
 from dataclasses import dataclass, field
-from typing import Literal
-
-Role = Literal["Full-Stack Software Engineer", "Python Software Engineer"]
 
 
 @dataclass
 class Developer:
-    """A software engineer who builds reliable data workflows and internal tools."""
-    
     name: str = "Ethan Tsai"
-    chinese_name: str = "蔡易修"
-    role: Role = "Full-Stack Software Engineer"
-    location: str = "London, UK"
-    
+    role: str = "Full-Stack Software Engineer"
+    based_in: str = "Taiwan"
+    languages: list[str] = field(default_factory=lambda: ["Mandarin (native)", "English (fluent)"])
+
     focus: list[str] = field(default_factory=lambda: [
-        "ETL and Integrations",
-        "Internal Tools",
-        "PostgreSQL",
-        "Production Operations",
+        "Python / FastAPI back ends",
+        "React + TypeScript front ends",
+        "PostgreSQL and data integration",
+        "Shipping and running what I build",
     ])
-    
+
     def introduce(self) -> str:
-        return f"""
-        Hi, I'm {self.name}.
-        I build the data workflows and internal tools businesses rely on.
-        
-        Currently at American Club Taipei, where I've delivered
-        six production systems across data, billing and operations.
-        """
-    
-    def philosophy(self) -> str:
         return """
-        I keep systems understandable, observable and practical to run.
-        The engineer who ships a service should also understand how it
-        behaves in production.
+        Hi, I'm Ethan.
+        I build business systems end to end: the database, the API,
+        the screens people use every day, and the deployment.
+
+        At American Club Taipei I built six internal systems on my own.
+        Since then I have shipped freelance work for small businesses,
+        and I keep building products of my own: a stock research tool,
+        an iOS party game and a diary app.
+        """
+
+    def how_i_work(self) -> str:
+        return """
+        Clear layers, the business rules in the middle, tests that
+        exercise real behaviour, and systems the next person can run.
         """
 
 
+# Start here: open the projects/ folder in the explorer.
 if __name__ == "__main__":
-    dev = Developer()
-    print(dev.introduce())
+    print(Developer().introduce())
 `,
 
     skills: `# skills.py
-"""Technical expertise and proficiencies."""
+"""What I use, grouped by how often I use it."""
 
-from typing import TypeAlias, Literal
+DAILY = [
+    "Python", "FastAPI", "SQLAlchemy", "PostgreSQL",
+    "TypeScript", "React", "Docker", "Linux", "Git",
+]
 
-SkillLevel: TypeAlias = Literal["learning", "proficient", "expert"]
+REGULARLY = [
+    "Firebase (Auth, Firestore rules)", "Vite", "Playwright", "pytest",
+    "GitLab CI/CD", "GitHub Actions", "Caddy", "AWS EC2", "Redis",
+]
 
+HAVE_SHIPPED_WITH = [
+    "Swift 6 / SwiftUI", "React Native (Expo)", "C# / .NET",
+    "Oracle", "InterBase", "Microsoft Access", "Java",
+]
 
-class TechStack:
-    """Current technical stack and competencies."""
-    
-    backend: dict[str, SkillLevel] = {
-        "Python": "expert",
-        "FastAPI": "expert",
-        "C#": "proficient",
-        ".NET": "proficient",
-        "SQLAlchemy": "proficient",
-    }
-    
-    frontend: dict[str, SkillLevel] = {
-        "React": "proficient",
-        "TypeScript": "proficient",
-        "Astro": "proficient",
-        "Tailwind CSS": "expert",
-        "HTML/CSS": "expert",
-    }
-    
-    database: list[str] = [
-        "PostgreSQL",
-        "Oracle",
-        "Redis",
-        "SQLite",
-    ]
-    
-    devops: list[str] = [
-        "Docker",
-        "Docker Compose",
-        "GitLab CI/CD",
-        "GitHub Actions",
-        "Linux",
-        "Nginx",
-        "Caddy",
-    ]
-    
-    design: list[str] = [
-        "Layered services",
-        "Dependency injection",
-        "Provider adapters",
-        "Clear domain boundaries",
-        "Observable production workflows",
-    ]
-    
-    tools: list[str] = [
-        "Git",
-        "VS Code",
-        "JetBrains IDEs",
-        "Postman",
-        "DBeaver",
-    ]
-
-
-def get_primary_skills() -> list[str]:
-    """Skills I use most frequently."""
-    return [
-        "Python",
-        "FastAPI", 
-        "React",
-        "PostgreSQL",
-        "Docker",
-        "ETL and system integration",
-    ]
+PRACTICES = [
+    "Clean Architecture (domain -> application -> infrastructure -> presentation)",
+    "SSO, JWT and role-based access control",
+    "ETL and data migration with validation",
+    "Optimistic locking for concurrent edits",
+    "LLM APIs (OpenAI, Gemini, xAI) behind provider adapters",
+]
 `,
 
     experience: `# experience.py
-"""Career journey and work experience."""
+"""Work history, most recent first."""
 
-from dataclasses import dataclass
-from datetime import date
-
+from dataclasses import dataclass, field
 
 
 @dataclass
-class Experience:
-    company: str
-    role: str
-    start_date: date
-    end_date: date | None  # None = Current
-    location: str
-    highlights: list[str]
-    tech_stack: list[str]
+class Role:
+    title: str
+    where: str
+    period: str
+    highlights: list[str] = field(default_factory=list)
+    stack: list[str] = field(default_factory=list)
 
 
-career: list[Experience] = [
-    Experience(
-        company="American Club Taipei",
-        role="IT System Developer (Full-Stack Software Engineer)",
-        start_date=date(2025, 3, 1),
-        end_date=None,  # Current
-        location="Taipei, Taiwan",
+career: list[Role] = [
+    Role(
+        title="Freelance Full-Stack Engineer",
+        where="Private clients, remote",
+        period="Dec 2025 - present",
         highlights=[
-            "Built the Python ETL hub linking Oracle ERP, billing, email, website and access workflows",
-            "Own six production applications from development through production support",
-            "Rebuilt monthly invoice emailing, reducing runtime from three hours to ten minutes",
-            "Migrated InterBase and Microsoft Access workflows to PostgreSQL",
-            "Helped interview and onboard a new developer, then worked with them on delivery and support",
+            "Company portal MVP with user and admin roles, delivered in eight weeks",
+            "Shop system for a café: iPad menu, back office, stock, receipt printing",
         ],
-        tech_stack=[
-            "Python", "FastAPI", "React", "TypeScript",
-            "PostgreSQL", "Docker", "GitLab CI",
-        ],
+        stack=["FastAPI", "React", "TypeScript", "Firebase", "Docker", "AWS EC2"],
     ),
-
-    Experience(
-        company="Private Client",
-        role="Full-Stack Software Engineer — Part-Time Contract",
-        start_date=date(2025, 12, 1),
-        end_date=date(2026, 1, 31),
-        location="Remote",
+    Role(
+        title="Full-Stack Software Engineer (IT System Developer)",
+        where="American Club Taipei, Taiwan",
+        period="Mar 2025 - Aug 2026",
         highlights=[
-            "Delivered an internal corporate portal MVP in eight weeks",
-            "Implemented role-based access control for users and administrators",
-            "Deployed to AWS EC2 using Docker, Caddy and CI/CD",
+            "Built six internal systems on my own, from database design to deployment and support",
+            "Python ETL hub linking the ERP with billing, the website and access control",
+            "Rebuilt monthly e-billing: about 3 hours down to 10 minutes, resumable after interruption",
+            "Moved Microsoft Access and InterBase workflows to PostgreSQL web apps",
+            "Helped interview and onboard a new developer",
         ],
-        tech_stack=["AWS EC2", "Docker", "Caddy", "RBAC", "CI/CD"],
+        stack=["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "Docker", "GitLab CI/CD"],
     ),
-    
-    Experience(
-        company="ITRI (Industrial Technology Research Institute)",
-        role="Software Programmer — C#/.NET",
-        start_date=date(2025, 1, 1),
-        end_date=date(2025, 3, 1),
-        location="Hsinchu, Taiwan",
-        highlights=[
-            "Developed internal software tools",
-            "First professional software role after graduation",
-        ],
-        tech_stack=["C#", ".NET Framework"],
+    Role(
+        title="Software Programmer",
+        where="Industrial Technology Research Institute (ITRI)",
+        period="Jan 2025 - Mar 2025",
+        highlights=["Internal C#/.NET tools for engineering data processing"],
+        stack=["C#", ".NET"],
     ),
-
-    Experience(
-        company="University of Glasgow",
-        role="MSc Software Development",
-        start_date=date(2022, 9, 1),
-        end_date=date(2024, 9, 1),
-        location="Glasgow, Scotland",
-        highlights=[
-            "Dissertation: Digital Simulation of Mechanical Computer",
-            "Dissertation grade: A5",
-            "Integrated Box2D physics with LibGDX",
-            "Applied design patterns: Factory, State, Observer",
-        ],
-        tech_stack=["Java", "Box2D", "LibGDX", "OOP"],
+    Role(
+        title="MSc Software Development",
+        where="University of Glasgow, Scotland",
+        period="2022 - 2024",
+        highlights=["Dissertation: a physics simulation of a mechanical computer (see projects/)"],
+        stack=["Java", "LibGDX", "Box2D"],
     ),
-
-    Experience(
-        company="Jieqi Trading Co., Ltd.",
-        role="IT & Business Systems Assistant",
-        start_date=date(2020, 7, 1),
-        end_date=date(2021, 6, 30),
-        location="Taichung, Taiwan",
-        highlights=[
-            "Supported ERP order records and internal reporting workflows",
-            "Prepared customer and billing-cycle reports from CSV exports",
-            "Built C#/.NET utilities for validation and Excel-readable summaries",
-            "Worked with an external contractor on requirements and user testing",
-        ],
-        tech_stack=["C#", ".NET", "CSV", "Data Validation", "UAT"],
-    ),
-    
-    Experience(
-        company="AIDC (Aerospace Industrial Development Corporation)",
-        role="Aerospace Structural Technician",
-        start_date=date(2019, 3, 1),
-        end_date=date(2020, 6, 1),
-        location="Taichung, Taiwan",
-        highlights=[
-            "Participated in defense aircraft fleet modernisation",
-            "Precision manufacturing for aerospace components",
-            "Learned discipline and attention to detail",
-        ],
-        tech_stack=["CNC", "Aircraft Maintenance"],
+    Role(
+        title="IT & Business Systems Assistant",
+        where="Jieqi Trading, Taichung",
+        period="Jul 2020 - Jun 2021",
+        highlights=["C#/.NET tools to validate ERP exports and produce billing summaries"],
+        stack=["C#", ".NET"],
     ),
 ]
-
-
-def get_direct_software_months() -> int:
-    """Calculate months in direct software delivery roles."""
-    from datetime import date
-    today = date.today()
-    start = date(2025, 1, 1)
-    return (today.year - start.year) * 12 + (today.month - start.month)
 `,
 
     projects_init: `# projects/__init__.py
 """
-Portfolio Projects
-==================
+Projects
+========
 
-A collection of systems I've designed and delivered.
+Work:        club_internal_systems, company_portal, cafe_shop_system
+Own work:    stock_agent, where_is_this, duoary, cheque_printing
+University:  dissertation
 
-Categories:
-- Enterprise: Production systems at American Club Taipei
-- Side Projects: Personal and freelance work
+Client and employer code is private, so those files describe
+what I built, not how their data looks.
 """
 
-from enum import Enum
-
-
-class ProjectCategory(Enum):
-    ENTERPRISE = "enterprise"
-    SIDE_PROJECT = "side_project"
-    OPEN_SOURCE = "open_source"
-
-
-class ProjectStatus(Enum):
-    PRODUCTION = "production"
-    DEVELOPMENT = "development"
-    MAINTAINED = "maintained"
-
-
-# Featured work shown across LinkedIn and this portfolio
-FEATURED = [
-    "data_control",
-    "billing_email",
-    "stock_screening",
-    "llm_gateway",
-]
-
-# All projects
-ALL_PROJECTS = [
-    "data_control",       # Production ETL and integration hub
-    "billing_email",      # Production invoice-email workflow
-    "stock_screening",    # Personal project
-    "llm_gateway",        # Personal project
-]
-`,
-
-    project_datacontrol: `# projects/data_control.py
-"""
-Data Control ETL Platform
-=========================
-
-Mission-critical ETL system modernisation project.
-Migrated from legacy C# console application to modern
-FastAPI + React stack.
-
-This became the central data hub used by downstream
-billing, email, website and access-control workflows.
-"""
-
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass
 class Project:
-    name: str = "Data Control ETL"
-    status: str = "Production"
-    category: str = "Enterprise"
-    
-    # The Problem
-    before: dict = {
-        "stack": "C# Console Application",
-        "execution": "Manual trigger",
-        "monitoring": "None",
-        "maintainability": "Low",
-    }
-    
-    # The Solution
-    after: dict = {
-        "stack": "FastAPI + React + TypeScript",
-        "execution": "Scheduled (APScheduler)",
-        "monitoring": "Real-time dashboard",
-        "maintainability": "High",
-    }
-    
-    tech_stack: list[str] = [
-        "Python 3.13",
-        "FastAPI",
-        "React 18",
-        "TypeScript",
-        "PostgreSQL",
-        "Docker",
-        "GitLab CI/CD",
-    ]
-    
-    structure: str = """
-    Layered service structure
-    
-    ┌─────────────────────────────────────┐
-    │          Presentation Layer         │
-    │      (FastAPI Routes, React UI)     │
-    ├─────────────────────────────────────┤
-    │          Application Layer          │
-    │      (Use Cases, Orchestration)     │
-    ├─────────────────────────────────────┤
-    │          Domain Layer               │
-    │    (Entities, Business Rules)       │
-    ├─────────────────────────────────────┤
-    │        Infrastructure Layer         │
-    │  (DB Adapters, File Systems, APIs)  │
-    └─────────────────────────────────────┘
-    
-    Dependencies flow inward.
-    Domain has zero external dependencies.
-    """
-    
-    highlights: list[str] = [
-        "Modernised legacy C# console application",
-        "Real-time monitoring dashboard",
-        "Automated CI/CD deployment",
-        "Clear separation between workflow, data and external integrations",
-        "Comprehensive error handling",
-    ]
+    name: str
+    kind: str      # "employer" | "freelance" | "personal" | "university"
+    status: str
+    summary: str
+    built: list[str] = field(default_factory=list)
+    stack: list[str] = field(default_factory=list)
+    link: str | None = None
 `,
 
-    project_billing_email: `# projects/billing_email.py
-"""Monthly invoice-email workflow used in production."""
+    project_club: `# projects/club_internal_systems.py
+"""Six internal systems for a private members' club. Built solo."""
 
-from dataclasses import dataclass
+from projects import Project
 
-
-@dataclass
-class BillingEmailWorkflow:
-    name: str = "Invoice Emailing System"
-    status: str = "Production"
-    result: str = "Runtime reduced from about 3 hours to 10 minutes"
-
-    responsibilities: list[str] = [
-        "Rebuilt the legacy workflow in Python",
-        "Added asynchronous processing and automated validation",
-        "Added recovery handling for interrupted runs",
-        "Integrated invoice files, schedules and email delivery",
-    ]
-
-    tech_stack: list[str] = [
-        "Python", "FastAPI", "PostgreSQL", "Docker", "Mandrill"
-    ]
+CLUB_SYSTEMS = Project(
+    name="Internal systems, American Club Taipei",
+    kind="employer",
+    status="In production (code is private)",
+    summary="Replaced spreadsheets, Access databases and manual exports "
+            "with six web systems that share one database and one sign-in.",
+    built=[
+        "ERP integration and ETL: one Python hub that feeds billing, "
+        "the website and access control",
+        "Monthly e-billing: about 3 hours down to 10 minutes, and a run "
+        "that is interrupted resumes where it stopped",
+        "Single sign-on for every internal system: one-time tickets, JWT, "
+        "role-based access per app",
+        "Access / InterBase to PostgreSQL: legacy desktop databases rebuilt as web apps",
+        "Marketing: member tags and targeted email campaigns",
+        "HR: employee registration",
+    ],
+    stack=["Python", "FastAPI", "React", "TypeScript", "PostgreSQL",
+           "Docker", "GitLab CI/CD", "Linux"],
+)
 `,
 
-    project_stock_screening: `# projects/stock_screening.py
-"""Automated Stock Screening Agent — personal project."""
+    project_portal: `# projects/company_portal.py
+"""Internal company portal MVP for a private client."""
 
-from dataclasses import dataclass
+from projects import Project
 
-
-@dataclass
-class StockScreeningAgent:
-    market: str = "TWSE / TPEX"
-    status: str = "In development"
-    repository: str = "github.com/doluludadada/stock-agent"
-
-    features: list[str] = [
-        "End-of-day trend, momentum, volume and volatility screening",
-        "PTT sentiment collection",
-        "OpenAI, Gemini and Grok provider adapters",
-        "Configurable scoring and risk policies",
-        "Candidate reports for manual review",
-    ]
-
-    tech_stack: list[str] = ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy"]
+COMPANY_PORTAL = Project(
+    name="Company portal MVP",
+    kind="freelance",
+    status="Delivered in eight weeks",
+    summary="An internal portal for a private client's staff, "
+            "with separate user and admin roles.",
+    built=[
+        "Role-based access control for users and administrators",
+        "FastAPI back end and React admin screens",
+        "Deployed on AWS EC2 with Docker, Caddy and CI/CD",
+    ],
+    stack=["Python", "FastAPI", "React", "TypeScript", "PostgreSQL",
+           "Docker", "Caddy", "AWS EC2"],
+)
 `,
 
-    project_llm_gateway: `# projects/llm_gateway.py
-"""Backend gateway connecting LINE with multiple LLM providers."""
+    project_cafe: `# projects/cafe_shop_system.py
+"""Shop system for a café, used by the owner and staff every day."""
 
-from dataclasses import dataclass
+from projects import Project
 
+CAFE_SHOP = Project(
+    name="Café shop system",
+    kind="freelance",
+    status="Version 1 in daily use; version 2 in development",
+    summary="The electronic menu on the shop's iPad and a back office "
+            "on the owner's phone. No server: Firestore rules check every write.",
+    built=[
+        "iPad menu in Chinese and English, whole-cake pre-orders, a 'what to eat' wheel",
+        "Back office: products, stock, pre-orders, staff ordering, reports",
+        "Accounts with admin and store roles, enforced by Firestore rules",
+        "Receipt printing five ways, including AirPrint, Epson ePOS and WebUSB",
+        "LINE Pay payments through a small print bridge (version 2)",
+        "Rules tests on the emulator and Playwright journeys",
+    ],
+    stack=["TypeScript", "React", "Vite", "Firebase Auth", "Firestore",
+           "Playwright", "Node.js"],
+)
+`,
 
-@dataclass
-class MultiLLMGateway:
-    status: str = "Completed"
-    repository: str = "github.com/doluludadada/chat_friend"
+    project_stock_agent: `# projects/stock_agent.py
+"""Research tool for Taiwan-listed stocks. Personal project."""
 
-    features: list[str] = [
-        "Asynchronous FastAPI webhooks for LINE messages",
-        "Interchangeable OpenAI and xAI provider adapters",
-        "Redis-backed conversation state",
-        "Dependency injection and layered service boundaries",
-    ]
+from projects import Project
 
-    tech_stack: list[str] = [
-        "Python", "FastAPI", "Redis", "LINE Messaging API", "OpenAI API", "xAI API"
-    ]
+STOCK_AGENT = Project(
+    name="TW Stock Agent",
+    kind="personal",
+    status="In development",
+    summary="Screens TWSE / TPEx stocks and writes research reports. "
+            "Web app, REST API and CLI over one Clean Architecture core.",
+    built=[
+        "Revenue ranking and a market overview",
+        "Technical strategies with backtesting",
+        "Valuation from filed EPS and target P/E scenarios",
+        "LLM-written stock reports (OpenAI, Gemini, xAI behind adapters)",
+        "Paper trading on a mock account, with fees and tax modelled",
+        "Accounts with per-user quotas",
+    ],
+    stack=["Python", "FastAPI", "SQLAlchemy", "PostgreSQL / SQLite",
+           "React", "TypeScript", "Vite"],
+    link="https://github.com/doluludadada/stock-agent",
+)
+
+# Decision support only: no investment advice, no live trading.
+`,
+
+    project_where_is_this: `# projects/where_is_this.py
+"""Where Is This? Pass & Play: an iOS street-view guessing party game."""
+
+from projects import Project
+
+WHERE_IS_THIS = Project(
+    name="Where Is This? Pass & Play",
+    kind="personal",
+    status="Submitted to the App Store, in review",
+    summary="Look around a street, guess where it is on the map, closest "
+            "guess wins. City packs for Taiwan, Hong Kong and Japan.",
+    built=[
+        "Solo, Pass & Play (2-6 players on one phone) and a daily challenge",
+        "Online party for 2-6 phones, peer to peer with GameKit, join by PIN; no server",
+        "Apple Look Around imagery and MapKit",
+        "English, Traditional Chinese and Japanese",
+        "Clean Architecture in Swift packages, strict concurrency",
+    ],
+    stack=["Swift 6", "SwiftUI", "MapKit", "GameKit", "XcodeGen"],
+)
+`,
+
+    project_duoary: `# projects/duoary.py
+"""Duoary: a private diary where you share one entry at a time."""
+
+from projects import Project
+
+DUOARY = Project(
+    name="Duoary",
+    kind="personal",
+    status="In development (code is private)",
+    summary="A diary first. Each entry has its own readers, and nothing "
+            "is public unless its author makes that one entry public.",
+    built=[
+        "Per-entry sharing with friends; every new reader needs the author's confirmation",
+        "Privacy Lens: real names in an entry are shown to readers as aliases",
+        "iPhone app that works offline and syncs, plus the same diary on the web",
+        "Reviewer console for reports and moderation",
+        "Google and email sign-in",
+    ],
+    stack=["Python", "FastAPI", "PostgreSQL", "React Native (Expo)",
+           "React", "TypeScript", "Bun"],
+)
+`,
+
+    project_cheques: `# projects/cheque_printing.py
+"""Cheque printing and tracking for a small office."""
+
+from projects import Project
+
+CHEQUE_PRINTING = Project(
+    name="Cheque printer",
+    kind="personal",
+    status="Built for a small office",
+    summary="Replaces a 96-sheet Excel workbook and a Word form: write "
+            "the month's cheques, print them on pre-numbered bank leaves, "
+            "print the receipts, see how much cash each day needs.",
+    built=[
+        "Print layout in millimetres with a calibration page for the office printer",
+        "Amounts written out in Chinese capital numerals",
+        "A cheque number is recorded once only: not on retry, reprint or void",
+        "Exports the payables list to Excel in the office's existing layout",
+    ],
+    stack=["TypeScript", "React", "Vite", "Firestore", "Vitest"],
+)
+`,
+
+    project_dissertation: `# projects/dissertation.py
+"""MSc dissertation, University of Glasgow."""
+
+from projects import Project
+
+DISSERTATION = Project(
+    name="Digital simulation of a mechanical computer",
+    kind="university",
+    status="Completed 2024",
+    summary="A playable simulation of a marble-powered mechanical "
+            "computer, with real physics.",
+    built=[
+        "Box2D physics inside a LibGDX game",
+        "Factory, State and Observer patterns for the parts and the board",
+    ],
+    stack=["Java", "LibGDX", "Box2D"],
+    link="https://github.com/doluludadada/Dissertation_TuringTumble_Java",
+)
 `,
 
     contact: `# contact.py
-"""
-Contact Information
-===================
+"""Get in touch."""
 
-Feel free to reach out for opportunities,
-collaborations, or just to say hi!
-"""
+CONTACT = {
+    "email": "shiou.tsai.84@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/ethan-t-b98b0a267/",
+    "github": "https://github.com/doluludadada",
+    "based_in": "Taiwan",
+}
 
-from dataclasses import dataclass
-
-
-@dataclass
-class Contact:
-    email: str = "shiou.tsai.84@gmail.com"
-    linkedin: str = "https://www.linkedin.com/in/ethan-t-b98b0a267/"
-    github: str = "github.com/doluludadada"
-    location: str = "London, UK"
-    
-    availability: str = "Open to opportunities"
-    
-    preferred_contact: str = "LinkedIn"
-    
-    def send_message(self, message: str) -> bool:
-        """
-        Feel free to reach out!
-        
-        I'm particularly interested in:
-        - Backend engineering roles
-        - Data and integration engineering roles
-        - Full-stack opportunities
-        - Internal tools and production systems
-        """
-        print(f"Message received: {message}")
-        return True
-
-
-# Let's connect!
-if __name__ == "__main__":
-    me = Contact()
-    print(f"📧 {me.email}")
-    print(f"💼 {me.linkedin}")
-    print(f"🐙 {me.github}")
-    print(f"📍 {me.location}")
-    print(f"")
-    print(f"Status: {me.availability}")
+LOOKING_FOR = [
+    "Full-time back-end or full-stack roles (on-site in Taiwan or remote)",
+    "Freelance projects: internal tools, shop systems, data clean-up",
+]
 `,
 };
 
@@ -509,29 +398,32 @@ export const terminalContent = {
   contact   - Contact info
   clear     - Clear terminal`,
         whoami: `Ethan Tsai
-Full-Stack Software Engineer @ American Club Taipei
-Focus: Python | PostgreSQL | ETL & Integrations`,
+Full-Stack Software Engineer · Taiwan
+Python | FastAPI | React | PostgreSQL`,
         ls: `about.py    contact.py    experience.py    projects/    skills.py`,
-        'ls projects': `__init__.py    billing_email.py    data_control.py    llm_gateway.py    stock_screening.py`,
+        'ls projects': `__init__.py  club_internal_systems.py  company_portal.py  cafe_shop_system.py
+stock_agent.py  where_is_this.py  duoary.py  cheque_printing.py  dissertation.py`,
         skills: `{
-  "backend": ["Python", "FastAPI", "C#"],
-  "frontend": ["React", "TypeScript", "Astro"],
-  "database": ["PostgreSQL", "Redis", "Oracle"],
-  "devops": ["Docker", "GitLab CI", "Linux"]
+  "daily": ["Python", "FastAPI", "PostgreSQL", "TypeScript", "React", "Docker"],
+  "regularly": ["Firebase", "Playwright", "GitLab CI/CD", "AWS EC2"],
+  "shipped_with": ["Swift 6", "React Native", "C#/.NET"]
 }`,
-        'skills --backend': `["Python", "FastAPI", "C#", ".NET", "SQLAlchemy"]`,
-        'skills --frontend': `["React", "TypeScript", "Astro", "Tailwind"]`,
-        projects: `Featured:
-  ⭐ data_control     - Production ETL and integration hub
-  ⭐ billing_email    - Invoice-email workflow (3 hours → 10 minutes)
-  ⭐ stock_screening  - TWSE/TPEX screening and analysis
-  ⭐ llm_gateway      - LINE and multi-provider LLM gateway
-
-Experience: 6 production applications + contract and personal projects`,
-        contact: `📧 Email:    shiou.tsai.84@gmail.com
-💼 LinkedIn: https://www.linkedin.com/in/ethan-t-b98b0a267/
-🐙 GitHub:   github.com/doluludadada
-📍 Location: London, UK`,
+        'skills --backend': `["Python", "FastAPI", "SQLAlchemy", "PostgreSQL", "Redis"]`,
+        'skills --frontend': `["TypeScript", "React", "Vite", "SwiftUI"]`,
+        projects: `Work:
+  club_internal_systems  - Six internal systems, built solo
+  company_portal         - Portal MVP with RBAC (freelance)
+  cafe_shop_system       - iPad menu + back office (freelance)
+Own work:
+  stock_agent            - TW stock research tool
+  where_is_this          - iOS street-view party game
+  duoary                 - Diary with per-entry sharing
+  cheque_printing        - Cheque printing for an office
+University:
+  dissertation           - Mechanical computer simulation`,
+        contact: `Email:    shiou.tsai.84@gmail.com
+LinkedIn: https://www.linkedin.com/in/ethan-t-b98b0a267/
+GitHub:   github.com/doluludadada`,
         clear: '',
     } as Record<string, string>,
 };
